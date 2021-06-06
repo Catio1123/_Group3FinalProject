@@ -7,3 +7,6 @@ tomcat-9.0.45/
 *.prefs
 .settings/
 Servers/
+*.classpath
+*.project
+target/
