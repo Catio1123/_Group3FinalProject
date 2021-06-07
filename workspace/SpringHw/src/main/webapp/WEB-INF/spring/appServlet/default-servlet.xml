@@ -11,7 +11,7 @@
 	<context:component-scan
 		base-package="org.iii.group3.base">
 		<context:exclude-filter type="annotation"
-			expression="org.springframework.transaction.annotation.Transactional" />
+			expression="org.springframework.stereotype.Repository" />
 	</context:component-scan>
 	<!-- =============================================================================================== -->
 
