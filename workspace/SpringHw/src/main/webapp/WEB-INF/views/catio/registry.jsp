@@ -45,16 +45,27 @@
 			<div class="container">
 				<div id="content">
 					<!-- Content -->
-					<a href="<c:url value='/catio/registry'/>">註冊</a>
-					<table id="demoList">
-						<tr>
-							<th>編輯</th>
-							<th>編號</th>
-							<th>欄1</th>
-							<th>欄2</th>
-							<th>日期</th>
-						</tr>
-					</table>
+					<form id="demoForm">
+						
+						
+						<label for="demoCol1">欄1:</label>
+						<input type="text" id="demoCol1" name="col1" />
+						<button type="button" id="btnCheck">檢查唯一</button>
+						<span id="checkMsg"></span>
+						<br/>
+						
+						<label for="demoCol2">欄2:</label>
+						<input type="text" id="demoCol2" name="col2" />
+						<br/>
+						
+						<label for="demoDate">日期:</label>
+						<input type="date" id="demoDate" name="date" />
+						<br/>
+						
+						<button type="button" id="btnRegister">新增</button>
+						<span id="regMsg"></span>
+						
+					</form>
 				</div>
 			</div>
 		</div>
@@ -148,33 +159,73 @@
 	<script src="<c:url value='/assets/js/main.js' />"></script>
 	<script>
 		$(function(){
-			$.ajax({
-				method: "GET",
-				url: "<c:url value='/catio/demo'/>",
-				dataType: "json",
-			}).done(function(response){
-				$.each(response, function(index, demoBean){
-					appendTable(demoBean);
-				})
+			
+			let ifExist = false;
+			let successHtml = "<font color='green'>成功</font>";
+			let failHtml = "<font color='red'>失敗</font>";
+			let checkFirstHtml = "<font color='red'>請先檢查成功</font>";
+			let warningHtml = "<font color='red'>系統發生錯誤</font>";
+			let inputWarningHtml= "<font color='red'>不可為空白</font>"
+
+			
+			$("#btnCheck").on("click", function(){
+	
+				let checkData = $("#demoCol1").val();
+				if(checkData==null || checkData==""){
+					$("#checkMsg").html(inputWarningHtml);
+				}else{
+					
+					$.ajax({
+						method: "POST",
+						url: "<c:url value='/catio/check'/>",
+						data: JSON.stringify({"colName":"col1","field":checkData}),
+						contentType: "application/json",
+						dataType: "json",
+						
+					}).done(function(response){
+						let msg = response.msg;
+						
+						switch(msg){
+							case 1:
+								ifExist=true;
+								$("#checkMsg").html(successHtml);
+								$("#regMsg").html("");
+								break;
+							case -1:
+								ifExit=false;
+								$("#checkMsg").html(failHtml);
+								break;
+							default:
+								ifExit=false;
+								$("#checkMsg").html(warningHtml);
+						}
+					});
+				};
 			});
 			
-			function appendTable(bean){
-					
-				let id = bean.id;
-				let uri = "<c:url value='/catio/demoEdit/'/>" + id;
-					
-				let temp = "<tr>";
-				temp += "<td><a href='" + uri + "'>詳細</a></td>"
-				temp += "<td>" + bean.id + "</td>"
-				temp += "<td>" + bean.col1 + "</td>"
-				temp += "<td>" + bean.col2 + "</td>"
-				temp += "<td>" + bean.date + "</td>"
-				temp += "</tr>";
-					
-				$("#demoList").append(temp);	
+			$("#btnRegister").on("click", function(){
+
+				if(!ifExist){
+					$("#regMsg").html(checkFirstHtml);
+				}else{
+					let formData = {};
+					$.each($("#demoForm").serializeArray(), function(index, field){
+						formData[field.name] = field.value;
+					})
+					$.ajax({
+						method: "POST",
+						url: "<c:url value='/catio/demo'/>",
+						data: JSON.stringify(formData),
+						contentType: "application/json",
+						dataType: "json",
+						async: false,
+					}).done(function(response){
+						alert(response.msg);
+						window.location.href ='<c:url value="/catio"/>';
+					});
+				}
 				
-			}
-			
+			});
 		})
 	</script>
 

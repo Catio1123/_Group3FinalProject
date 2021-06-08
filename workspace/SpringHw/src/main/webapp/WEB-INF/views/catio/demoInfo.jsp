@@ -45,16 +45,29 @@
 			<div class="container">
 				<div id="content">
 					<!-- Content -->
-					<a href="<c:url value='/catio/registry'/>">註冊</a>
-					<table id="demoList">
-						<tr>
-							<th>編輯</th>
-							<th>編號</th>
-							<th>欄1</th>
-							<th>欄2</th>
-							<th>日期</th>
-						</tr>
-					</table>
+					<form id="demoForm">
+						
+						<label for="demoId">編號:</label> 
+						<input type="text" id="demoId" name="id" disabled /> <br/>
+						<br/>
+						
+						<label for="demoCol1">欄1:</label>
+						<input type="text" id="demoCol1" name="col1" />
+						<br/>
+						
+						<label for="demoCol2">欄2:</label>
+						<input type="text" id="demoCol2" name="col2" />
+						<br/>
+						
+						<label for="demoDate">日期:</label>
+						<input type="date" id="demoDate" name="date" />
+						<br/>
+						
+						<button type="button" id="btnUpdate">更新</button>
+						<button type="button" id="btnDel">刪除</button>
+						
+					</form>
+
 				</div>
 			</div>
 		</div>
@@ -147,33 +160,54 @@
 	<script src="<c:url value='/assets/js/util.js' />"></script>
 	<script src="<c:url value='/assets/js/main.js' />"></script>
 	<script>
-		$(function(){
+		$(function() {
+			let id = ${id};
 			$.ajax({
 				method: "GET",
-				url: "<c:url value='/catio/demo'/>",
+				url: "<c:url value='/catio/demo/'/>" + id,
 				dataType: "json",
+				async: false,
 			}).done(function(response){
-				$.each(response, function(index, demoBean){
-					appendTable(demoBean);
-				})
+				$("#demoId").val(response.id);
+				$("#demoCol1").val(response.col1);
+				$("#demoCol2").val(response.col2);
+				$("#demoDate").val(response.date);
+				
 			});
 			
-			function appendTable(bean){
-					
-				let id = bean.id;
-				let uri = "<c:url value='/catio/demoEdit/'/>" + id;
-					
-				let temp = "<tr>";
-				temp += "<td><a href='" + uri + "'>詳細</a></td>"
-				temp += "<td>" + bean.id + "</td>"
-				temp += "<td>" + bean.col1 + "</td>"
-				temp += "<td>" + bean.col2 + "</td>"
-				temp += "<td>" + bean.date + "</td>"
-				temp += "</tr>";
-					
-				$("#demoList").append(temp);	
+			$("#btnUpdate").on("click", function(){
+
+				let formData = {};
 				
-			}
+				$.each($("#demoForm").serializeArray(), function(index, field){
+					formData[field.name] = field.value;
+				})
+				
+				$.ajax({
+					method: "PUT",
+					url: "<c:url value='/catio/demo/'/>" + $("#demoId").val(),
+					data: JSON.stringify(formData),
+					contentType: "application/json",
+					dataType: "json",
+					async: false,
+				}).done(function(response){
+					alert(response.msg);
+					window.location.href = '<c:url value="/catio"/>';
+				});
+			});
+			
+			
+			$("#btnDel").on("click", function(){
+				$.ajax({
+					method: "DELETE",
+					url: "<c:url value='/catio/demo'/>/" + $("#demoId").val(),
+					dataType: "json",
+					async: false,
+				}).done(function(response){
+					alert(response.msg);
+					window.location.href ='<c:url value="/catio"/>';
+				});
+			});
 			
 		})
 	</script>
