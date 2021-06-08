@@ -18,9 +18,9 @@
 
 	<tx:annotation-driven
 		transaction-manager="transactionManager" />
-		
+
 	<!-- =============================================================================================== -->
-	
+
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -34,9 +34,10 @@
 		<property name="password" value="${jdbc.password}" />
 		<property name="initialPoolSize" value="${jdbc.initPoolSize}" />
 		<property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
-		
+
 	</bean>
 
+	<!-- =============================================================================================== -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
