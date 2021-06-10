@@ -45,21 +45,43 @@
 			<div class="container">
 				<div id="content">
 					<!-- Content -->
-					<a href="<c:url value='/kevin/signUp'/>">還沒有帳號嗎?</a>
+					<form id="demoForm">
+						
+						
+						<label for="acctno">帳號:</label>
+						<input type="text" id="MemberAcctno" name="acctno" />
+						<button type="button" id="btnCheck">檢查唯一</button>
+						<span id="checkMsg"></span>
+						<br/>
+						
+						<label for="pw">密碼:</label>
+						<input type="text" id="MemberPw" name="pw" />
+						<br/>
+						<label for="name">姓名:</label>
+						<input type="text" id="MemberName" name="name" />
+						<br/>
+						<label for="nickname">別稱:</label>
+						<input type="text" id="MemberNickname" name="nickname" />
+						<br/>
+						<label for="email">郵箱號:</label>
+						<input type="text" id="MemberEmail" name="email" />
+						<br/>
+						<label for="celno">手機號:</label>
+						<input type="text" id="MemberCelno" name="celno" />
+						<br/>
+						<label for="dob">日期:</label>
+						<input type="date" id="MemberDob" name="dob" />
+						<br/>
+						<label for="gender">性別:</label>
+						<input type="text" id="MemberGender" name="gender" />Male or Female
+						<br/>
+						
 
-					<table id="demoList">
-						<tr>
-							<th>編輯</th>
-							<th>帳號</th>
-							<th>密碼</th>
-							<th>姓名</th>
-							<th>別稱</th>
-							<th>信箱</th>
-							<th>手機號</th>
-							<th>生日</th>
-							<th>性別</th>
-						</tr>
-					</table>
+						<button type="button" id="btnRegister">新增</button>
+						<span id="regMsg"></span>
+						
+					</form>
+
 				</div>
 			</div>
 		</div>
@@ -154,39 +176,75 @@
 	
 	<script>
 		$(function(){
-			$.ajax({
-				method: "GET",
-				url: "<c:url value='/kevin/member'/>",
-				dataType: "json",
-			}).done(function(response){
-				$.each(response, function(index, memberBean){
-					appendTable(memberBean);
-				})
+			
+			let ifExist = false;
+			let successHtml = "<font color='green'>成功</font>";
+			let failHtml = "<font color='red'>失敗</font>";
+			let checkFirstHtml = "<font color='red'>請先檢查成功</font>";
+			let warningHtml = "<font color='red'>系統發生錯誤</font>";
+			let inputWarningHtml= "<font color='red'>不可為空白</font>"
+
+			
+			$("#btnCheck").on("click", function(){
+	
+				let checkData = $("#MemberAcctno").val();
+				if(checkData==null || checkData==""){
+					$("#checkMsg").html(inputWarningHtml);
+				}else{
+					$.ajax({
+						method: "POST",
+						url: "<c:url value='/kevin/check'/>",
+						data: JSON.stringify({"colName":"acctno","field":checkData}),
+						contentType: "application/json",
+						dataType: "json",
+						
+					}).done(function(response){
+						let msg = response.msg;
+						
+						switch(msg){
+							case 1:
+								ifExist=true;
+								$("#checkMsg").html(successHtml);
+								$("#regMsg").html("");
+								break;
+							case -1:
+								ifExit=false;
+								$("#checkMsg").html(failHtml);
+								break;
+							default:
+								ifExit=false;
+								$("#checkMsg").html(warningHtml);
+						}
+					});
+				};
 			});
 			
-			function appendTable(bean){
-					
-				let acctno = bean.acctno;
-				let uri = "<c:url value='/kevin/copyEdit/'/>" + acctno;
-					
-				let temp = "<tr>";
-				temp += "<td><a href='" + uri + "'>詳細</a></td>"
-				temp += "<td>" + bean.acctno + "</td>"
-				temp += "<td>" + bean.pw + "</td>"
-				temp += "<td>" + bean.name + "</td>"
-				temp += "<td>" + bean.nickname + "</td>"
-				temp += "<td>" + bean.email + "</td>"
-				temp += "<td>" + bean.celno + "</td>"
-				temp += "<td>" + bean.dob + "</td>"
-				temp += "<td>" + bean.gender + "</td>"
-				temp += "</tr>";
-					
-				$("#demoList").append(temp);	
+			$("#btnRegister").on("click", function(){
+
+				if(!ifExist){
+					$("#regMsg").html(checkFirstHtml);
+				}else{
+					let formData = {};
+					$.each($("#demoForm").serializeArray(), function(index, field){
+						formData[field.name] = field.value;
+					})
+					$.ajax({
+						method: "POST",
+						url: "<c:url value='/kevin/member'/>",
+						data: JSON.stringify(formData),
+						contentType: "application/json",
+						dataType: "json",
+						async: false,
+					}).done(function(response){
+						alert(response.msg);
+						window.location.href ='<c:url value="/kevin"/>';
+					});
+				}
 				
-			}
-			
+			});
 		})
 	</script>
+	
 
 
 </body>

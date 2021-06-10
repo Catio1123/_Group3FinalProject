@@ -1,63 +1,73 @@
-package org.iii.group3.catio.model;
+package org.iii.group3.kevin.model;
 
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
-@Repository
+@Repository("memberDao")
 @Transactional
-public class DemoDao {
-
-	@Autowired
+public class MemberDao {
+	
+	@Autowired @Qualifier("sessionFactory")
 	private SessionFactory sessionFactory;
 	
-	public int insert(Demo insertBean) {
+//================================= 新增 =================================
+
+	public int insert(Member insertBean) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(insertBean);
 		return 1;
-	}
-	 
-	public Demo select(Integer id) {
-		Session session = sessionFactory.getCurrentSession();
-		Demo resultBean = session.get(Demo.class, id);
-		return resultBean;
-		
-	}
-	public List<Demo> selectAll() {
-		Session session = sessionFactory.getCurrentSession();
-		
-		String hql = "from Demo";
-		Query<Demo> query = session.createQuery(hql, Demo.class);
-		List<Demo> result = query.list();
-		return result;
 		
 	}
 	
-	public Demo update(Demo updateBean) {
-		
+//================================= 查詢單筆 =================================
+
+	public Member select(String acct) {
 		Session session = sessionFactory.getCurrentSession();
-		return (Demo)session.merge(updateBean);
-		
+		return session.get(Member.class, acct);
+		 
 	}
-	public boolean delete(Integer id) {
+	
+//================================= 查詢全部 =================================	
+	
+	public List<Member> selectAll() {
 		Session session = sessionFactory.getCurrentSession();
-		
-		Demo target = session.get(Demo.class, id);
-		if(target != null) {
-			session.delete(target);
+		String hql = "from Member";
+		Query<Member> query = session.createQuery(hql, Member.class);
+		List<Member> result = query.list();
+		return result;
+	}
+	
+//================================= 修改 =================================
+			
+	public Member update(Member updateBean) {
+		Session session = sessionFactory.getCurrentSession();
+		return (Member)session.merge(updateBean);
+
+	}
+	
+//================================= 刪除 =================================
+			
+	public boolean delete(String acctno) {
+		Session session = sessionFactory.getCurrentSession();
+
+		Member resultBean = session.get(Member.class, acctno);
+		if (resultBean != null) {
+			session.delete(resultBean);
 			return true;
 		}
-		
 		return false;
-		
 	}
+	
 	@SuppressWarnings("rawtypes")
 	public List queryByHql(String hql, List params) {
 		Session session = sessionFactory.getCurrentSession();
@@ -77,5 +87,6 @@ public class DemoDao {
 		
 		return query.list();
 	}
-	
+
+
 }

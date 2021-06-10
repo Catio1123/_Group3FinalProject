@@ -28,12 +28,12 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li class="current">><a href="<c:url value='/kevin' />">普通用戶</a></li>
+						<li class="current"><a href="<c:url value='/kevin' />">普通用戶</a></li>
 						<li><a href="<c:url value='/catio' />">Podcaster</a></li>
 						<li><a href="<c:url value='/gavin' />">資源共享</a></li>
 						<li><a href="<c:url value='/bill' />">線下活動</a></li>
 						<li><a href="<c:url value='/wayne' />">廣告</a></li>
-						<li ><a href="<c:url value='/ben' />">論壇</a></li>
+						<li><a href="<c:url value='/ben' />">論壇</a></li>
 
 					</ul>
 				</nav>
@@ -45,21 +45,45 @@
 			<div class="container">
 				<div id="content">
 					<!-- Content -->
-					<a href="<c:url value='/kevin/signUp'/>">還沒有帳號嗎?</a>
+					<form id="demoForm">
+						
+						<label for="MemberAcctno">帳號:</label>
+						<input type="text" id="MemberAcctno" name="acctno" disabled /><br/>
+						<br/>
+						
+						<label for="MemberPw">密碼:</label>
+						<input type="text" id="MemberPw" name="pw" />
+						<br/>
+						
+						<label for="MemberName">姓名:</label>
+						<input type="text" id="MemberName" name="name" />
+						<br/>
+						
+						<label for="MemberNickname">別稱:</label>
+						<input type="text" id="MemberNickname" name="nickname" />
+						<br/>
+						
+						<label for="MemberEmail">郵箱號:</label>
+						<input type="text" id="MemberEmail" name="email" />
+						<br/>
+						
+						<label for="MemberCelno">手機號:</label>
+						<input type="text" id="MemberCelno" name="celno" />
+						<br/>
+						
+						<label for="MemberDob">日期:</label>
+						<input type="date" id="MemberDob" name="dob" />
+						<br/>
+						
+						<label for="MemberGender">性別:</label>
+						<input type="text" id="MemberGender" name="gender" />Male or Female
+						<br/>
+						
+						<button type="button" id="btnUpdate">更新</button>
+						<button type="button" id="btnDel">刪除</button>
+						
+					</form>
 
-					<table id="demoList">
-						<tr>
-							<th>編輯</th>
-							<th>帳號</th>
-							<th>密碼</th>
-							<th>姓名</th>
-							<th>別稱</th>
-							<th>信箱</th>
-							<th>手機號</th>
-							<th>生日</th>
-							<th>性別</th>
-						</tr>
-					</table>
 				</div>
 			</div>
 		</div>
@@ -151,39 +175,59 @@
 	<script src="<c:url value='/assets/js/breakpoints.min.js' />"></script>
 	<script src="<c:url value='/assets/js/util.js' />"></script>
 	<script src="<c:url value='/assets/js/main.js' />"></script>
-	
 	<script>
-		$(function(){
+		$(function() {
+			let acctno = "${acctno}";
 			$.ajax({
 				method: "GET",
-				url: "<c:url value='/kevin/member'/>",
+				url: "<c:url value='/kevin/member/'/>" + acctno,
 				dataType: "json",
+				async: false,
 			}).done(function(response){
-				$.each(response, function(index, memberBean){
-					appendTable(memberBean);
-				})
+				$("#MemberAcctno").val(response.acctno);
+				$("#MemberPw").val(response.pw);
+				$("#MemberName").val(response.name);
+				$("#MemberNickname").val(response.nickname);
+				$("#MemberEmail").val(response.email);
+				$("#MemberCelno").val(response.celno);
+				$("#MemberDob").val(response.dob);
+				$("#MemberGender").val(response.gender);
+				
 			});
 			
-			function appendTable(bean){
-					
-				let acctno = bean.acctno;
-				let uri = "<c:url value='/kevin/copyEdit/'/>" + acctno;
-					
-				let temp = "<tr>";
-				temp += "<td><a href='" + uri + "'>詳細</a></td>"
-				temp += "<td>" + bean.acctno + "</td>"
-				temp += "<td>" + bean.pw + "</td>"
-				temp += "<td>" + bean.name + "</td>"
-				temp += "<td>" + bean.nickname + "</td>"
-				temp += "<td>" + bean.email + "</td>"
-				temp += "<td>" + bean.celno + "</td>"
-				temp += "<td>" + bean.dob + "</td>"
-				temp += "<td>" + bean.gender + "</td>"
-				temp += "</tr>";
-					
-				$("#demoList").append(temp);	
+			$("#btnUpdate").on("click", function(){
+
+				let formData = {};
 				
-			}
+				$.each($("#demoForm").serializeArray(), function(index, field){
+					formData[field.name] = field.value;
+				})
+				
+				$.ajax({
+					method: "PUT",
+					url: "<c:url value='/kevin/member/'/>" + $("#MemberAcctno").val(),
+					data: JSON.stringify(formData),
+					contentType: "application/json",
+					dataType: "json",
+					async: false,
+				}).done(function(response){
+					alert(response.msg);
+					window.location.href = '<c:url value="/kevin"/>';
+				});
+			});
+			
+			
+			$("#btnDel").on("click", function(){
+				$.ajax({
+					method: "DELETE",
+					url: "<c:url value='/kevin/member'/>/" + $("#MemberAcctno").val(),
+					dataType: "json",
+					async: false,
+				}).done(function(response){
+					alert(response.msg);
+					window.location.href ='<c:url value="/kevin"/>';
+				});
+			});
 			
 		})
 	</script>
