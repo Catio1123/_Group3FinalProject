@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>資源共享</title>
+<title>Studio</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -30,7 +30,7 @@
 					<ul>
 						<li><a href="<c:url value='/kevin' />">普通用戶</a></li>
 						<li><a href="<c:url value='/catio' />">Podcaster</a></li>
-						<li class="current"><a href="<c:url value='/gavin' />">資源共享</a></li>
+						<li  class="current"><a href="<c:url value='/gavin' />">資源共享</a></li>
 						<li><a href="<c:url value='/bill' />">線下活動</a></li>
 						<li><a href="<c:url value='/wayne' />">廣告</a></li>
 						<li><a href="<c:url value='/ben' />">論壇</a></li>
@@ -45,19 +45,33 @@
 			<div class="container">
 				<div id="content">
 					<!-- Content -->
-					<a href="<c:url value='/gavin/studioRegistry'/>">新增</a>
-					<table id="studioList">
-						<tr>
-							<th>編輯</th>
-							<th>編號</th>
-							<th>名稱</th>
-							<th>地點</th>
-							<th>費用</th>
-						</tr>
-					</table>
+					<form id="studioForm">
+						
+						<label for="studioId">編號:</label> 
+						<input type="text" id="studioId" name="id" disabled /> <br/>
+						<br/>
+						
+						<label for="studioName">名稱:</label>
+						<input type="text" id="studioName" name="name" />
+						<br/>
+						
+						<label for="studiLocation">地點:</label>
+						<input type="text" id="studioLocation" name="location" />
+						<br/>
+						
+						<label for="studioFee">費用:</label>
+						<input type="text" id="studioFee" name="fee" />
+						<br/>
+						
+						<button type="button" id="btnUpdate">更新</button>
+						<button type="button" id="btnDel">刪除</button>
+						
+					</form>
+
 				</div>
 			</div>
 		</div>
+
 		<!-- Footer -->
 		<div id="footer-wrapper">
 			<footer id="footer" class="container">
@@ -146,36 +160,58 @@
 	<script src="<c:url value='/assets/js/util.js' />"></script>
 	<script src="<c:url value='/assets/js/main.js' />"></script>
 	<script>
-		$(function(){
+		$(function() {
+			let id = ${id};
 			$.ajax({
 				method: "GET",
-				url: "<c:url value='/gavin/studio'/>",
+				url: "<c:url value='/gavin/studio/'/>" + id,
 				dataType: "json",
+				async: false,
 			}).done(function(response){
-				$.each(response, function(index, studioBean){
-					appendTable(studioBean);
-				})
+				$("#studioId").val(response.id);
+				$("#studioName").val(response.name);
+				$("#studioLocation").val(response.location);
+				$("#studioFee").val(response.fee);
+				
 			});
 			
-			function appendTable(bean){
-					
-				let id = bean.id;
-				let uri = "<c:url value='/gavin/studioEdit/'/>" + id;
-					
-				let temp = "<tr>";
-				temp += "<td><a href='" + uri + "'>編輯</a></td>"
-				temp += "<td>" + bean.id + "</td>"
-				temp += "<td>" + bean.name + "</td>"
-				temp += "<td>" + bean.location + "</td>"
-				temp += "<td>" + bean.fee + "</td>"
-				temp += "</tr>";
-					
-				$("#studioList").append(temp);	
+			$("#btnUpdate").on("click", function(){
+
+				let formData = {};
 				
-			}
+				$.each($("#studioForm").serializeArray(), function(index, field){
+					formData[field.name] = field.value;
+				})
+				
+				$.ajax({
+					method: "PUT",
+					url: "<c:url value='/gavin/studio/'/>" + $("#studioId").val(),
+					data: JSON.stringify(formData),
+					contentType: "application/json",
+					dataType: "json",
+					async: false,
+				}).done(function(response){
+					alert(response.msg);
+					window.location.href = '<c:url value="/gavin"/>';
+				});
+			});
+			
+			
+			$("#btnDel").on("click", function(){
+				$.ajax({
+					method: "DELETE",
+					url: "<c:url value='/gavin/studio'/>/" + $("#studioId").val(),
+					dataType: "json",
+					async: false,
+				}).done(function(response){
+					alert(response.msg);
+					window.location.href ='<c:url value="/gavin"/>';
+				});
+			});
 			
 		})
 	</script>
+
 
 </body>
 </html>

@@ -1,6 +1,5 @@
 package org.iii.group3.catio.controller;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class DemoBaseController {
 
 	@GetMapping("/catio")
-	public String catio(HttpServletRequest request) {
+	public String catio() {
 		
 		return "catio";
 	}
