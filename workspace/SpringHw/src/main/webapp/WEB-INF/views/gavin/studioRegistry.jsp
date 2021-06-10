@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>資源共享</title>
+<title>StudioRegistry</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -45,19 +45,31 @@
 			<div class="container">
 				<div id="content">
 					<!-- Content -->
-					<a href="<c:url value='/gavin/studioRegistry'/>">新增</a>
-					<table id="studioList">
-						<tr>
-							<th>編輯</th>
-							<th>編號</th>
-							<th>名稱</th>
-							<th>地點</th>
-							<th>費用</th>
-						</tr>
-					</table>
+					<form id="studioForm">
+						
+						
+						<label for="studioName">名稱:</label>
+						<input type="text" id="studioName" name="name"/>
+						<button type="button" id="btnCheck">檢查唯一</button>
+						<span id="checkMsg"></span>
+						<br/>
+						
+						<label for="studiLocation">地點:</label>
+						<input type="text" id="studioLocation" name="location" />
+						<br/>
+						
+						<label for="studioFee">費用:</label>
+						<input type="text" id="studioFee" name="fee" />
+						<br/>
+						
+						<button type="button" id="btnRegister">新增</button>
+						<span id="regMsg"></span>
+						<button type="button" id="btnInput">自動輸入</button>
+					</form>
 				</div>
 			</div>
 		</div>
+
 		<!-- Footer -->
 		<div id="footer-wrapper">
 			<footer id="footer" class="container">
@@ -147,35 +159,87 @@
 	<script src="<c:url value='/assets/js/main.js' />"></script>
 	<script>
 		$(function(){
-			$.ajax({
-				method: "GET",
-				url: "<c:url value='/gavin/studio'/>",
-				dataType: "json",
-			}).done(function(response){
-				$.each(response, function(index, studioBean){
-					appendTable(studioBean);
-				})
+			
+			let ifExist = false;
+			let successHtml = "<font color='green'>成功</font>";
+			let failHtml = "<font color='red'>失敗</font>";
+			let checkFirstHtml = "<font color='red'>請先檢查成功</font>";
+			let warningHtml = "<font color='red'>系統發生錯誤</font>";
+			let inputWarningHtml= "<font color='red'>不可為空白</font>"
+			
+		
+			$("#btnCheck").on("click", function(){
+	
+				let checkData = $("#studioName").val();
+				if(checkData==null || checkData==""){
+					$("#checkMsg").html(inputWarningHtml);
+				}else{
+					
+					$.ajax({
+						method: "POST",
+						url: "<c:url value='/gavin/check'/>",
+						data: JSON.stringify({"colName":"Name","field":checkData}),
+						contentType: "application/json",
+						dataType: "json",
+						
+					}).done(function(response){
+						let msg = response.msg;
+						
+						switch(msg){
+							case 1:
+								ifExist=true;
+								$("#checkMsg").html(successHtml);
+								$("#regMsg").html("");
+								break;
+							case -1:
+								ifExit=false;
+								$("#checkMsg").html(failHtml);
+								break;
+							default:
+								ifExit=false;
+								$("#checkMsg").html(warningHtml);
+						}
+					});
+				};
 			});
 			
-			function appendTable(bean){
-					
-				let id = bean.id;
-				let uri = "<c:url value='/gavin/studioEdit/'/>" + id;
-					
-				let temp = "<tr>";
-				temp += "<td><a href='" + uri + "'>編輯</a></td>"
-				temp += "<td>" + bean.id + "</td>"
-				temp += "<td>" + bean.name + "</td>"
-				temp += "<td>" + bean.location + "</td>"
-				temp += "<td>" + bean.fee + "</td>"
-				temp += "</tr>";
-					
-				$("#studioList").append(temp);	
+			$("#btnRegister").on("click", function(){
+
+				if(!ifExist){
+					$("#regMsg").html(checkFirstHtml);
+				}else{
+					let formData = {};
+					$.each($("#studioForm").serializeArray(), function(index, field){
+						formData[field.name] = field.value;
+					})
+					$.ajax({
+						method: "POST",
+						url: "<c:url value='/gavin/studio'/>",
+						data: JSON.stringify(formData),
+						contentType: "application/json",
+						dataType: "json",
+						async: false,
+					}).done(function(response){
+						alert(response.msg);
+						window.location.href ='<c:url value="/gavin"/>';
+					});
+				}
 				
-			}
-			
+			});
 		})
+		
+		
 	</script>
+	<script>
+		$(function(){
+			$("#btnInput").on("click", function(){
+			console.log("yes")
+			$("#studioName").val("Light House Studio")
+			$("#studioLocation").val("台北市中山區民生東路三段2號7樓")
+			$("#studioFee").val("800/2hr")
+			})
+		})
+		</script>
 
 </body>
 </html>
