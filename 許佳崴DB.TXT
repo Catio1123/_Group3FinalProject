@@ -1,0 +1,26 @@
+USE [Group3]
+GO
+/****** Object:  Table [dbo].[Ad]    Script Date: 2021/5/24 下午 11:39:24 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Ad](
+	[number] [int] IDENTITY(1,1) NOT NULL,
+	[supplier] [nvarchar](50) NULL,
+	[text] [nvarchar](500) NULL,
+	[author] [nvarchar](50) NULL,
+ CONSTRAINT [PK__Ad__FD291E40164B23C1] PRIMARY KEY CLUSTERED 
+(
+	[number] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Ad] ON 
+
+INSERT [dbo].[Ad] ([number], [supplier], [text], [author]) VALUES (1, N'遠傳', N'只有遠傳，沒有距離', N'小明')
+INSERT [dbo].[Ad] ([number], [supplier], [text], [author]) VALUES (2, N'CityCaffee', N'整個城市都是我的咖啡館', N'小華')
+INSERT [dbo].[Ad] ([number], [supplier], [text], [author]) VALUES (3, N'朝日啤酒', N'沒有酒鬼，只有膽小鬼。', N'小美')
+INSERT [dbo].[Ad] ([number], [supplier], [text], [author]) VALUES (4, N'王老吉', N'怕上火喝王老吉。', N'老王')
+SET IDENTITY_INSERT [dbo].[Ad] OFF
+GO

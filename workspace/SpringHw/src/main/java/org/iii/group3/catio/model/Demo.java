@@ -1,6 +1,7 @@
 package org.iii.group3.catio.model;
 
 import java.io.Serializable;
+
 import java.sql.Date;
 
 import javax.persistence.Column;
