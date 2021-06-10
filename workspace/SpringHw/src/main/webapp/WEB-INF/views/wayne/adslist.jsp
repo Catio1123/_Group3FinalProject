@@ -45,54 +45,30 @@
 			<div class="container">
 				<div id="content">
 					<!-- Content -->
-					<h2>廣告商</h2>
-					<form action="<c:url value='/wayne/insert'/>" method="post" >
-						<table>
-							<tr>
-								<td>廣告商:</td>
-								<td><input type="text" name="supplier" /></td>
-							</tr>
-							<tr>
-								<td>廣告內容:</td>
-								<td><input type="text" name="text"  /></td>
-							</tr>
-							<tr>
-								<td>直播主:</td>
-								<td><input type="text" name="author"  /></td>
-							</tr>
-							<tr>
-								<td ><input type="submit" value="新增"></td>
-							</tr>
-						</table>
+					<h2>更新廣告商</h2>
+					<form id="adslist" action="<c:url value='/wayne/insert'/>"  method="post">
+					
+						<label for="number">編號:</label> 
+						<input type="text" id="number" name="number" value="${ad.number }" disabled /> <br/>
+						<br/>
+						
+						<label for="supplier">廣告商:</label>
+						<input type="text" id="supplier" name="supplier" value="${ad.supplier }" />
+						<br/>
+						
+						<label for="text">廣告詞:</label>
+						<input type="text" id="text" name="text" value="${ad.text }" />
+						<br/>
+						
+						<label for="author">直播主:</label>
+						<input type="text" id="author" name="author" value="${ad.text }"/>
+						<br/>
+						
+						<input type="submit" value="更新">
 					</form>
-					<h2>廣告商列表</h2>
-					<table>
-
-						<tr>
-							<th>編號</th>
-							<th>廣告商</th>
-							<th>廣告內容</th>
-							<th>直播主</th>
-							<th>指令</th>
-						</tr>
-						<c:forEach var="ad" items="${ads}">
-							<tr>
-								<td>${ad.number}</td>
-								<td>${ad.supplier}</td>
-								<td>${ad.text}</td>
-								<td>${ad.author}</td>
-								<td><a href="<c:url value='/wayne/update/${ad.number}'/>">修改</a></td>
-								
-								<td><a href= "<c:url value='/wayne/delete?number=${ad.number}'/>">刪除</a></td>
-							
-							</tr>
-						</c:forEach>
-
-					</table>
 				</div>
 			</div>
 		</div>
-
 
 		<!-- Footer -->
 		<div id="footer-wrapper">
@@ -181,9 +157,7 @@
 	<script src="<c:url value='/assets/js/breakpoints.min.js' />"></script>
 	<script src="<c:url value='/assets/js/util.js' />"></script>
 	<script src="<c:url value='/assets/js/main.js' />"></script>
-	<script>
 
-	</script>
 
 </body>
 </html>
