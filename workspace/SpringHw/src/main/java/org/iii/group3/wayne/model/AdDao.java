@@ -19,11 +19,7 @@ public class AdDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public int insert(Ad adInsert) {
-		Session session = sessionFactory.getCurrentSession();
-		session.save(adInsert);
-		return 1;
-	}
+
 
 	public Ad select(Integer number) {
 		Session session = sessionFactory.getCurrentSession();

@@ -49,7 +49,7 @@
 					<form id="adslist" action="<c:url value='/wayne/insert'/>"  method="post">
 					
 						<label for="number">編號:</label> 
-						<input type="text" id="number" name="number" value="${ad.number }" disabled /> <br/>
+						<input type="text" id="number" name="number" value="${ad.number }" readonly="readonly"/> <br/>
 						<br/>
 						
 						<label for="supplier">廣告商:</label>

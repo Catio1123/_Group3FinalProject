@@ -20,10 +20,7 @@ public class AdService {
 	@Autowired
 	private AdDao adDao;
 
-	public int insert(Ad adInsert) {
-		return adDao.insert(adInsert);
 
-	}
 
 	public Ad select(Integer number) {
 		return adDao.select(number);
