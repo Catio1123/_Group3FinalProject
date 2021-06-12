@@ -42,7 +42,7 @@ public class DemoService {
 		return demoDao.queryByHql(hql, params);
 	}
 
-	public boolean updateExitTarget(Demo updateBean, Integer id) {
+	public boolean updateExistTarget(Demo updateBean, Integer id) {
 		 Demo target = demoDao.select(id);
 		  if(target != null) {
 			  updateBean.setId(id);

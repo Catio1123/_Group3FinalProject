@@ -92,7 +92,7 @@ public class DemoRestController {
 			
 		  Map<String, String> msg = new HashMap<String, String>();
 		  
-		  boolean success = demoService.updateExitTarget(updateBean, id);
+		  boolean success = demoService.updateExistTarget(updateBean, id);
 		  if(success) {
 			  msg.put("msg", "更新成功");
 		  }else {

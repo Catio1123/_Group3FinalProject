@@ -16,7 +16,7 @@ public class DemoBaseController {
 	}
 	
 	@GetMapping("/demoEdit/{id}")
-	public String editDemo(
+	public String demoEdit(
 			@PathVariable(value = "id", required = true) Integer id,
 			Model model) {
 		
