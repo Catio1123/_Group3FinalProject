@@ -64,6 +64,7 @@
         <br>
         <input type="submit" value="create">
     </form>
+    <a href="ben/home"><button>回首頁</button></a>
 
 				</div>
 			</div>
