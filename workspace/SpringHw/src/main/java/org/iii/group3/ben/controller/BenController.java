@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @EnableTransactionManagement
-@SessionAttributes(names = {"alldata","forum"})
+@SessionAttributes(names = {"alldata"})
 public class BenController {
 
 	@Autowired
@@ -68,7 +68,11 @@ public class BenController {
 	}
 	
 	@GetMapping("/update")
-	public String update() {
+	public String update(@RequestParam(name = "id") int id,
+			Model model) {
+		Forum forum = forumService.select(id);
+		model.addAttribute("forum", forum);
+		
 		return "update";
 	}
 	
@@ -89,4 +93,17 @@ public class BenController {
 		
 		return "forumHome";
 	}
+	
+	@PostMapping("/delete")
+	public String delete(@RequestParam(name = "id") int id,
+			Model model) {
+		
+		forumService.delete(id);
+		
+		List<Forum> alldata = forumService.selectall();
+		model.addAttribute("alldata", alldata);
+		//每次回到首頁就將Attribute更新
+		
+		return "forumHome";
+	} 
 }

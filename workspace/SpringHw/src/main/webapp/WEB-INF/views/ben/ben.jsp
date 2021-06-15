@@ -45,7 +45,7 @@
 			<div class="container">
 				<div id="content">
 					<!-- Content -->
-					<form action="ben/addForum" method="POST">
+					<form action="addForum" method="POST">
 		
         <label>標題：<input type="text" name="topic"></label>
         <br>

@@ -48,7 +48,7 @@
 				<div id="content">
 					<!-- Content -->
 					<a href="ben"><button>新增文章</button></a>
-					<%
+					<%try{
 					List alldata = (List)request.getSession().getAttribute("alldata");
 					Forum forum;
 					String forumTopic;
@@ -57,11 +57,18 @@
 						forum = (Forum)alldata.get(i);
 						forumTopic = forum.getTopic();
 						forumId = forum.getFid();
+					
+					
+					
 					%>
 					<form action="content" method="post">
 						<button name="id" value="<%=forumId %>"><%=forumTopic %></button>
 					</form>
 					<%
+					}	
+					}
+					catch(Exception e){
+						
 					}
 					%>
 				</div>

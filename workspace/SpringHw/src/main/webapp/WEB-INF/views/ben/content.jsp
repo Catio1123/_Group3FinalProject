@@ -50,10 +50,11 @@
 					<h3>${forum.con }</h3>
 					
 					<form action="update" method="get">
+					<input type="hidden" name="id" value="${forum.fid}">
 					<input type="submit" value="更新">
 					</form>
 					
-					<form action="aaa" method="post">
+					<form action="delete" method="post">
 						<button name="id" value="${forum.fid}">刪除</button>
 					</form>
 					
