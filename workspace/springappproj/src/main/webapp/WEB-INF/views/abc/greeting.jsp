@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>第一個thymeleaf網頁</title>
+<title>第一個JSP網頁</title>
 </head>
 <body>
 <div align='center'>

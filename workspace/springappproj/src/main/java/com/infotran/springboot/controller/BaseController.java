@@ -7,20 +7,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class BaseController {
-
+	
 	@GetMapping("/")
 	public String index() {
 		return "index";
 	}
 	
-	
 	@GetMapping("/hello")
-	public String hello(
-			@RequestParam(value = "name", required = false) String visitor,
-			Model model) {
+	public String hello( 
+		         @RequestParam(value="name", required = false)	String visitor, 
+		         Model model
+			) {
 		
-		String message = visitor != null ? visitor + ", 你好" : "訪客Update2, 您好";
+		String message = visitor != null ? visitor + ", 您好" : "訪客, 早安"; 
 		model.addAttribute("helloMessage", message);
-		return "greeting";
+		return "abc/greeting";
 	}
 }
