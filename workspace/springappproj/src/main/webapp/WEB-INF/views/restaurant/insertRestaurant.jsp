@@ -45,28 +45,15 @@
 	   <tr>  
 	      <td><spring:message code='place.form.caption.typeid'  /><br>&nbsp;</td>
 	        <td  width='360'>
-	      	   <form:select  path="typeId" >
+	      	   <form:select  path="type.typeId" >
 	      	      <form:option label="請挑選" value="-1" />
 	      	     
 	      	      <form:options items="${typeList}"
 	      	   	   itemLabel="typeName"  itemValue="typeId"   />
 	      	   	</form:select>   
 	      	   	   <br>&nbsp;	 
-		       <form:errors path='typeId' cssClass="error"/>
+		       <form:errors path='type.typeId' cssClass="error"/>
 
-							<%-- 	      	   <form:input path="typeId"/><br>&nbsp;	   <!-- // property name   -->  --%>
-							<%-- 		       <form:errors path='typeId' cssClass="error"/> --%>
-
-							<!--     <form:select path="typeId" >
-                   <form:option label="請挑選" value="-1" />
-                   <form:options  items="${jobList}"
-                         />
-               </form:select><br>&nbsp;
-               <form:errors path="typeId"  cssClass="error"/>--> <%-- <form:radiobuttons path="typeId" items="${genderList}" />
-                     <form:option label="請挑選" value="-1" /> 
-                   
-                         
-               <form:errors path="typeId"  cssClass="error"/></td>--%>
 		  </td>
 	      <td><spring:message code='place.form.caption.restaurant.name'  /><br>&nbsp;</td>
 		  <td  width='360'><form:input path='name' /><br>&nbsp;	

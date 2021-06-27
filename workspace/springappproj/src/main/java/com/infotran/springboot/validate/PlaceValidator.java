@@ -23,7 +23,7 @@ public class PlaceValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "address", "place.address.notempty", "地址不能是空白(D.V.)");
 		ValidationUtils.rejectIfEmpty(errors, "longitude", "place.longitude.notempty", "經度不能是空白(D.V.)");
 		ValidationUtils.rejectIfEmpty(errors, "latitude", "place.latitude.notempty", "緯度不能是空白(D.V.)");
-		ValidationUtils.rejectIfEmpty(errors, "typeId", "place.typeId.notempty", "餐廳類型不能是空白(D.V.)");
+		ValidationUtils.rejectIfEmpty(errors, "type.typeId", "place.typeId.notempty", "餐廳類型不能是空白(D.V.)");
 		
 //		ValidationUtils.rejectIfEmpty(
 //		ValidationUtils.rejectIfEmptyOrWhitespace(errors, null, null);

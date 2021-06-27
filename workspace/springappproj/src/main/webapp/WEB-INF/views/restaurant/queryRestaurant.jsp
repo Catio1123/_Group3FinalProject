@@ -62,7 +62,8 @@ function showData(textObj){
 	     	let tmp0 = "<a href='" + tmp1 + "' >" + place.name + "</a>";
 			segment += "<tr>"; 	
 			segment += "<td>" + place.placeId + "</td>"; 	
-			segment += "<td>" + place.typeId + "</td>"; 	
+		//	console.log("place.type.typeId=" + place.type.typeId);
+			//segment += "<td>" + place.type.typeName + "</td>"; 	
 			segment += "<td>" + tmp0 + "</td>"; 	
 			segment += "<td>" + place.phone + "</td>"; 	
 			segment += "<td>" + place.address + "</td>"; 	

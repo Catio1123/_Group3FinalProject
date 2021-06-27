@@ -1,6 +1,7 @@
 package com.infotran.springboot.model;
 
 import java.sql.Blob;
+
 import java.sql.Clob;
 
 import javax.persistence.Entity;
@@ -31,7 +32,7 @@ public class Place {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     Long    placeId;
-	Integer tId;
+//	Integer tId;
 	String  name;
 	String  phone;
 	String  address;
@@ -75,7 +76,6 @@ public class Place {
 	public Place(Integer  typeId, String name, String phone, String address, Double longitude, 
 			     Double latitude, String link, Blob blob, Clob clob, String mimeType) {
 		super();
-		this.tId = typeId;
 		this.name = name;
 		this.phone = phone;
 		this.address = address;
@@ -87,6 +87,20 @@ public class Place {
 		this.mimeType = mimeType;
 	}
 	
+	public Place(RestaurantType  type, String name, String phone, String address, Double longitude, 
+		     Double latitude, String link, Blob blob, Clob clob, String mimeType) {
+	super();
+	this.type = type;
+	this.phone = phone;
+	this.address = address;
+	this.longitude = longitude;
+	this.latitude = latitude;
+	this.link = link;
+	this.picture = blob;
+	this.comment = clob;
+	this.mimeType = mimeType;
+}
+	
 	public String getMimeType() {
 		return mimeType;
 	}
@@ -95,13 +109,13 @@ public class Place {
 		this.mimeType = mimeType;
 	}
 
-	public Integer getTypeId() {   // typeId
-		return tId;
-	}
-
-	public void setTypeId(Integer typeId) {
-		this.tId = typeId;
-	}
+//	public Integer getTypeId() {   // typeId
+//		return tId;
+//	}
+//
+//	public void setTypeId(Integer typeId) {
+//		this.tId = typeId;
+//	}
 
 	public Clob getComment() {
 		return comment;
@@ -168,25 +182,38 @@ public class Place {
 	public void setPictureString(String pictureString) {
 		this.pictureString = pictureString;
 	}
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Place [placeId=");
-		builder.append(placeId);
-		builder.append(", name=");
-		builder.append(name);
-		builder.append(", phone=");
-		builder.append(phone);
-		builder.append(", address=");
-		builder.append(address);
-		builder.append(", longitude=");
-		builder.append(longitude);
-		builder.append(", latitude=");
-		builder.append(latitude);
-		builder.append(", link=");
-		builder.append(link);
-		builder.append(", hashCode=]" + hashCode());
-		return builder.toString();
-	}
 
+//	@Override
+//	public String toString() {
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("Place [type=");
+//		builder.append(type);
+//		builder.append(", placeId=");
+//		builder.append(placeId);
+//		builder.append(", name=");
+//		builder.append(name);
+//		builder.append(", phone=");
+//		builder.append(phone);
+//		builder.append(", address=");
+//		builder.append(address);
+//		builder.append(", longitude=");
+//		builder.append(longitude);
+//		builder.append(", latitude=");
+//		builder.append(latitude);
+//		builder.append(", link=");
+//		builder.append(link);
+//		builder.append(", mimeType=");
+//		builder.append(mimeType);
+//		builder.append(", comment=");
+//		builder.append(comment);
+//		builder.append(", picture=");
+//		builder.append(picture);
+//		builder.append(", pictureString=");
+//		builder.append(pictureString);
+//		builder.append(", placeImage=");
+//		builder.append(placeImage);
+//		builder.append("]");
+//		return builder.toString();
+//	}
+	
 }

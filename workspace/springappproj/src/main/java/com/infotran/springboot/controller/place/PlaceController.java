@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Blob;
 import java.sql.Clob;
+import java.sql.Date;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.infotran.springboot.model.Place;
+import com.infotran.springboot.model.RestaurantType;
 import com.infotran.springboot.service.PlaceServiceImpl;
+import com.infotran.springboot.service.TypeServiceImpl;
 import com.infotran.springboot.utils.SystemUtils;
 
 @Controller
@@ -28,9 +31,15 @@ public class PlaceController {
 
 	@Value("\\data\\place.csv")
 	String filename;
+
+	@Value("\\data\\RestaurantType.txt")
+	String typefilename;
 	
 	@Autowired
 	PlaceServiceImpl placeService;
+	
+	@Autowired
+	TypeServiceImpl typeService;
 
 	@Autowired
 	ServletContext context;
@@ -77,6 +86,28 @@ public class PlaceController {
 	public String readFile(Model model) {
 		String result = "";
 		try {
+			ClassPathResource  cpr = new ClassPathResource(typefilename);
+			InputStream is = cpr.getInputStream();
+			InputStreamReader  isr = new InputStreamReader(is);
+			BufferedReader br = new BufferedReader(isr);
+			String line = "";
+			int count = 0;
+			while ((line = br.readLine())!= null) {
+				System.out.println(line);
+				String[] sa = line.split(",");
+				Clob comment = SystemUtils.StringToClob(sa[0].trim());
+				Date   createDate = Date.valueOf(sa[1].trim());
+				String typeName = sa[3].trim();
+				RestaurantType type = new RestaurantType(null, typeName, comment, createDate);
+				typeService.save(type);
+				count++;
+			}
+			System.out.println("處理" + count + "筆記錄" );
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
 			ClassPathResource  cpr = new ClassPathResource(filename);
 			InputStream is = cpr.getInputStream();
 			InputStreamReader  isr = new InputStreamReader(is);
@@ -94,10 +125,12 @@ public class PlaceController {
 				Clob clob = SystemUtils.pathToClob(sa[8]);
 				String mimeType = context.getMimeType(sa[7]);   /// /static/images/place02.jpg
 				
+				
+				
 				Place place = new Place(typeId, sa[1], sa[2], sa[3], 
                  						longitude, latitude, sa[6], blob, clob, mimeType);
 	
-				placeService.save(place);
+				placeService.save2(place, typeId);
 				count++;
 			}
 			result = "新增" + count + "筆Place記錄";

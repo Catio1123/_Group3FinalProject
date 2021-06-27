@@ -28,6 +28,7 @@ public class PlaceDaoImpl {
 		Map<String, Object> map = new HashMap<>();
 		String hql = "FROM Place";
 		List<Place> list = em.createQuery(hql).getResultList();
+		System.out.println("list.get(0)=" + list.get(0));
 		map.put("size", list.size()); 
 		map.put("list", list); 
 		 return map;

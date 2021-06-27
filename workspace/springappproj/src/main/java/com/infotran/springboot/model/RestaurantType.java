@@ -114,5 +114,23 @@ public class RestaurantType {
 	public void setRegisterDate(Timestamp registerDate) {
 		this.registerDate = registerDate;
 	}
+
+//	@Override
+//	public String toString() {
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("RestaurantType");
+//		builder.append(" [typeId=");
+//		builder.append(typeId);
+//		builder.append(", typeName=");
+//		builder.append(typeName);
+//		builder.append(", comment=");
+//		builder.append(comment);
+//		builder.append(", createDate=");
+//		builder.append(createDate);
+//		builder.append(", registerDate=");
+//		builder.append(registerDate);
+//		builder.append("]");
+//		return builder.toString();
+//	}
 	
 }

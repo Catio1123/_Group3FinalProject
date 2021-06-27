@@ -20,16 +20,20 @@ public class PlaceServiceImpl {
 	}
 
 	@Autowired
-	TypeDaoImpl typeDao;
+	TypeDaoImpl  typeDao;
 	
 	@Autowired
 	PlaceDaoImpl placeDao;
 	
 	public void save(Place place) {
-		RestaurantType type = typeDao.findById(place.getTypeId());
+		RestaurantType  type = typeDao.findById(place.getType().getTypeId());
 		place.setType(type);
+		placeDao.save(place);
+	}
 	
-		
+	public void save2(Place place, Integer typeId) {
+		RestaurantType  type = typeDao.findById(typeId);
+		place.setType(type);
 		placeDao.save(place);
 	}
 	

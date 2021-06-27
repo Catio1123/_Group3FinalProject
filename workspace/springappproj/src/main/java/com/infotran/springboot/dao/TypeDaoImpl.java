@@ -25,8 +25,8 @@ public class TypeDaoImpl {
 		return list;
 	}
 	
-	public RestaurantType findById(Integer id) {
-		return em.find(RestaurantType.class,id);
+	public RestaurantType  findById(Integer id) {
+		return em.find(RestaurantType.class, id);
 	}
 
 	public void save(RestaurantType type) {
