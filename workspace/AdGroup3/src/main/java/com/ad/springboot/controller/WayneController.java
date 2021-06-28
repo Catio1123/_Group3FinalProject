@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ad.springboot.model.Ad;
-import com.ad.springboot.model.AdService;
+import com.ad.springboot.model.ad.Ad;
+import com.ad.springboot.model.ad.AdService;
 
 @Controller
 public class WayneController {

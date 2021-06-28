@@ -1,4 +1,4 @@
-package com.ad.springboot.model;
+package com.ad.springboot.model.ad;
 
 import java.util.List;
 
