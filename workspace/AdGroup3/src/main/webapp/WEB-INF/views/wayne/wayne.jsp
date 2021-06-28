@@ -79,7 +79,7 @@
 								<td>${ad.text}</td>
 								<td><a href="<c:url value='/update/${ad.id}'/>">修改</a></td>
 								
-								<td><a href= "<c:url value='/delete?number=${ad.id}'/>">刪除</a></td>
+								<td><a href= "<c:url value='/delete/${ad.id}'/>">刪除</a></td>
 							
 							</tr>
 						</c:forEach>
