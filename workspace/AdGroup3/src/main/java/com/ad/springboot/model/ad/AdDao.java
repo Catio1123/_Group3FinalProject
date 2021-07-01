@@ -42,4 +42,5 @@ public class AdDao {
 		Ad ad = em.find(Ad.class, id);
 		em.remove(ad);
 }
+	
 }

@@ -1,18 +1,21 @@
 package com.ad.springboot.model.ad;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.ad.springboot.model.user.User;
+
 @Entity
-@DynamicUpdate
 @Table(name = "Ad")
 public class Ad implements Serializable {
 
@@ -30,6 +33,39 @@ public class Ad implements Serializable {
 	private String company;
 	@Column(name = "text")
 	private String text;
+
+	@Column(name="company_id")
+	private String companyId;
+	
+	@Column(name = "url")
+	private String companyUrl;
+	
+@ManyToMany(mappedBy = "ads")
+	private Set<User> users;
+
+	public Set<User> getUsers() {
+	return users;
+}
+
+public void setUsers(Set<User> users) {
+	this.users = users;
+}
+
+	public String getCompanyUrl() {
+		return companyUrl;
+	}
+
+	public void setCompanyUrl(String companyUrl) {
+		this.companyUrl = companyUrl;
+	}
+
+	public String getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
+	}
 
 	public Integer getId() {
 		return id;

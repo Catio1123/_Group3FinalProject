@@ -63,7 +63,7 @@ function showData(textObj){
 			segment += "<tr>"; 	
 			segment += "<td>" + place.placeId + "</td>"; 	
 		//	console.log("place.type.typeId=" + place.type.typeId);
-			//segment += "<td>" + place.type.typeName + "</td>"; 	
+			segment += "<td>" + place.type.typeName + "</td>"; 	
 			segment += "<td>" + tmp0 + "</td>"; 	
 			segment += "<td>" + place.phone + "</td>"; 	
 			segment += "<td>" + place.address + "</td>"; 	

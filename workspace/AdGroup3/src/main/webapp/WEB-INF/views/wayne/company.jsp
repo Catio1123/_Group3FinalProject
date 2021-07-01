@@ -43,7 +43,14 @@
 		<!-- Main -->
 		<div id="main-wrapper">
 			<div class="container">
+				<div>
+				<h3><a href= "<c:url value='/list_users'/>">List All User</a></h3>
+				<h3><a href= "<c:url value='/login'/>">Login</a></h3>
+				
+				
+				</div>
 				<div id="content">
+				
 					<!-- Content -->
 					<h2>廣告商</h2>
 					<form action="<c:url value='/insert'/>" method="post" >
@@ -72,11 +79,12 @@
 							
 							<th colspan = 2>指令</th>
 						</tr>
-						<c:forEach var="ad" items="${ads}">
+						<c:forEach var="ad" items="${ads}" >
 							<tr>
 								<td>${ad.id}</td>
 								<td>${ad.company}</td>
 								<td>${ad.text}</td>
+								
 								<td><a href="<c:url value='/update/${ad.id}'/>">修改</a></td>
 								
 								<td><a href= "<c:url value='/delete/${ad.id}'/>">刪除</a></td>

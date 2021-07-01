@@ -1,7 +1,6 @@
 package com.infotran.springboot.model;
 
 import java.sql.Blob;
-
 import java.sql.Clob;
 
 import javax.persistence.Entity;

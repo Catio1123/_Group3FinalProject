@@ -17,24 +17,29 @@ import com.ad.springboot.model.ad.Ad;
 import com.ad.springboot.model.ad.AdService;
 
 @Controller
-public class WayneController {
+public class CompanyController {
 
 	@Autowired
 	private AdService adService;
 
-	@GetMapping(path = "/wayne")
-	public String wayne(Model m) {
+	@GetMapping("/adindex")
+	public String adIndex() {
+		return "adindex";
+	}
+
+	@GetMapping(path = "/company")
+	public String wayne( Model m) {
 
 		List<Ad> adAll = adService.selectAll();
 		m.addAttribute("ads", adAll);
-
-		return "wayne";
+//		m.addAttribute("uid", id);
+		return "company";
 	}
 
 	@PostMapping(path = "/insert")
 	public String insertAd(@ModelAttribute("ad") Ad ad) {
 		adService.save(ad);
-		return "redirect:/wayne";
+		return "redirect:/company";
 	}
 
 	@GetMapping(path = "/Ad/{id}")
@@ -53,7 +58,7 @@ public class WayneController {
 	@GetMapping(path = "/delete/{id}")
 	public String delete(@PathVariable(value = "id", required = true) int id) {
 		adService.delete(id);
-		return "redirect:/wayne";
+		return "redirect:/company";
 
 	}
 
