@@ -9,10 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.ad.springboot.model.ad.Ad;
+import com.ad.springboot.model.clicktime.ClickTime;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,6 +24,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="user_id")
 	private Integer id;
 
 	@Column(name = "username")
@@ -30,9 +34,21 @@ public class User {
 	private String password;
 
 	
-	@JoinTable(name = "Cart", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "company_id"))
-	@ManyToMany
-	private Set<Ad> ads;
+	@OneToMany(mappedBy = "user")
+    private Set<ClickTime> clickTimes = new HashSet<>();
+	
+	
+	public Set<ClickTime> getClickTimes() {
+		return clickTimes;
+	}
+
+
+	public void setClickTimes(Set<ClickTime> clickTimes) {
+		this.clickTimes = clickTimes;
+	}
+
+
+
 
 
 	public Integer getId() {
@@ -65,14 +81,6 @@ public class User {
 	}
 
 
-	public Set<Ad> getAds() {
-		return ads;
-	}
-
-
-	public void setAds(Set<Ad> ads) {
-		this.ads = ads;
-	}
 
 
 	public User() {

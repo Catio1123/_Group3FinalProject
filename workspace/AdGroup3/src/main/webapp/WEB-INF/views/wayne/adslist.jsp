@@ -56,11 +56,13 @@
 						<input type="text" id="company" name="company" value="${ad.company }" />
 						<br/>
 						
-						<label for="text">廣告詞:</label>
+						<label for="text">廣告內容:</label>
 						<input type="text" id="text" name="text" value="${ad.text }" />
 						<br/>
 						
-						
+						<label for="text">贊助連結:</label>
+						<input type="text" id="url" name="url" value="${ad.url }" />
+						<br/>
 						
 						<input type="submit" value="更新">
 					</form>

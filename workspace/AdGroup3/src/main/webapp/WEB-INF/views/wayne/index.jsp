@@ -28,22 +28,19 @@
 					<li><a href="index.html">Home</a></li>
 					<li><a href="#" class="icon solid fa-angle-down">Layouts</a>
 						<ul>
-							<li><a href="generic.html">Generic</a></li>
-							<li><a href="contact.html">Contact</a></li>
-							<li><a href="elements.html">Elements</a></li>
-							<li><a href="#">Submenu</a>
-								<ul>
+							<li><a href="<c:url value='/kevin' />">普通用戶</a></li>
+							<li><a href="<c:url value='/catio' />">Podcaster</a></li>
+							<li><a href="<c:url value='/gavin' />">資源共享</a></li>
+							<li><a href="<c:url value='/bill' />">線下活動</a></li>
+							<li><a href="<c:url value='/adindex' />">廣告</a></li>
+							<li><a href="<c:url value='/ben' />">論壇</a></li>
+							<li><a href="<c:url value='/userpodcast/1' />">測試1</a></li>
+							<li><a href="<c:url value='/userpodcast/2' />">測試2</a></li>
 
-									<li><a href="<c:url value='/kevin' />">普通用戶</a></li>
-									<li><a href="<c:url value='/catio' />">Podcaster</a></li>
-									<li><a href="<c:url value='/gavin' />">資源共享</a></li>
-									<li><a href="<c:url value='/bill' />">線下活動</a></li>
-									<li><a href="<c:url value='/adindex' />">廣告</a></li>
-									<li><a href="<c:url value='/ben' />">論壇</a></li>
-								</ul></li>
-						</ul></li>
-					<li><a href="#" class="button">Sign Up</a></li>
-				</ul>
+							<li><a href="#" class="button">Sign Up</a></li>
+						</ul>
+						</li>
+						</ul>
 			</nav>
 		</header>
 

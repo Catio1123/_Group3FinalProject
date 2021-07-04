@@ -1,5 +1,6 @@
 package com.ad.springboot.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ad.springboot.model.ad.Ad;
 import com.ad.springboot.model.ad.AdService;
+import com.ad.springboot.model.clicktime.ClickTime;
+import com.ad.springboot.model.clicktime.ClickTimeService;
+import com.ad.springboot.model.user.User;
+import com.ad.springboot.model.user.UserService;
 
 @Controller
 public class CompanyController {
@@ -22,13 +27,10 @@ public class CompanyController {
 	@Autowired
 	private AdService adService;
 
-	@GetMapping("/adindex")
-	public String adIndex() {
-		return "adindex";
-	}
+	
 
 	@GetMapping(path = "/company")
-	public String wayne( Model m) {
+	public String wayne(Model m) {
 
 		List<Ad> adAll = adService.selectAll();
 		m.addAttribute("ads", adAll);

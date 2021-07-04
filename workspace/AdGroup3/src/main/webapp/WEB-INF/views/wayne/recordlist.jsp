@@ -32,7 +32,7 @@
 						<li><a href="<c:url value='/catio' />">Podcaster</a></li>
 						<li><a href="<c:url value='/gavin' />">資源共享</a></li>
 						<li><a href="<c:url value='/bill' />">線下活動</a></li>
-						<li class="current"><a href="<c:url value='/wayne' />">廣告</a></li>
+						<li class="current"><a href="<c:url value='/users' />">廣告</a></li>
 						<li><a href="<c:url value='/ben' />">論壇</a></li>
 
 					</ul>
@@ -44,60 +44,43 @@
 		<div id="main-wrapper">
 			<div class="container">
 				<div>
-				<h3><a href= "<c:url value='/list_users'/>">List All User</a></h3>
-				<h3><a href= "<c:url value='/login'/>">Login</a></h3>
-				
-				
+					<h3>
+						<a href="<c:url value='/list_users'/>">List All User</a>
+					</h3>
+					<h3>
+						<a href="<c:url value='/login'/>">Login</a>
+					</h3>
+
+
 				</div>
 				<div id="content">
-				
+
 					<!-- Content -->
-					<h2>廣告商</h2>
-					<form action="<c:url value='/insert'/>" method="post" >
-						<table>
-							<tr>
-								<td>廣告商:</td>
-								<td><input type="text" name="company" /></td>
-							</tr>
-							<tr>
-								<td>廣告內容:</td>
-								<td><input type="text" name="text"  /></td>
-							</tr>
-						<tr>
-								<td>贊助連結:</td>
-								<td><input type="text" name="url"  /></td>
-							</tr>
-							<tr>
-								<td>贊助金額:</td>
-								<td><input type="text" name="sponsorshipAmount"  /></td>
-							</tr>
-							<tr>
-								<td ><input type="submit" value="新增"></td>
-							</tr>
-						</table>
-					</form>
+
 					<h2>廣告商列表</h2>
 					<table>
 
 						<tr>
-							<th>編號</th>
+
 							<th>廣告商</th>
 							<th>廣告內容</th>
-							
-							<th colspan = 2>指令</th>
+							<td>贊助連結:</td>
+							<th colspan=2>指令</th>
 						</tr>
-						<c:forEach var="ad" items="${ads}" >
+						<h2>${user.userName}</h2>
+						<c:forEach var="listRecord" items="${listRecord}">
+							<form action="<c:url value='/userfront/${listRecord.ad.id}/${user.id }'/>" method="post">
 							<tr>
-								<td>${ad.id}</td>
-								<td>${ad.company}</td>
-								<td>${ad.text}</td>
-								<td>${ad.url}</td>
+								<td>${listRecord.ad.company}</td>
+								<td>${listRecord.ad.text }</td>
 								
-								<td><a href="<c:url value='/update/${ad.id}'/>">修改</a></td>
+								<td><a href="${listRecord.ad.url }">${listRecord.ad.url }</a>
+								<input	type="submit" value= "加入前頁"></td>
 								
-								<td><a href= "<c:url value='/delete/${ad.id}'/>">刪除</a></td>
-							
+								<td><a href="<c:url value='/recordDelete/${user.id }/${listRecord.id}'/>">刪除</a></td>
+								
 							</tr>
+							</form>
 						</c:forEach>
 
 					</table>
@@ -194,7 +177,7 @@
 	<script src="<c:url value='/assets/js/util.js' />"></script>
 	<script src="<c:url value='/assets/js/main.js' />"></script>
 	<script>
-
+		
 	</script>
 
 </body>

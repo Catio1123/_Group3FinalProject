@@ -1,6 +1,7 @@
 package com.ad.springboot.model.ad;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -9,10 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.ad.springboot.model.clicktime.ClickTime;
 import com.ad.springboot.model.user.User;
 
 @Entity
@@ -25,7 +28,7 @@ public class Ad implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id")
+	@Column(name = "ad_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
@@ -34,29 +37,64 @@ public class Ad implements Serializable {
 	@Column(name = "text")
 	private String text;
 
-	@Column(name="company_id")
+	@Column(name = "company_id")
 	private String companyId;
-	
+
 	@Column(name = "url")
-	private String companyUrl;
+	private String url;
 	
-@ManyToMany(mappedBy = "ads")
-	private Set<User> users;
+	@Column(name = "ad_total_click")
+	private Integer adTotalClick;
 
-	public Set<User> getUsers() {
-	return users;
-}
-
-public void setUsers(Set<User> users) {
-	this.users = users;
-}
-
-	public String getCompanyUrl() {
-		return companyUrl;
+	@Column(name="sponsorship_amount")
+	private Integer sponsorshipAmount;
+	
+	
+	public Set<ClickTime> getClickTimes() {
+		return clickTimes;
 	}
 
-	public void setCompanyUrl(String companyUrl) {
-		this.companyUrl = companyUrl;
+	public void setClickTimes(Set<ClickTime> clickTimes) {
+		this.clickTimes = clickTimes;
+	}
+
+	@OneToMany(mappedBy = "ad")
+    private Set<ClickTime> clickTimes = new HashSet<>();
+//	@Column(name = "url")
+//	private String companyUrl;
+	
+//	public String getCompanyUrl() {
+//		return companyUrl;
+//	}
+//
+//	public void setCompanyUrl(String companyUrl) {
+//		this.companyUrl = companyUrl;
+//	}
+
+	public Integer getSponsorshipAmount() {
+		return sponsorshipAmount;
+	}
+
+	public void setSponsorshipAmount(Integer sponsorshipAmount) {
+		this.sponsorshipAmount = sponsorshipAmount;
+	}
+
+	public Integer getAdTotalClick() {
+		return adTotalClick;
+	}
+
+	public void setAdTotalClick(Integer adTotalClick) {
+		this.adTotalClick = adTotalClick;
+	}
+
+
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public String getCompanyId() {
@@ -74,8 +112,6 @@ public void setUsers(Set<User> users) {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
 
 	public String getCompany() {
 		return company;
