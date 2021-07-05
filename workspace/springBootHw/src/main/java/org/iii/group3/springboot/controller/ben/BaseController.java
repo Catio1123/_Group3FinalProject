@@ -23,11 +23,6 @@ public class BaseController {
 		return "ben/ForumLogin";
 	}
 	
-	@PostMapping("/ContentPage")
-	public String toContentPage() {
-		return "ben/PostContent"; 
-	}
-	
 	@PostMapping("/UpdatePage")
 	public String toUpdatePage() {
 		return "ben/UpdateContent";
@@ -36,6 +31,11 @@ public class BaseController {
 	@GetMapping("/AddSuccessPage")
 	public String toAddSuccessPage() {
 		return "ben/index";
+	}
+	
+	@GetMapping("/ContentPage")
+	public String toContentPage() {
+		return "ben/MyContent";
 	}
 	
 }

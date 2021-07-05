@@ -337,7 +337,7 @@
 	    		 for(let i =0; i<forums.length;i++){
 	    			 let forum = forums[i];
 		    		 segment += "<li class='job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center'>";
-		    		 segment += "<a href='job-single.html'></a>";
+		    		 segment += "<a href='" + "<c:url value='/ContentPage/"+ forum.fid +"' />" + "'></a>";
 		    		 segment += "<div class='job-listing-logo'>";
 		    		 
 		    		 segment += "<img src='"+"<c:url value='/images/ben/job_logo_1.jpg' /> "+"'";
