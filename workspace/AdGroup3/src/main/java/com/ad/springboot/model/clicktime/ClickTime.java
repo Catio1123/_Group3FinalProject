@@ -30,7 +30,7 @@ public class ClickTime {
 	private Ad ad;
 	
 	@Column(name="click_time")
-	private Integer clickTimeCount;
+	private double clickTimeCount;
 
 	public ClickTimeKey getId() {
 		return id;
@@ -56,11 +56,11 @@ public class ClickTime {
 		this.ad = ad;
 	}
 
-	public Integer getClickTimeCount() {
+	public double getClickTimeCount() {
 		return clickTimeCount;
 	}
 
-	public void setClickTimeCount(Integer clickTimeCount) {
+	public void setClickTimeCount(double clickTimeCount) {
 		this.clickTimeCount = clickTimeCount;
 	}
 	

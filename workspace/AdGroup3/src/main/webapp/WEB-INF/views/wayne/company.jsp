@@ -53,11 +53,11 @@
 				
 					<!-- Content -->
 					<h2>廣告商</h2>
-					<form action="<c:url value='/insert'/>" method="post" >
+					<form action="<c:url value='/insert/${company.id}'/>" method="post" >
 						<table>
 							<tr>
 								<td>廣告商:</td>
-								<td><input type="text" name="company" /></td>
+								<td><input type="text" name="company" value="${company.name }" readonly="readonly" /></td>
 							</tr>
 							<tr>
 								<td>廣告內容:</td>
@@ -76,6 +76,8 @@
 							</tr>
 						</table>
 					</form>
+					<h2>歡迎${company.name }</h2>
+					
 					<h2>廣告商列表</h2>
 					<table>
 
@@ -86,16 +88,16 @@
 							
 							<th colspan = 2>指令</th>
 						</tr>
-						<c:forEach var="ad" items="${ads}" >
+						<c:forEach var="ad" items="${ad}" >
 							<tr>
 								<td>${ad.id}</td>
 								<td>${ad.company}</td>
 								<td>${ad.text}</td>
 								<td>${ad.url}</td>
 								
-								<td><a href="<c:url value='/update/${ad.id}'/>">修改</a></td>
+								<td><a href="<c:url value='/updateProcess/${ad.id}/${company.id}'/>">修改</a></td>
 								
-								<td><a href= "<c:url value='/delete/${ad.id}'/>">刪除</a></td>
+								<td><a href= "<c:url value='/delete/${ad.id}/${company.id}'/>">刪除</a></td>
 							
 							</tr>
 						</c:forEach>

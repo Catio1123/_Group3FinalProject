@@ -65,6 +65,8 @@
 							<th>廣告商</th>
 							<th>廣告內容</th>
 							<td>贊助連結:</td>
+							<td>點擊次數</td>
+							<td>獎勵</td>
 							<th colspan=2>指令</th>
 						</tr>
 						<h2>${user.userName}</h2>
@@ -76,7 +78,8 @@
 								
 								<td><a href="${listRecord.ad.url }">${listRecord.ad.url }</a>
 								<input	type="submit" value= "加入前頁"></td>
-								
+								<td>${listRecord.adClick }</td>
+								<td>${listRecord.bonus }</td>
 								<td><a href="<c:url value='/recordDelete/${user.id }/${listRecord.id}'/>">刪除</a></td>
 								
 							</tr>

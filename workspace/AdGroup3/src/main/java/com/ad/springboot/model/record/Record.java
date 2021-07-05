@@ -1,5 +1,7 @@
 package com.ad.springboot.model.record;
 
+import java.math.BigDecimal;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,16 +36,16 @@ public class Record {
 	private String url;
 	
 	@Column(name="ad_click")
-	private Integer adClick;
+	private double adClick;
 	
 	@Column(name="bonus")
-	private Integer bonus;
+	private double bonus;
 
-	public Integer getBonus() {
+	public double getBonus() {
 		return bonus;
 	}
 
-	public void setBonus(Integer bonus) {
+	public void setBonus(double bonus) {
 		this.bonus = bonus;
 	}
 
@@ -83,11 +85,11 @@ public class Record {
 
 	
 
-	public Integer getAdClick() {
+	public double getAdClick() {
 		return adClick;
 	}
 
-	public void setAdClick(Integer adClick) {
+	public void setAdClick(double adClick) {
 		this.adClick = adClick;
 	}
 

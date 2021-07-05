@@ -30,9 +30,14 @@ window.onload=function(){
 			url: "<c:url value='/recordClickTimeAdd'/>",
 			data: { 'aid' : ${clicktime.ad.id }, 'uid' : ${clicktime.user.id },'clickTimes':count${clicktime.ad.id } }
 			
-		})
+		}),$.ajax({
+			method: "POST",
+			url: "<c:url value='/addTotalClick'/>",
+			data: { 'aid' : ${clicktime.ad.id } }
+			
+		}),
 		
-		count${clicktime.ad.id }=0;},1000);
+		count${clicktime.ad.id }=0;},500);
 		
 		document.getElementById("clicks${clicktime.ad.id }").innerHTML = count${clicktime.ad.id };
 		console.log("count${clicktime.ad.id }=",count${clicktime.ad.id })

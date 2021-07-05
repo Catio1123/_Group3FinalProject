@@ -1,6 +1,7 @@
 package com.ad.springboot.model.ad;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +21,7 @@ import com.ad.springboot.model.user.User;
 
 @Entity
 @Table(name = "Ad")
+@DynamicUpdate
 public class Ad implements Serializable {
 
 	/**
@@ -38,16 +40,16 @@ public class Ad implements Serializable {
 	private String text;
 
 	@Column(name = "company_id")
-	private String companyId;
+	private Integer companyId;
 
 	@Column(name = "url")
 	private String url;
 	
 	@Column(name = "ad_total_click")
-	private Integer adTotalClick;
+	private double adTotalClick;
 
 	@Column(name="sponsorship_amount")
-	private Integer sponsorshipAmount;
+	private double sponsorshipAmount;
 	
 	
 	public Set<ClickTime> getClickTimes() {
@@ -71,19 +73,19 @@ public class Ad implements Serializable {
 //		this.companyUrl = companyUrl;
 //	}
 
-	public Integer getSponsorshipAmount() {
+	public double getSponsorshipAmount() {
 		return sponsorshipAmount;
 	}
 
-	public void setSponsorshipAmount(Integer sponsorshipAmount) {
+	public void setSponsorshipAmount(double sponsorshipAmount) {
 		this.sponsorshipAmount = sponsorshipAmount;
 	}
 
-	public Integer getAdTotalClick() {
+	public double getAdTotalClick() {
 		return adTotalClick;
 	}
 
-	public void setAdTotalClick(Integer adTotalClick) {
+	public void setAdTotalClick(double adTotalClick) {
 		this.adTotalClick = adTotalClick;
 	}
 
@@ -97,11 +99,11 @@ public class Ad implements Serializable {
 		this.url = url;
 	}
 
-	public String getCompanyId() {
+	public Integer getCompanyId() {
 		return companyId;
 	}
 
-	public void setCompanyId(String companyId) {
+	public void setCompanyId(Integer companyId) {
 		this.companyId = companyId;
 	}
 

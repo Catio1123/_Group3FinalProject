@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ad.springboot.model.ad.Ad;
 import com.ad.springboot.model.clicktime.ClickTime;
 import com.ad.springboot.model.clicktime.ClickTimeService;
+import com.ad.springboot.model.company.CompanyService;
 import com.ad.springboot.model.user.User;
 import com.ad.springboot.model.user.UserService;
 
@@ -25,8 +26,12 @@ public class BaseController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private CompanyService companyService;
+	
 	@GetMapping("/adindex")
 	public String adIndex() {
+		System.out.println(companyService.select(1));
 		return "adindex";
 	}
 

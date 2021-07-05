@@ -7,16 +7,19 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@SuppressWarnings("rawtypes")
 @Transactional
 public class AdService {
 
 	@Autowired
 	AdRepo adRepo;
+
+	ModelMapper modelMapper;
 
 	public Ad select(Integer id) {
 		Optional<Ad> ad = adRepo.findById(id);
@@ -33,12 +36,41 @@ public class AdService {
 		return ad;
 	}
 
-	public void save(Ad adUpdate) {
-
-		adRepo.save(adUpdate);
+	public void save(Ad ad, Integer cid) {
+		ad.setCompanyId(cid);
+		ad.setAdTotalClick(0);
+		adRepo.save(ad);
 	}
 
 	public void delete(Integer id) {
 		adRepo.deleteById(id);
+	}
+
+	public List<Ad> selectByCompanyId(Integer cid) {
+		List<Ad> findByCompanyId = adRepo.findByCompanyId(cid);
+		return findByCompanyId;
+
+	}
+
+	public void update(Ad adupdate, Integer aid) {
+		Optional<Ad> ad = adRepo.findById(aid);
+
+		Ad ads = ad.get();
+		ads.setText(adupdate.getText());
+		ads.setUrl(adupdate.getUrl());
+		ads.setSponsorshipAmount(adupdate.getSponsorshipAmount());
+
+//		System.out.println(adDto.toString());
+//		System.out.println(ads);
+//		
+		adRepo.save(ads);
+	}
+
+	public void updateClick(Integer aid, Integer totalClick) {
+		Optional<Ad> ad = adRepo.findById(aid);
+
+		Ad ads = ad.get();
+		ads.setAdTotalClick(totalClick);
+		adRepo.save(ads);
 	}
 }

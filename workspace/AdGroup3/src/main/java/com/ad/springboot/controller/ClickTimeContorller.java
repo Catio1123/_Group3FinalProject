@@ -72,7 +72,7 @@ public class ClickTimeContorller {
 		User user = userService.select(uid);
 		ClickTime c = clickTimeService.select(user, ad);
 		if (c.getClickTimeCount() != 0) {
-			int clickTimes = clickTime + c.getClickTimeCount();
+			double clickTimes = clickTime + c.getClickTimeCount();
 
 			clickTimeService.addClickTime(ad, user, clickTimes);
 			

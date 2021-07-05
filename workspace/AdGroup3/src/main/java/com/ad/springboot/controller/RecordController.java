@@ -1,5 +1,6 @@
 package com.ad.springboot.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,22 +83,34 @@ public class RecordController {
 	}
 
 	@PostMapping("/recordClickTimeAdd")
-	public void clickTimeAdd(Integer aid, Integer uid, Integer clickTimes) {
-		
+	public void clickTimeAdd(Integer aid, Integer uid, int clickTimes) {
+
 		Ad ad = adService.select(aid);
 		User user = userService.select(uid);
 		Record r = recordService.select(user, ad);
 		ClickTime c = clickTimeService.select(user, ad);
-		
-		Integer g = c.getClickTimeCount()+clickTimes;
-		if (g >r.getAdClick() | g==r.getAdClick()) {
-			
+		System.out.println("c=" + c.getClickTimeCount());
+//		System.out.println("g="+g);
+		if (c.getClickTimeCount() > r.getAdClick() && r.getAdClick() != 0) {
+
+			recordService.addClicktime(ad, user, c.getClickTimeCount());
+
+		} else if (c.getClickTimeCount() == r.getAdClick() && r.getAdClick() != 0) {
+			double g = c.getClickTimeCount() + clickTimes;
 			recordService.addClicktime(ad, user, g);
-		
-		}else if(g <r.getAdClick()) {
-			int clickTimess = r.getAdClick()+g;
-			recordService.addClicktime(ad, user, clickTimess);
+
+		} else if (c.getClickTimeCount() < r.getAdClick() | c.getClickTimeCount() == 0 | r.getAdClick() == 0) {
+			double clickTimed = r.getAdClick() + clickTimes;
+			recordService.addClicktime(ad, user, clickTimed);
 		}
+		
+//		BigDecimal bonus = (r.getAdClick() / ad.getAdTotalClick()) * ad.getSponsorshipAmount();
+		double bonus = ad.getSponsorshipAmount()*(r.getAdClick()) / (ad.getAdTotalClick()+1);
+		System.out.println("click="+r.getAdClick());
+		System.out.println("totalclick="+ad.getAdTotalClick());
+		System.out.println("money="+ad.getSponsorshipAmount());
+		System.out.println(bonus);
+		recordService.addBonus(ad, user, bonus);
 	}
-	
+
 }

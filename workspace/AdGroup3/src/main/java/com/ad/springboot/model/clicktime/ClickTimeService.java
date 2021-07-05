@@ -47,7 +47,7 @@ public class ClickTimeService {
 		return clickTimeRepo.findByUser(user);
 	}
 	
-	public void  addClickTime(Ad ad , User user , Integer clickTimeCount) {
+	public void  addClickTime(Ad ad , User user , double clickTimeCount) {
 		
 		
 		ClickTime clickTime = new ClickTime();

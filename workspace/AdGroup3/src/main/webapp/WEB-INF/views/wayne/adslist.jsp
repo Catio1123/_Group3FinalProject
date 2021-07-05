@@ -46,14 +46,14 @@
 				<div id="content">
 					<!-- Content -->
 					<h2>更新廣告商</h2>
-					<form id="adslist" action="<c:url value='/insert'/>"  method="post">
+					<form id="adslist" action="<c:url value='/update/${ad.id }/${company.id }'/>"  method="post">
 					
 						<label for="number">編號:</label> 
 						<input type="text" id="id" name="id" value="${ad.id }" readonly="readonly"/> <br/>
 						<br/>
 						
 						<label for="supplier">廣告商:</label>
-						<input type="text" id="company" name="company" value="${ad.company }" />
+						<input type="text" id="company" name="company" value="${company.name }" readonly="readonly" />
 						<br/>
 						
 						<label for="text">廣告內容:</label>
@@ -62,6 +62,9 @@
 						
 						<label for="text">贊助連結:</label>
 						<input type="text" id="url" name="url" value="${ad.url }" />
+						<br/>
+						<label for="text">贊助金額:</label>
+						<input type="text" id="sponsorshipAmount" name="sponsorshipAmount" value="${ad.sponsorshipAmount }" />
 						<br/>
 						
 						<input type="submit" value="更新">
