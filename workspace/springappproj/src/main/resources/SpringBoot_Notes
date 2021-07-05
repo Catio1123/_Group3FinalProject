@@ -1,0 +1,16 @@
+C:\Users\student\Desktop\EEIT127\SpringBoot要點.txt
+
+1. 若要能正確顯示輸入資料的錯誤訊息，在編寫以@PostMapping / @PutMapping 修飾的控制器方法中，BindingResult參數一定要緊接在被綁定之Form物件之後，否則無法處理會導致Status Code為400的輸入資料會當掉。而不是400的輸入資料依然可以顯示錯誤訊息。
+
+2. 準備多語系的properties檔案時，一定要準備basename.properties檔，否則會當掉。例如自訂多語系檔 spring.messages.basename=PlaceMessage時，一定要準備PlaceMessage.properties。
+
+3. 自訂多語系檔 spring.messages.basename=PlaceMessage時，預設的basename: messages不復存在，若仍需要它，必須自行加入，如：spring.messages.basename=PlaceMessage,messages。
+
+4. Adding these statements to your Spring Boot Project informs Spring Boot of displaying actual parameter values sent to SQL command: 
+#to show sql
+spring.jpa.properties.hibernate.show_sql=true
+#formatting
+spring.jpa.properties.hibernate.format_sql=true
+#printing parameter values in order
+logging.level.org.hibernate.type.descriptor.sql=trace
+    
