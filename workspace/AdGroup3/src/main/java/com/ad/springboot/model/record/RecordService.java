@@ -51,6 +51,7 @@ public class RecordService {
 		record.setUser(users);
 		record.setUrl(ads.getUrl());
 		record.setAdClick(0);
+		record.setBonus(0);
 		recordRepo.save(record);
 
 	}
