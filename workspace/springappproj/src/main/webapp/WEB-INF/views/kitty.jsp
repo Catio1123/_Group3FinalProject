@@ -15,7 +15,11 @@
 <div align='center'>
     <h2>Spring Boot 範例</h2>
     <hr>
-    <a href="<c:url value='/hello' />"> Hello </a><br> 
+    <a href="/hello"> Hello </a><br> 
+    <a href="<c:url value='/readfile/excel/abc' />"> 匯入初始資料</a><br> 
+    <a href="<c:url value='/queryRestaurant' />"> 查詢餐廳資料 </a><br> 
+    <a href="<c:url value='/insertRestaurant' />"> 新增餐廳資料 </a><br> 
+    <a href="<c:url value='/toTextarea' />"> 測試TextArea </a><br> 
     <hr>
     Context Path 1= ${pageContext.request.contextPath}<br>
     Context Path 2= <c:url value="/" /><br>
@@ -23,7 +27,6 @@
 <!-- <img  src='${pageContext.request.contextPath}/images/PDF.png' > -->
 	<img src="<c:url value='/images/PDF.png' />">
 	<br>
-	<a href="<c:url value='/readfile' />">test</a>
  </div>   
 </body>
 </body>

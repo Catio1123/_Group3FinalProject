@@ -1,4 +1,4 @@
-package org.iii.group3.springboot.model;
+package org.iii.group3.springboot.model.ben;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,7 +34,14 @@ public class ForumContentBean {
 	@Column(name = "date",insertable = false)
 	private String date;
 	
+	
 	public ForumContentBean() {
+	}
+	
+	public ForumContentBean(String topic,String type,String con) {
+		this.topic = topic;
+		this.type = type;
+		this.con = con;
 	}
 	
 	public int getFid() {

@@ -1,9 +1,16 @@
 package com.infotran.springboot.controller;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.Blob;
+import java.sql.Clob;
+import java.util.List;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,19 +18,17 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.infotran.springboot.model.Place;
 import com.infotran.springboot.service.PlaceServiceImpl;
+import com.infotran.springboot.utils.SystemUtils;
 
 @Controller
 public class BaseController {
-	
-	@Value("\\data\\place.csv")
-	String filename;
-	
-	@Autowired
-	private PlaceServiceImpl placeService;
 	
 	@GetMapping("/")
 	public String index() {
@@ -38,36 +43,4 @@ public class BaseController {
 		model.addAttribute("helloMessage", message);
 		return "greeting";
 	}
-	
-	@GetMapping("/readfile")
-	public String readFile(Model model) {
-		ClassPathResource cpr = new ClassPathResource(filename);
-		int count = 0;
-		String result;
-		try {
-			InputStream is = cpr.getInputStream();
-			InputStreamReader isr = new InputStreamReader(is);
-			BufferedReader br = new BufferedReader(isr);
-			String line;
-			while((line = br.readLine()) != null) {
-				System.out.println(line);
-				String sa[] = line.split(",");
-				
-				Integer typeId = Integer.parseInt(sa[0]);
-				Double longitude = Double.parseDouble(sa[4]);
-				Double latitude = Double.parseDouble(sa[5]);
-				
-				Place place = new Place(typeId,sa[1],sa[2],sa[3],longitude,latitude,sa[6]);
-				placeService.save(place);
-				count++;
-			}
-			result = "新增了"+count+"筆Place記錄";
-		} catch (IOException e) {
-			result = e.getMessage();
-			
-		}
-		model.addAttribute("showResult", result);
-		return "showContext";
-	}
-	
 }
