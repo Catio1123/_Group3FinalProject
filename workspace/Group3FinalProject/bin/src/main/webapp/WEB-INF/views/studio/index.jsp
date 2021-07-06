@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="<c:url value='/gavin/assets/css/main.css' />" />
+<link rel="stylesheet" href="<c:url value='/gavin/css/main.css' />" />
 </head>
 <body class="is-preload homepage">
 	<div id="page-wrapper">
@@ -44,9 +44,9 @@
 			<div id="banner" class="box container">
 				<div class="row">
 					<div class="col-7 col-12-medium">
-						<a href="<c:url value='/studio/readfile/excel/adc' />">匯入初始資料</a><br>
-						<a href="<c:url value='/studio/queryStudio' />">查詢錄音室資料</a><br> <a
-							href="<c:url value='/studio/insertStudio' />">新增錄音室資料</a><br>
+						<a href="<c:url value='/readfile/excel/adc' />">匯入初始資料</a><br>
+						<a href="<c:url value='/queryStudio' />">查詢錄音室資料</a><br> <a
+							href="<c:url value='/insertStudio' />">新增錄音室資料</a><br>
 					</div>
 
 				</div>
@@ -135,12 +135,12 @@
 
 	<!-- Scripts -->
 
-	<script src="<c:url value='/gavin/assets/js/jquery.min.js' />"></script>
-	<script src="<c:url value='/gavin/assets/js/jquery.dropotron.min.js' />"></script>
-	<script src="<c:url value='/gavin/assets/js/browser.min.js' />"></script>
-	<script src="<c:url value='/gavin/assets/js/breakpoints.min.js' />"></script>
-	<script src="<c:url value='/gavin/assets/js/util.js' />"></script>
-	<script src="<c:url value='/gavin/assets/js/main.js' />"></script>
+	<script src="<c:url value='/gavin/js/jquery.min.js' />"></script>
+	<script src="<c:url value='/gavin/js/jquery.dropotron.min.js' />"></script>
+	<script src="<c:url value='/gavin/js/browser.min.js' />"></script>
+	<script src="<c:url value='/gavin/js/breakpoints.min.js' />"></script>
+	<script src="<c:url value='/gavin/js/util.js' />"></script>
+	<script src="<c:url value='/gavin/js/main.js' />"></script>
 
 </body>
 </html>

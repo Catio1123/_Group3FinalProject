@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="<c:url value='/gavin/assets/css/main.css' />" />
+<link rel="stylesheet" href="<c:url value='/gavin/css/main.css' />" />
 </head>
 <body class="is-preload no-sidebar">
 	<div id="page-wrapper">
@@ -152,12 +152,12 @@
 
 	<!-- Scripts -->
 
-	<script src="<c:url value='/gavin/assets/js/jquery.min.js' />"></script>
-	<script src="<c:url value='/gavin/assets/js/jquery.dropotron.min.js' />"></script>
-	<script src="<c:url value='/gavin/assets/js/browser.min.js' />"></script>
-	<script src="<c:url value='/gavin/assets/js/breakpoints.min.js' />"></script>
-	<script src="<c:url value='/gavin/assets/js/util.js' />"></script>
-	<script src="<c:url value='/gavin/assets/js/main.js' />"></script>
+	<script src="<c:url value='/gavin/js/jquery.min.js' />"></script>
+	<script src="<c:url value='/gavin/js/jquery.dropotron.min.js' />"></script>
+	<script src="<c:url value='/gavin/js/browser.min.js' />"></script>
+	<script src="<c:url value='/gavin/js/breakpoints.min.js' />"></script>
+	<script src="<c:url value='/gavin/js/util.js' />"></script>
+	<script src="<c:url value='/gavin/js/main.js' />"></script>
 	<script>
 	$(function() {
 		let id = ${id};
