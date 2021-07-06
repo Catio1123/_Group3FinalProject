@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>歡迎來到iPodcast</title>
 </head>
-<link rel='stylesheet' href="<c:url value='/css/login.css' />" type="text/css" />
+<link rel='stylesheet' href="<c:url value='/kevin/css/login.css' />" type="text/css" />
 
 <body bgcolor="#D2E9FF">
 

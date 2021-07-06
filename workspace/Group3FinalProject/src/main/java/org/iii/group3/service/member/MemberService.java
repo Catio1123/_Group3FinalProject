@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.transaction.Transactional;
 
-import org.iii.group3.persistent.dao.MemberDao;
+import org.iii.group3.persistent.dao.member.MemberDao;
 import org.iii.group3.persistent.model.member.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -13,10 +13,10 @@
     <title>歡迎來到iPodcast</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="/kevin/img/core-img/favicon.ico">
 
     <!-- Style CSS -->
-   <link  rel='stylesheet' href="<c:url value='/css/style.css'  />" />	    
+   <link  rel='stylesheet' href="<c:url value='/kevin/css/style.css'  />" />	    
     
     <style>
 h1 {
@@ -78,7 +78,7 @@ font-family:Microsoft JhengHei
                                     <!-- <li><a href="index.html">Home</a></li> -->
                                     <li><a href="#">Podcaster</a></li>
                                     <li><a href="#">廣告</a></li>
-                                    <li><a href="#">論壇</a></li>
+                                    <li><a href="<c:url value='/forum'/>">論壇</a></li>
                                     <li><a href="#">活動</a></li>
                                     <li><a href="#">播客工廠</a></li>
                                     <li><a href="#">搜尋</a></li>
@@ -180,7 +180,7 @@ function load(){
         <!-- Hero Slides Area -->
         <div class="hero-slides owl-carousel">
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(images/P1.jpg);">
+            <div class="single-hero-slide bg-img" style="background-image: url(kevin/images/P1.jpg);">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
@@ -195,7 +195,7 @@ function load(){
                 </div>
             </div>
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(images/P2.jpg);">
+            <div class="single-hero-slide bg-img" style="background-image: url(kevin/images/P2.jpg);">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
@@ -210,7 +210,7 @@ function load(){
                 </div>
             </div>
             <!-- Single Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(images/P3.jpg);">
+            <div class="single-hero-slide bg-img" style="background-image: url(kevin/images/P3.jpg);">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
@@ -251,7 +251,7 @@ function load(){
                 <!-- Single Blog Area -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-catagory-area clearfix mb-100">
-                        <img src="images/V1.png" alt="">
+                        <img src="kevin/images/V1.png" alt="">
                         <!-- Catagory Title -->
                         <div class="catagory-title">
                             <a href="#"></a>
@@ -261,7 +261,7 @@ function load(){
                 <!-- Single Blog Area -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-catagory-area clearfix mb-100">
-                        <img src="images/V2.png" alt="">
+                        <img src="kevin/images/V2.png" alt="">
                         <!-- Catagory Title -->
                         <div class="catagory-title">
                             <a href="#"></a>
@@ -280,7 +280,7 @@ function load(){
                         <div class="row align-items-center">
                             <div class="col-12 col-md-6">
                                 <div class="single-blog-thumbnail">
-                                    <img src="images/婊姐必請.jpg" alt="">
+                                    <img src="kevin/images/婊姐必請.jpg" alt="">
                                     <div class="post-date">
                                         <a href="#">12 <span>march</span></a>
                                     </div>
@@ -311,7 +311,7 @@ function load(){
                         <div class="row align-items-center">
                             <div class="col-12 col-md-6">
                                 <div class="single-blog-thumbnail">
-                                    <img src="images/瘋女人聊天室.jpg" alt="">
+                                    <img src="kevin/images/瘋女人聊天室.jpg" alt="">
                                     <div class="post-date">
                                         <a href="#">12 <span>march</span></a>
                                     </div>
@@ -340,7 +340,7 @@ function load(){
                         <div class="row">
                             <div class="col-12">
                                 <div class="single-blog-thumbnail">
-                                    <img src="images/P5.jpg" alt="">
+                                    <img src="kevin/images/P5.jpg" alt="">
                                     <div class="post-date">
                                         <a href="#">10 <span>march</span></a>
                                     </div>
@@ -367,7 +367,7 @@ function load(){
                         <div class="row align-items-center">
                             <div class="col-12 col-md-6">
                                 <div class="single-blog-thumbnail">
-                                    <img src="images/英文留聲機.jpg" alt="">
+                                    <img src="kevin/images/英文留聲機.jpg" alt="">
                                     <div class="post-date">
                                         <a href="#">12 <span>march</span></a>
                                     </div>
@@ -394,7 +394,7 @@ function load(){
                         <div class="row align-items-center">
                             <div class="col-12 col-md-6">
                                 <div class="single-blog-thumbnail">
-                                    <img src="images/眼球地下電台.jpg" alt="">
+                                    <img src="kevin/images/眼球地下電台.jpg" alt="">
                                     <div class="post-date">
                                         <a href="#">12 <span>march</span></a>
                                     </div>
@@ -448,7 +448,7 @@ function load(){
                         <!-- Widget Area -->
                         <div class="sidebar-widget-area">
                             <h5 class="title">今天想要小酌一下</h5>
-                            <a href="#"><img src="images/_會動的.gif" alt=""></a>
+                            <a href="#"><img src="/ipodcast/kevin/images/_會動的.gif" alt=""></a>
                         </div>
 
                         <!-- Widget Area
@@ -561,7 +561,7 @@ function load(){
         <div class="instagram-slides owl-carousel">
             <!-- Single Insta Feed -->
             <div class="single-insta-feed">
-                <img src="images/下班尬一下.jpg" alt="">
+                <img src="kevin/images/下班尬一下.jpg" alt="">
                 <!-- Hover Effects -->
                 <div class="hover-effects">
                     <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
@@ -569,7 +569,7 @@ function load(){
             </div>
             <!-- Single Insta Feed -->
             <div class="single-insta-feed">
-                <img src="images/今天要喝酒.jpg" alt="">
+                <img src="kevin/images/今天要喝酒.jpg" alt="">
                 <!-- Hover Effects -->
                 <div class="hover-effects">
                     <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
@@ -577,7 +577,7 @@ function load(){
             </div>
             <!-- Single Insta Feed -->
             <div class="single-insta-feed">
-                <img src="images/法客電台.jpg" alt="">
+                <img src="kevin/images/法客電台.jpg" alt="">
                 <!-- Hover Effects -->
                 <div class="hover-effects">
                     <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
@@ -585,7 +585,7 @@ function load(){
             </div>
             <!-- Single Insta Feed -->
             <div class="single-insta-feed">
-                <img src="images/移工故事書.jpg" alt="">
+                <img src="kevin/images/移工故事書.jpg" alt="">
                 <!-- Hover Effects -->
                 <div class="hover-effects">
                     <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
@@ -593,7 +593,7 @@ function load(){
             </div>
             <!-- Single Insta Feed -->
             <div class="single-insta-feed">
-                <img src="images/轉吧創夢大叔.jpg" alt="">
+                <img src="kevin/images/轉吧創夢大叔.jpg" alt="">
                 <!-- Hover Effects -->
                 <div class="hover-effects">
                     <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
@@ -601,7 +601,7 @@ function load(){
             </div>
             <!-- Single Insta Feed -->
             <div class="single-insta-feed">
-                <img src="images/那些你不敢跟老闆說的話.jpg" alt="">
+                <img src="kevin/images/那些你不敢跟老闆說的話.jpg" alt="">
                 <!-- Hover Effects -->
                 <div class="hover-effects">
                     <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
@@ -609,7 +609,7 @@ function load(){
             </div>
             <!-- Single Insta Feed -->
             <div class="single-insta-feed">
-                <img src="images/雀雀聊影劇.jpg" alt="">
+                <img src="kevin/images/雀雀聊影劇.jpg" alt="">
                 <!-- Hover Effects -->
                 <div class="hover-effects">
                     <a href="#" class="d-flex align-items-center justify-content-center"><i class="fa fa-instagram"></i></a>
@@ -681,15 +681,15 @@ function load(){
 				
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="<c:url value='/js/jquery-2.2.4.min.js'  />"></script>
+    <script src="<c:url value='/kevin/js/jquery-2.2.4.min.js'  />"></script>
     <!-- Popper js -->
-    <script src="<c:url value='/js/popper.min.js'  />"></script>
+    <script src="<c:url value='/kevin/js/popper.min.js'  />"></script>
     <!-- Bootstrap js -->
-    <script src="<c:url value='/js/bootstrap.min.js'  />"></script>
+    <script src="<c:url value='/kevin/js/bootstrap.min.js'  />"></script>
     <!-- Plugins js -->
-    <script src="<c:url value='/js/plugins.js'  />"></script>
+    <script src="<c:url value='/kevin/js/plugins.js'  />"></script>
     <!-- Active js -->
-    <script src="<c:url value='/js/active.js'  />"></script>
+    <script src="<c:url value='/kevin/js/active.js'  />"></script>
 
 
 

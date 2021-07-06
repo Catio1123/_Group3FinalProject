@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.iii.group3.persistent.dao.MemberDao;
+import org.iii.group3.persistent.dao.member.MemberDao;
 import org.iii.group3.persistent.model.member.Member;
 import org.iii.group3.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
