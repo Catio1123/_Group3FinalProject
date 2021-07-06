@@ -12,7 +12,7 @@ import org.springframework.core.io.ClassPathResource;
 
 public class SystemUtils {
     
-	public static final String STUDIO_IMAGE_FOLDER = "C:\\images\\studio";
+	public static final String STUDIO_IMAGE_FOLDER = "C:\\_Group3FinalProject\\images\\studio";
 	public static final String NO_IMAGE_PATH = "\\static\\gavin\\images\\NoImage.png";
 	
 	public static String getExtFilename(String filename) {
