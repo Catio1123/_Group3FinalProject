@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.ad.springboot.model.ad.Ad;
 import com.ad.springboot.model.user.User;
@@ -23,7 +24,7 @@ public class Record {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@ManyToOne
+	@ManyToOne(cascade =  CascadeType.REMOVE)
 	@JoinColumn(name="ad_id")
 	private Ad ad;
 	
@@ -40,6 +41,17 @@ public class Record {
 	
 	@Column(name="bonus")
 	private double bonus;
+
+	@Transient
+	private boolean enable = true;
+	
+	public boolean isEnable() {
+		return enable;
+	}
+
+	public void setEnable(boolean enable) {
+		this.enable = enable;
+	}
 
 	public double getBonus() {
 		return bonus;

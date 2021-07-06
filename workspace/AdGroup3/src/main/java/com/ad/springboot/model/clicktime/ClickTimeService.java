@@ -70,5 +70,24 @@ public class ClickTimeService {
 		return findByUserAd;
 	}
 	
+	public void deleteByAd(Ad ad) {
+		
+		clickTimeRepo.deleteByAd(ad);
+	}
+	
+	public boolean findByAd(Ad ad) {
+
+		 List<ClickTime> a = clickTimeRepo.findByAd(ad);
+		 
+		 if (a.isEmpty()) {
+			return false;
+		}
+		 return true;
+	}
+	
+	public void deleteByUserAndAd(User user, Ad ad) {
+	clickTimeRepo.deleteByUserAndAd(user, ad);
+	}
+	
 	
 }

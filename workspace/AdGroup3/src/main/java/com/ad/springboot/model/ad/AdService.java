@@ -12,6 +12,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ad.springboot.model.clicktime.ClickTimeRepo;
+import com.ad.springboot.model.record.RecordRepo;
+
 @Service
 @Transactional
 public class AdService {
@@ -19,7 +22,12 @@ public class AdService {
 	@Autowired
 	AdRepo adRepo;
 
-	ModelMapper modelMapper;
+	@Autowired
+	ClickTimeRepo clickTimeRepo;
+	
+	@Autowired
+	 RecordRepo recordRepo;
+
 
 	public Ad select(Integer id) {
 		Optional<Ad> ad = adRepo.findById(id);
@@ -43,6 +51,7 @@ public class AdService {
 	}
 
 	public void delete(Integer id) {
+		
 		adRepo.deleteById(id);
 	}
 

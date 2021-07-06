@@ -61,12 +61,7 @@ window.onload=function(){
 				<button id="clickme${clicktime.ad.id }"
 					onclick="window.open('${clicktime.ad.url}', '_blank');">${clicktime.ad.company }</button>
 				<br>
-				<p>
-					Clicks: <a id="clicks${clicktime.ad.id }">0</a>
-				</p>
-
-				<td>${clicktime.ad.company }</td>
-				<td><a href="${clicktime.ad.url}">${clicktime.ad.url}</a></td>
+			
 
 			</tr>
 		</c:forEach>

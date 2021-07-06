@@ -37,9 +37,14 @@ public class RecordService {
 		return recordRepo.findByUser(user);
 	}
 
-	public List<Record> adListRecord(User user) {
+	public boolean findByAd(Ad ad) {
 
-		return recordRepo.findByAd(ad);
+		 List<Record> a = recordRepo.findByAd(ad);
+		 
+		 if (a.isEmpty()) {
+			return false;
+		}
+		 return true;
 	}
 
 	public void addOne(Ad ad, User user) {
@@ -56,8 +61,8 @@ public class RecordService {
 
 	}
 
-	public void delete(Integer id) {
-		recordRepo.deleteById(id);
+	public void deleteByUserAndAd(User user, Ad ad) {
+		recordRepo.deleteByUserAndAd(user, ad);
 	}
 
 	public Record select(User user, Ad ad) {
@@ -85,5 +90,11 @@ public class RecordService {
 		select(user, ad).setBonus(bonus);
 
 		recordRepo.save(select(user, ad));
+	}
+	
+	public void deleteByAd(Ad ad) {
+		recordRepo.deleteByAd(ad);
+		
+		
 	}
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -34,7 +35,6 @@ public class ClickTimeContorller {
 	private ClickTimeService clickTimeService;
 
 	@PostMapping("/userfront/{aid}/{uid}")
-
 	public String urlToUserWeb(Model m, @PathVariable(value = "aid", required = true) Integer aid,
 			@PathVariable(value = "uid", required = true) int uid, HttpServletResponse response) {
 
@@ -75,11 +75,20 @@ public class ClickTimeContorller {
 			double clickTimes = clickTime + c.getClickTimeCount();
 
 			clickTimeService.addClickTime(ad, user, clickTimes);
-			
-			
+
 		} else {
 			clickTimeService.addClickTime(ad, user, clickTime);
 		}
+	}
+
+	@GetMapping(path = "/deleteFront/{aid}/{uid}")
+	public String deleteFront(@PathVariable(value = "aid", required = true) Integer aid,
+			@PathVariable(value = "uid", required = true) int uid) {
+		Ad ad = adService.select(aid);
+		User user = userService.select(uid);
+		clickTimeService.deleteByUserAndAd(user, ad);
+		return "redirect:/processRecord/{uid}";
+
 	}
 
 }

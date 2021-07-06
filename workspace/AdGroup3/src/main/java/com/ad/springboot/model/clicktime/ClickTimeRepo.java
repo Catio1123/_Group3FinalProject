@@ -22,6 +22,17 @@ public interface ClickTimeRepo extends JpaRepository<ClickTime, ClickTimeKey> {
 	public List<ClickTime> findByUser(User user);
 	
 	
+	@Query(" SELECT c FROM ClickTime c where c.ad = ?1")
+	public List<ClickTime> findByAd(Ad ad);
+	
 	@Query(" SELECT c FROM ClickTime c where c.user =?1 and c.ad=?2")
 	public ClickTime findByUserAndAd(User user, Ad ad );
+	
+	@Modifying
+	@Query("DELETE FROM ClickTime c where c.ad=?1")
+	public void deleteByAd(Ad ad);
+	
+	@Modifying
+	@Query("DELETE FROM ClickTime c where c.user=?1 and c.ad=?2")
+	public void deleteByUserAndAd(User user, Ad ad);
 }

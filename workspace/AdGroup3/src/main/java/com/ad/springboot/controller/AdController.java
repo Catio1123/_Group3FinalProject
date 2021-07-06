@@ -40,6 +40,8 @@ public class AdController {
 	@Autowired
 	private RecordService recordService;
 
+	@Autowired
+	private ClickTimeService clickTimeService;
 //	@GetMapping(path = "/company")
 //	public String wayne(Model m) {
 //
@@ -83,7 +85,20 @@ public class AdController {
 	@GetMapping(path = "/delete/{aid}/{cid}")
 	public String delete(@PathVariable(value = "cid", required = true) int cid,
 			@PathVariable(value = "aid", required = true) int aid) {
-		adService.delete(aid);
+		Ad ad = adService.select(aid);
+
+		if (clickTimeService.findByAd(ad)) {
+			clickTimeService.deleteByAd(ad);
+			recordService.deleteByAd(ad);
+			adService.delete(aid);
+		} else if (recordService.findByAd(ad)) {
+			recordService.deleteByAd(ad);
+			adService.delete(aid);
+		} else {
+
+			adService.delete(aid);
+		}
+
 		return "redirect:/company/{cid}";
 
 	}
@@ -91,8 +106,8 @@ public class AdController {
 	@PostMapping(path = "/addTotalClick")
 	public void addTotalClick(Integer aid) {
 		Ad ad = adService.select(aid);
-		 Integer totalClick = recordService.sumClickByAd(ad);
-		Integer a = totalClick+1;
-		adService.updateClick(aid, a );
+		Integer totalClick = recordService.sumClickByAd(ad);
+		Integer a = totalClick + 1;
+		adService.updateClick(aid, a);
 	}
 }

@@ -1,6 +1,7 @@
 package com.ad.springboot.controller;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,17 +68,39 @@ public class RecordController {
 	@RequestMapping(path = "/showRecord/{uid}", method = RequestMethod.GET)
 	public String showUserRecord(Model m, @PathVariable(value = "uid", required = true) int uid) {
 		User user = userService.select(uid);
-		List<Record> listRecord = recordService.listRecord(user);
-		m.addAttribute("listRecord", listRecord);
+		List<Record> record = recordService.listRecord(user);
+		
+		List<ClickTime> clickTime = clickTimeService.clickTimeByUser(user);
+		
+		List<Record> newRecord = new ArrayList<>();
+		
+		for(Record r :record) {
+			for(ClickTime c :clickTime) {
+				if(c.getAd().getId().equals(r.getAd().getId())) {
+					r.setEnable(false);
+				}
+			}
+			newRecord.add(r);
+		}
+		
+		m.addAttribute("record", newRecord);
 		m.addAttribute("user", user);
 		return "recordlist";
 	}
 
-	@GetMapping(path = "/recordDelete/{uid}/{rid}")
+	@GetMapping(path = "/recordDelete/{uid}/{aid}")
 	public String delete(@PathVariable(value = "uid", required = true) int uid,
-			@PathVariable(value = "rid", required = true) int rid) {
-		recordService.delete(rid);
-//		User user = userService.select(uid);
+			@PathVariable(value = "aid", required = true) int aid) {
+
+		Ad ad = adService.select(aid);
+		User user = userService.select(uid);
+		if (clickTimeService.findByAd(ad)) {
+			clickTimeService.deleteByUserAndAd(user, ad);
+			recordService.deleteByUserAndAd(user, ad);
+		} else if (recordService.findByAd(ad)) {
+			recordService.deleteByUserAndAd(user, ad);
+		}
+
 		return "redirect:/processRecord/{uid}";
 
 	}
@@ -103,12 +126,12 @@ public class RecordController {
 			double clickTimed = r.getAdClick() + clickTimes;
 			recordService.addClicktime(ad, user, clickTimed);
 		}
-		
+
 //		BigDecimal bonus = (r.getAdClick() / ad.getAdTotalClick()) * ad.getSponsorshipAmount();
-		double bonus = ad.getSponsorshipAmount()*(r.getAdClick()) / (ad.getAdTotalClick()+1);
-		System.out.println("click="+r.getAdClick());
-		System.out.println("totalclick="+ad.getAdTotalClick());
-		System.out.println("money="+ad.getSponsorshipAmount());
+		double bonus = ad.getSponsorshipAmount() * (r.getAdClick()) / (ad.getAdTotalClick() + 1);
+		System.out.println("click=" + r.getAdClick());
+		System.out.println("totalclick=" + ad.getAdTotalClick());
+		System.out.println("money=" + ad.getSponsorshipAmount());
 		System.out.println(bonus);
 		recordService.addBonus(ad, user, bonus);
 	}
