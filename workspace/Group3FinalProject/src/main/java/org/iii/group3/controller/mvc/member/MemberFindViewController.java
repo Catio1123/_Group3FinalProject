@@ -1,13 +1,12 @@
-package iii.eeit128.group3.controller.mvc.member;
+package org.iii.group3.controller.mvc.member;
 
+import org.iii.group3.persistent.model.member.Member;
+import org.iii.group3.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
-import iii.eeit128.group3.persistent.model.member.Member;
-import iii.eeit128.group3.service.member.MemberService;
 
 @Controller  //此控制器專門處理送入表單
 @SessionAttributes("Member")

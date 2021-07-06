@@ -1,9 +1,12 @@
-package iii.eeit128.group3.controller.mvc.member;
+package org.iii.group3.controller.mvc.member;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.iii.group3.persistent.dao.MemberDao;
+import org.iii.group3.persistent.model.member.Member;
+import org.iii.group3.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import iii.eeit128.group3.persistent.dao.MemberDao;
-import iii.eeit128.group3.persistent.model.member.Member;
-import iii.eeit128.group3.service.member.MemberService;
 
 
 

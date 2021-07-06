@@ -1,4 +1,4 @@
-package iii.eeit128.group3.persistent.model.member;
+package org.iii.group3.persistent.model.member;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package iii.eeit128.group3.persistent.dao;
+package org.iii.group3.persistent.dao;
 
 import java.util.List;
 
@@ -7,11 +7,10 @@ import javax.persistence.NoResultException;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.iii.group3.persistent.model.member.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
-
-import iii.eeit128.group3.persistent.model.member.Member;
 
 
 

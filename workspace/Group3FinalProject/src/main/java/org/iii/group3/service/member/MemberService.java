@@ -1,4 +1,4 @@
-package iii.eeit128.group3.service.member;
+package org.iii.group3.service.member;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,14 +6,13 @@ import java.util.Map;
 
 import javax.transaction.Transactional;
 
+import org.iii.group3.persistent.dao.MemberDao;
+import org.iii.group3.persistent.model.member.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-
-import iii.eeit128.group3.persistent.dao.MemberDao;
-import iii.eeit128.group3.persistent.model.member.Member;
 
 @Service
 @Transactional

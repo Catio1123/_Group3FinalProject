@@ -1,4 +1,4 @@
-package iii.eeit128.group3;
+package org.iii.group3;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
