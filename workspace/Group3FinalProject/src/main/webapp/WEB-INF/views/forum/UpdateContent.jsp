@@ -93,7 +93,7 @@
       <div class="container">
       <h2> 更新文章</h2>
       <br>
-		<form:form modelAttribute="bean" method="post">
+		<form:form modelAttribute="bean" method="post" action="/ipodcast/forum/toUpdate">
 			<div>
 			<label>標題:</label>
 			<form:input path="topic"/>			
