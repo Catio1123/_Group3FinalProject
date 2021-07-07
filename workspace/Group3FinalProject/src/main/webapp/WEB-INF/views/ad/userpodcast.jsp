@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 
-<script src="<c:url value='/creative/js/jquery-3.6.0.min.js' />"></script>
-<%-- <script src="<c:url value='/assets/js/jquery.dropotron.min.js' />"></script> --%>
+<script src="<c:url value='/wayne/creative/js/jquery-3.6.0.min.js' />"></script>
+<script src="<c:url value='/assets/js/jquery.dropotron.min.js' />"></script>
 <script>
 
 window.onload=function(){
@@ -51,21 +51,22 @@ window.onload=function(){
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>廣告</h3>
-	<table>
+	<h2>使用者1Podcast</h2>
 
 
-		<c:forEach var="clicktime" items="${clicktime}">
-			<tr>
 
-				<button id="clickme${clicktime.ad.id }"
-					onclick="window.open('${clicktime.ad.url}', '_blank');">${clicktime.ad.company }</button>
-				<br>
-			
+	<c:forEach var="clicktime" items="${clicktime}">
 
-			</tr>
-		</c:forEach>
 
-	</table>
+		<h3>${clicktime.ad.text }</h3>
+		<button id="clickme${clicktime.ad.id }"
+			onclick="window.open('${clicktime.ad.url}', '_blank');">${clicktime.ad.company }</button>
+		<br>
+		<br>
+
+
+
+	</c:forEach>
+
 </body>
 </html>

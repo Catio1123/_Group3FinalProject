@@ -19,19 +19,21 @@
         <!-- SimpleLightbox plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/creative/css/styles.css" rel="stylesheet" />
+        <link href="/ipodcast/wayne/creative/css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">I Podcast</a>
+                <a class="navbar-brand" href="<c:url value='/' />">I Podcast</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link" href="<c:url value='/company/1'/>">廣告商</a></li>
                         <li class="nav-item"><a class="nav-link" href="<c:url value='/users/1'/>">使用者1</a></li>
                         <li class="nav-item"><a class="nav-link" href="<c:url value='/users/2'/>">使用者2</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<c:url value='/userpodcast/1'/>">測試1</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<c:url value='/userpodcast/2'/>">測試2</a></li>
                     </ul>
                 </div>
             </div>
@@ -106,8 +108,8 @@
             <div class="container-fluid p-0">
                 <div class="row g-0">
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="/creative/assets/img/portfolio/fullsize/1.jpg" title="Project Name">
-                            <img class="img-fluid" src="/creative/assets/img/portfolio/thumbnails/1.jpg" alt="..." />
+                        <a class="portfolio-box" href="<c:url value='/wayne/creative/assets/img/portfolio/fullsize/1.jpg'/>"  title="Project Name">
+                            <img class="img-fluid" src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/1.jpg'/>" alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Category</div>
                                 <div class="project-name">Project Name</div>
@@ -115,8 +117,8 @@
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="/creative/assets/img/portfolio/fullsize/2.jpg" title="Project Name">
-                            <img class="img-fluid" src="/creative/assets/img/portfolio/thumbnails/2.jpg" alt="..." />
+                        <a class="portfolio-box" href="<c:url value='/wayne/creative/assets/img/portfolio/fullsize/2.jpg'/>"  title="Project Name">
+                            <img class="img-fluid" src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/2.jpg'/>" alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Category</div>
                                 <div class="project-name">Project Name</div>
@@ -124,8 +126,8 @@
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="/creative/assets/img/portfolio/fullsize/3.jpg" title="Project Name">
-                            <img class="img-fluid" src="/creative/assets/img/portfolio/thumbnails/3.jpg" alt="..." />
+                        <a class="portfolio-box" href="<c:url value='/wayne/creative/assets/img/portfolio/fullsize/3.jpg'/>"  title="Project Name">
+                            <img class="img-fluid" src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/3.jpg'/>" alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Category</div>
                                 <div class="project-name">Project Name</div>
@@ -133,8 +135,8 @@
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="/creative/assets/img/portfolio/fullsize/4.jpg" title="Project Name">
-                            <img class="img-fluid" src="/creative/assets/img/portfolio/thumbnails/4.jpg" alt="..." />
+                        <a class="portfolio-box" href="<c:url value='/wayne/creative/assets/img/portfolio/fullsize/4.jpg'/>"  title="Project Name">
+                            <img class="img-fluid" src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/4.jpg'/>" alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Category</div>
                                 <div class="project-name">Project Name</div>
@@ -142,8 +144,8 @@
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="/creative/assets/img/portfolio/fullsize/5.jpg" title="Project Name">
-                            <img class="img-fluid" src="/creative/assets/img/portfolio/thumbnails/5.jpg" alt="..." />
+                        <a class="portfolio-box" href="<c:url value='/wayne/creative/assets/img/portfolio/fullsize/5.jpg'/>" title="Project Name">
+                            <img class="img-fluid" src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/5.jpg'/>" alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Category</div>
                                 <div class="project-name">Project Name</div>
@@ -151,8 +153,8 @@
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="/creative/assets/img/portfolio/fullsize/6.jpg" title="Project Name">
-                            <img class="img-fluid" src="/creative/assets/img/portfolio/thumbnails/6.jpg" alt="..." />
+                        <a class="portfolio-box" href="<c:url value='/wayne/creative/assets/img/portfolio/fullsize/6.jpg'/>" title="Project Name">
+                            <img class="img-fluid" src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/6.jpg'/>" alt="..." />
                             <div class="portfolio-box-caption p-3">
                                 <div class="project-category text-white-50">Category</div>
                                 <div class="project-name">Project Name</div>
@@ -253,7 +255,7 @@
         <!-- SimpleLightbox plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
         <!-- Core theme JS-->
-        <script src="/creative/js/scripts.js"></script>
+        <script src="/ipodcast/wayne/creative/js/scripts.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
