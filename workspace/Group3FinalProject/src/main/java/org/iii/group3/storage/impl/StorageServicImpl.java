@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import org.apache.commons.io.FileUtils;
 import org.iii.group3.storage.StorageMappingService;
 import org.iii.group3.storage.StorageService;
-import org.iii.group3.util.FileSystemUtil;
+import org.iii.group3.utils.FileSystemUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;

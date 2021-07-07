@@ -1,6 +1,6 @@
 package org.iii.group3.storage;
 
-import org.iii.group3.util.enums.FIlenameStrategy;
+import org.iii.group3.utils.enums.FIlenameStrategy;
 
 public class FIlenameConverter {
 	

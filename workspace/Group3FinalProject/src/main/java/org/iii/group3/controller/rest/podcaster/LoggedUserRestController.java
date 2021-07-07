@@ -3,7 +3,7 @@ package org.iii.group3.controller.rest.podcaster;
 import java.util.List;
 import java.util.Optional;
 
-import org.iii.group3.service.pocaster.UserService;
+import org.iii.group3.service.pocaster.PodcasterService;
 import org.iii.group3.transferdata.GenericResponse;
 import org.iii.group3.transferdata.GenericResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoggedUserRestController {
 
 	@Autowired
-	private UserService userService;
+	private PodcasterService userService;
 	
 	
 	

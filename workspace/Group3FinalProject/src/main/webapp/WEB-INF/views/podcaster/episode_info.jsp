@@ -11,7 +11,7 @@
     <title>Album example · Bootstrap v5.0</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<c:url value='/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet" />
+    <link href="<c:url value='/catio/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet" />
     
   </head>
   <body>
@@ -187,8 +187,8 @@
       </div>
     </footer>
 
-    <script src="<c:url value='/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
-    <script src="<c:url value='/js/jquery-3.6.0.min.js'/>"></script>
-    <script src="<c:url value='/js/episode_info.js'/>"></script>
+    <script src="<c:url value='/catio/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
+    <script src="<c:url value='/catio/js/jquery-3.6.0.min.js'/>"></script>
+    <script src="<c:url value='/catio/js/episode_info.js'/>"></script>
   </body>
 </html>

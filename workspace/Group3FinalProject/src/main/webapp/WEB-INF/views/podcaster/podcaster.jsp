@@ -11,8 +11,8 @@
     <title>IPodcast</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<c:url value='/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet" />
-    <link rel="stylesheet" href="<c:url value='/css/pagination.css'/>">
+    <link href="<c:url value='/catio/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet" />
+    <link rel="stylesheet" href="<c:url value='/catio/css/pagination.css'/>">
   </head>
   <body>
   
@@ -183,10 +183,10 @@
       </div>
     </footer>
 
-    <script src="<c:url value='/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
-    <script src="<c:url value='/js/jquery-3.6.0.min.js'/>"></script>
-    <script src="<c:url value='/js/pagination.min.js'/>"></script>
-    <script src="<c:url value='/js/podcaster.js'/>"></script>
+    <script src="<c:url value='/catio/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
+    <script src="<c:url value='/catio/js/jquery-3.6.0.min.js'/>"></script>
+    <script src="<c:url value='/catio/js/pagination.min.js'/>"></script>
+    <script src="<c:url value='/catio/js/podcaster.js'/>"></script>
 
   </body>
 </html>

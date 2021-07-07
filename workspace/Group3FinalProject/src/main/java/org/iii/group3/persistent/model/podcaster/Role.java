@@ -46,7 +46,7 @@ public class Role implements Serializable{
 	private boolean enabled = true;
 	
 	@ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
-	private Set<User> users = new HashSet<User>();
+	private Set<Podcaster> users = new HashSet<Podcaster>();
 	
 	/*
 	 * 在特定資源上的角色，實現可以客製化角色，
@@ -79,7 +79,7 @@ public class Role implements Serializable{
 		return enabled;
 	}
 
-	public Set<User> getUsers() {
+	public Set<Podcaster> getUsers() {
 		return users;
 	}
 
@@ -106,7 +106,7 @@ public class Role implements Serializable{
 		this.enabled = enabled;
 	}
 
-	public void setUsers(Set<User> users) {
+	public void setUsers(Set<Podcaster> users) {
 		this.users = users;
 	}
 

@@ -76,10 +76,10 @@ font-family:Microsoft JhengHei
                             <div class="classynav">
                                 <ul>
                                     <!-- <li><a href="index.html">Home</a></li> -->
-                                    <li><a href="#">Podcaster</a></li>
+                                    <li><a href="<c:url value='/logged/podcaster/podcaster-info/1'/>">Podcaster</a></li>
                                     <li><a href="<c:url value='/adindex'/>">廣告</a></li>
                                     <li><a href="<c:url value='/forum'/>">論壇</a></li>
-                                    <li><a href="<c:url value='/logged/podcaster/podcaster-info/1'/>">活動</a></li>
+                                    <li><a href="#">活動</a></li>
                                     <li><a href="<c:url value='/studioMainPage'/>">播客工廠</a></li>
                                     <li><a href="#">搜尋</a></li>
 

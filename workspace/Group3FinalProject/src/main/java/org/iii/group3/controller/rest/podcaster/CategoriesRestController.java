@@ -9,7 +9,7 @@ import org.iii.group3.persistent.model.podcaster.ChannelCategory;
 import org.iii.group3.service.pocaster.ChannelCategoryService;
 import org.iii.group3.transferdata.GenericResponse;
 import org.iii.group3.transferdata.GenericResponseBuilder;
-import org.iii.group3.util.ResponseEntityWrapper;
+import org.iii.group3.utils.ResponseEntityWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

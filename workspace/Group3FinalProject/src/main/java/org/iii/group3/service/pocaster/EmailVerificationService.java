@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.iii.group3.exception.EmailAlreadyUsedException;
 import org.iii.group3.persistent.dao.podcaster.EmailVerificationDao;
 import org.iii.group3.persistent.model.podcaster.EmailVerification;
-import org.iii.group3.util.RandomTokenService;
+import org.iii.group3.utils.RandomTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
@@ -20,7 +20,7 @@ public class EmailVerificationService {
 	private EmailVerificationDao emailVerificationDao;
 	
 	@Autowired
-	private UserService userService;
+	private PodcasterService userService;
 	
 	@Autowired
 	private MessageSource messageSoure;

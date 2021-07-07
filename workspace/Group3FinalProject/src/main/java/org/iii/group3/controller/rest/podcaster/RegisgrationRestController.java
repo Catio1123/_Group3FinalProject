@@ -8,11 +8,11 @@ import javax.validation.Valid;
 
 import org.iii.group3.exception.AccountAlreadyUsedException;
 import org.iii.group3.exception.EmailAlreadyUsedException;
-import org.iii.group3.service.pocaster.UserService;
+import org.iii.group3.service.pocaster.PodcasterService;
 import org.iii.group3.transferdata.GenericResponse;
 import org.iii.group3.transferdata.GenericResponseBuilder;
 import org.iii.group3.transferdata.dto.UserRegisgterDto;
-import org.iii.group3.util.ResponseEntityWrapper;
+import org.iii.group3.utils.ResponseEntityWrapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -26,7 +26,7 @@ import org.springframework.web.server.ResponseStatusException;
 public class RegisgrationRestController {
 	
 	@Autowired
-	private UserService userService;
+	private PodcasterService userService;
 	
 	@Autowired
 	private MessageSource messageSource;

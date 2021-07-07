@@ -1,11 +1,11 @@
 package org.iii.group3.persistent.dao.podcaster;
 
 
-import org.iii.group3.persistent.model.podcaster.User;
+import org.iii.group3.persistent.model.podcaster.Podcaster;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserDao extends JpaRepository<User, Long>{
+public interface UserDao extends JpaRepository<Podcaster, Long>{
 
-	public User findByAccount(String account);
-	public User findByEmail(String email);
+	public Podcaster findByAccount(String account);
+	public Podcaster findByEmail(String email);
 }

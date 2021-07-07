@@ -11,7 +11,7 @@ import org.iii.group3.persistent.dao.podcaster.ChannelDao;
 import org.iii.group3.persistent.dao.podcaster.UserDao;
 import org.iii.group3.persistent.model.podcaster.Channel;
 import org.iii.group3.persistent.model.podcaster.ChannelCategory;
-import org.iii.group3.persistent.model.podcaster.User;
+import org.iii.group3.persistent.model.podcaster.Podcaster;
 import org.iii.group3.transferdata.dto.ChannelCardDto;
 import org.iii.group3.transferdata.dto.ChannelInfoDto;
 import org.modelmapper.ModelMapper;
@@ -120,7 +120,7 @@ public class ChannelService {
 		ChannelCategory category = categoryDao.findByEnName(channelDto.getCategory());
 		channel.setCategory(category);
 		//之後要改
-		User owner = userDao.findById(1L).get();
+		Podcaster owner = userDao.findById(1L).get();
 		channel.setOwner(owner);
 		channel.setPubdate(new Timestamp(System.currentTimeMillis()));
 		return channel;

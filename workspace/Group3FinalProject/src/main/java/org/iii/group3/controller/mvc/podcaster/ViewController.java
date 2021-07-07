@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class ViewController {
 
-	@GetMapping(path = {"/", ""})
-	public String mainPage() {
-		return "index";
-	}
+//	@GetMapping(path = {"/", ""})
+//	public String mainPage() {
+//		return "index";
+//	}
 	
 	@GetMapping(path = "/login")
 	public String loginPage() {

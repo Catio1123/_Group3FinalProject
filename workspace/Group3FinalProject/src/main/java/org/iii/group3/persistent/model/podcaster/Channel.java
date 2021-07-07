@@ -59,7 +59,7 @@ public class Channel {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "sysuser_id")
-	private User owner;
+	private Podcaster owner;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "channel_category_id")
@@ -104,7 +104,7 @@ public class Channel {
 		return enabled;
 	}
 
-	public User getOwner() {
+	public Podcaster getOwner() {
 		return owner;
 	}
 
@@ -152,7 +152,7 @@ public class Channel {
 		this.enabled = enabled;
 	}
 
-	public void setOwner(User owner) {
+	public void setOwner(Podcaster owner) {
 		this.owner = owner;
 	}
 
