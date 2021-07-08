@@ -1,9 +1,5 @@
 package org.iii.group3.controller.mvc.ad;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import org.iii.group3.persistent.model.ad.Ad;
 import org.iii.group3.persistent.model.ad.Company;
 import org.iii.group3.service.ad.AdService;
@@ -13,13 +9,10 @@ import org.iii.group3.service.ad.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 

@@ -25,7 +25,7 @@ function showData(textData){
 // 	segment 文件的片段
 	let segment = "<table border='1'>";
 	
-	segment += "<tr><th>帳號</th><th>密碼</th><th>姓名</th><th>別稱</th><th>信箱</th><th>手機號</th><th>生日</th><th>性別</th></tr>";
+	segment += "<tr><th>帳號</th><th>密碼</th><th>姓名</th><th>別稱</th><th>信箱</th><th>手機號</th><th>生日</th><th>性別</th><th>權限</th></tr>";
 	for(n = 0; n < members.length ; n++){
 		let member = members[n];
 		segment += "<tr>";

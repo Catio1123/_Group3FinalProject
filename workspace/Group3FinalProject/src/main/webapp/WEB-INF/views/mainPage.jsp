@@ -100,7 +100,7 @@ font-family:Microsoft JhengHei
                                       <ul class="dropdown">
                                             <li><a id="general" href="<c:url value='/updateMember' />" >修改訊息 </a></li>
                                             <li><a id="admin"   href="<c:url value='/memberCentre' />" >管理者後台</a></li>
-                                            <li><a id="company" href="<c:url value='/company/1' />" >   廣告商後台</a></li>
+                                            <li><a id="company" href="<c:url value='/adindex' />" >   廣告商後台</a></li>
                                       </ul>
                                    </li>
                                 </ul>               

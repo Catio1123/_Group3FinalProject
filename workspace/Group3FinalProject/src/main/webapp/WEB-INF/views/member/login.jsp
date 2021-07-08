@@ -4,7 +4,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>JobBoard &mdash; Website Template by Colorlib</title>
+    <title>登入/註冊 &mdash; 歡迎您回來</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -46,12 +46,13 @@ body{
   </head>
   <body id="top">
 
-  <div id="overlayer"></div>
-  <div class="loader">
-    <div class="spinner-border text-primary" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-  </div>
+<!-- 進入畫面 -->
+<!--   <div id="overlayer"></div> -->
+<!--   <div class="loader"> -->
+<!--     <div class="spinner-border text-primary" role="status"> -->
+<!--       <span class="sr-only">Loading...</span> -->
+<!--     </div> -->
+<!--   </div> -->
     
 
 <div class="site-wrap">
@@ -150,7 +151,7 @@ body{
                 <br>
                 <div>
                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                 還不是會員嗎?<a href="/ipodcast">註冊</a>
+                 還不是會員嗎?<a href="<c:url value='/signUpMember' />">註冊</a>
                 </div>
               </div>
 
@@ -187,7 +188,7 @@ body{
                <br>
                <div>
                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                 還不是會員嗎?<a href="/signUpMember">註冊</a>
+                 還不是會員嗎?<a href="<c:url value='/signUpMember' />">註冊</a>
                </div>
               </div>
 
@@ -227,10 +228,10 @@ body{
           </div>
           <div class="col-6 col-md-3 mb-4 mb-md-0">
             <h3>組員</h3>
-            <div class="list-unstyled">
+            <ul class="list-unstyled">
               <li><a href="#">32 洪豪均</a></li>
               <li><a href="#">10 陳宣佑</a></li>
-            </div>
+            </ul>
           </div>
         </div>
 
