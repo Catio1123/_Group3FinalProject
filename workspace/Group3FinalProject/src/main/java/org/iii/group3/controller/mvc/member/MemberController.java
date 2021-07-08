@@ -77,7 +77,7 @@ public class MemberController {
 			}
 			
 			if(pwAd==null || pwAd.length()==0) {
-				errors.put("acctnoAd", "請填寫密碼");
+				errors.put("pwAd", "請填寫密碼");
 			}
 			
 			if(errors!=null && !errors.isEmpty()) {
@@ -91,7 +91,7 @@ public class MemberController {
 				return "member/loginSuccess";
 			}
 			
-			errors.put("msg", "請填寫正確的帳號、密碼");
+			errors.put("msgAd", "請填寫正確的帳號、密碼");
 			return "member/login";
 		
 		}

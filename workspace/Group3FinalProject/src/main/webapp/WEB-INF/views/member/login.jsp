@@ -164,6 +164,7 @@ body{
                 <div class="col-md-12 mb-3 mb-md-0">
                 <span style=color:red;>${errors.acctnoAd}</span>
                   <label class="text-black" for="fname">帳號 :</label>
+                  <span style=color:red;>${errors.pwAd}</span>
                   <input type="text" id="fname" name="acctnoAd" class="form-control" placeholder="User">
                 </div>
               </div>
@@ -174,7 +175,7 @@ body{
                 </div>
               </div>
               <div style=color:red;>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                ${errors.msg}</div>
+                ${errors.msgAd}</div>
 
               <div class="row form-group">
                 <div class="col-md-12">
@@ -186,7 +187,7 @@ body{
                <br>
                <div>
                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                 還不是會員嗎?<a href="/ipodcast">註冊</a>
+                 還不是會員嗎?<a href="/signUpMember">註冊</a>
                </div>
               </div>
 

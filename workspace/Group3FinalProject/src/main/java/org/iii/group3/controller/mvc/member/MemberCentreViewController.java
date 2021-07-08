@@ -12,7 +12,7 @@ public class MemberCentreViewController {
 
 	
 	
-//=================================== 會員中心 ===================================	
+//=================================== 管理者後台 ===================================	
 	
 	@GetMapping("/memberCentre")
 	public String memberCentre() {

@@ -95,10 +95,12 @@ font-family:Microsoft JhengHei
                                 <ul>
                                     <li><a id="login" href="<c:url value='/loginController' />">登入</a></li>
                                     <li><a id="logout" href="<c:url value='/logout' />">登出</a></li>
-                                    <li><a style="font-family:DFKai-SB;color:#6A6AFF" id="showName">${Member.name}</a>
+                                    <li><a style="font-family:DFKai-SB;color:#6A6AFF">${Member.name}</a>
+                                    <li><a style="display:none" id="role">${Member.role}</a>
                                       <ul class="dropdown">
-                                            <li><a id="general" href="<c:url value='/updateMember' />" >修改訊息</a></li>
-                                            <li><a id="admin" href="<c:url value='/memberCentre' />" >後臺中心</a></li>
+                                            <li><a id="general" href="<c:url value='/updateMember' />" >修改訊息 </a></li>
+                                            <li><a id="admin"   href="<c:url value='/memberCentre' />" >管理者後台</a></li>
+                                            <li><a id="company" href="<c:url value='/company/1' />" >   廣告商後台</a></li>
                                       </ul>
                                    </li>
                                 </ul>               
@@ -111,34 +113,45 @@ font-family:Microsoft JhengHei
         </div>
 <script>
 
-let showName  = document.getElementById("showName");
+let role      = document.getElementById("role");
 let login     = document.getElementById("login");
 let logout    = document.getElementById("logout");
 let general   = document.getElementById("general");
 let admin     = document.getElementById("admin");
+let company   = document.getElementById("company");
 window.onload=function(){
 
 	load();
 	
 	}
 function load(){
-	if('${Member.name}'==""){
-	    login.style.display  ="block";
-		logout.style.display ="none";
-		general.style.display="none";
-		admin.style.display  ="none";
+	if('${Member.role}'==""){
+	    login  .style.display  ="block";
+		logout .style.display  ="none";
+		general.style.display  ="none";
+		admin  .style.display  ="none";
+		company.style.display  ="none";
 		
-	}else if('${Member.name}'!="" && '${Member.name}' == "admin"){
-	    login.style.display  ="none";
-		logout.style.display ="block";
-		general.style.display="none";
-		admin.style.display  ="block";
+	}else if('${Member.role}'!="" && '${Member.role}' == "admin"  ){
+	    login  .style.display  ="none";
+		logout .style.display  ="block";
+		admin  .style.display  ="block";
+		general.style.display  ="none";
+		company.style.display  ="none";
 
-    }else if('${Member.name}' != "" && '${Member.name}' != "admin"){
-        login.style.display  ="none";
-	    logout.style.display ="block";
-	    general.style.display="block";
-	    admin.style.display  ="none";
+    }else if('${Member.role}' != "" && '${Member.role}' == "general"){
+        login  .style.display  ="none";
+	    logout .style.display  ="block";
+	    admin  .style.display  ="none";
+	    general.style.display  ="block";
+		company.style.display  ="none";
+		
+    }else if('${Member.role}' != "" && '${Member.role}' == "company"){
+        login  .style.display  ="none";
+	    logout .style.display  ="block";
+	    general.style.display  ="none";
+	    admin  .style.display  ="none";
+		company.style.display  ="block";
 }
 }
 
