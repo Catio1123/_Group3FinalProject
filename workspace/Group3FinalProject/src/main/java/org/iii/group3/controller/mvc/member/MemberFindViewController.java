@@ -16,12 +16,12 @@ public class MemberFindViewController {
 	MemberService memberService;
 	
 //=================================== Form:Form 傳入JSP(登入) ===================================
-	
 	@GetMapping("/loginController")
 	public String showForm(Model model) {
 		 model.addAttribute("member", new Member());
     	 return "member/login";
     }
+		
 //=================================== 管理者端(所有會員資訊) ===================================	
 	@GetMapping("/queryMember")
 	public String sendQueryMember() {

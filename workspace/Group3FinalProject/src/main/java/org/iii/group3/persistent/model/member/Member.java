@@ -41,6 +41,10 @@ public class Member implements Serializable {
 	@Column(name = "gender")
 	private String  gender;
 	
+	@Column(name = "role")
+	private String  role;
+	
+	
 	public Member() {
 	}
 	
@@ -111,6 +115,14 @@ public class Member implements Serializable {
 	
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -36,15 +35,12 @@ public class MemberController {
 	MemberService memberService;
 	
 //=================================== 登入 ===================================
-		
-		//(@RequestParam(name = "Acctno") String acctno, @RequestParam(name = "Pw") String pw, Model m, SessionStatus status)
-		@RequestMapping(path = "/checklogin", method = RequestMethod.POST)
-		public String processCheckLogin(Model m , Member member){
+         //	(Model m , Member member)
+		@PostMapping("/checklogin")
+		public String processCheckLogin(@RequestParam(name = "acctno") String acctno,
+				                        @RequestParam(name = "pw") String pw, Model m, SessionStatus status){
 			Map<String, String> errors = new HashMap<String, String>();
 			m.addAttribute("errors", errors);
-
-			String acctno = member.getAcctno();
-			String pw = member.getPw();
 			
 			if(acctno==null || acctno.length()==0) {   //SessionStatus status setComplete();
 				errors.put("acctno", "請填寫帳號");
@@ -65,7 +61,37 @@ public class MemberController {
 				return "member/loginSuccess";
 			}
 			
-			errors.put("msg", "please input correct username or password");
+			errors.put("msg", "請填寫正確的帳號、密碼");
+			return "member/login";
+		
+		}
+		
+//=================================== 廣告商登入 ===================================
+		@PostMapping("/checkloginAd")
+		public String adCheckLogin(@RequestParam(name = "acctnoAd") String acctnoAd, @RequestParam(name = "pwAd") String pwAd, Model m, SessionStatus status){
+			Map<String, String> errors = new HashMap<String, String>();
+			m.addAttribute("errors", errors);
+			
+			if(acctnoAd==null || acctnoAd.length()==0) {   //SessionStatus status setComplete();
+				errors.put("acctnoAd", "請填寫帳號");
+			}
+			
+			if(pwAd==null || pwAd.length()==0) {
+				errors.put("pwAd", "請填寫密碼");
+			}
+			
+			if(errors!=null && !errors.isEmpty()) {
+				return "member/login";
+			}
+			
+		    Member login = memberDao.checkLoginAd(new Member(acctnoAd, pwAd));
+			
+			if(login != null && login.getRole() != null && login.getRole().equals("company")) {
+				m.addAttribute("Member", login);
+				return "member/loginSuccess";
+			}
+			
+			errors.put("msgAd", "請填寫正確的帳號、密碼");
 			return "member/login";
 		
 		}

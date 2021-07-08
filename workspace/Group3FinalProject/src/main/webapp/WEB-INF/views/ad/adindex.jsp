@@ -29,7 +29,10 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="<c:url value='/company/1'/>">廣告商</a></li>
+                    <li class="nav-item">${Member.acctno }</li>
+                    <li class="nav-item">123</li>
+                    
+                        <li class="nav-item"><a class="nav-link" href="<c:url value='/company'/>">廣告商</a></li>
                         <li class="nav-item"><a class="nav-link" href="<c:url value='/users/1'/>">使用者1</a></li>
                         <li class="nav-item"><a class="nav-link" href="<c:url value='/users/2'/>">使用者2</a></li>
                         <li class="nav-item"><a class="nav-link" href="<c:url value='/userpodcast/1'/>">測試1</a></li>

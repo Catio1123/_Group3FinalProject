@@ -45,7 +45,7 @@ public class AdService {
 		return ad;
 	}
 
-	public void save(Ad ad, Integer cid) {
+	public void save(Ad ad, String cid) {
 		ad.setCompanyId(cid);
 		ad.setAdTotalClick(0);
 		adRepo.save(ad);
@@ -56,7 +56,7 @@ public class AdService {
 		adRepo.deleteById(id);
 	}
 
-	public List<Ad> selectByCompanyId(Integer cid) {
+	public List<Ad> selectByCompanyId(String cid) {
 		List<Ad> findByCompanyId = adRepo.findByCompanyId(cid);
 		return findByCompanyId;
 

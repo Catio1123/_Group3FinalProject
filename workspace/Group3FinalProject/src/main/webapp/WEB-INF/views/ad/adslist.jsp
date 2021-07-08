@@ -237,12 +237,12 @@
 					</div>
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table me-1"></i> 歡迎${company.name }
+							<i class="fas fa-table me-1"></i> 歡迎${Member.name }
 						</div>
 						<div class="card-body">
 							<h2>更新廣告商</h2>
 							<form id="adslist"
-								action="<c:url value='/update/${ad.id }/${company.id }'/>"
+								action="<c:url value='/update/${ad.id }'/>"
 								method="post">
 
 								<label for="number">廣告編號:</label> <input type="text" id="id"
@@ -250,7 +250,7 @@
 									<br /> <br />
 
 								<label for="supplier">廣告廠商:</label> <input type="text"
-									id="company" name="company" value="${company.name }"
+									id="company" name="company" value="${Member.name }"
 									readonly="readonly" style="width:400px"/> 
 <br /> <br />
 									

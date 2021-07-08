@@ -20,7 +20,7 @@ public class MemberDao {
 	@Autowired 
 	private EntityManager en;
 	
-//================================= 帳號登入 =================================
+//================================= 一般會員帳號登入 =================================
 	
 	public Member checkLogin(Member member) {
 		Member login = null;
@@ -33,13 +33,26 @@ public class MemberDao {
 														getSingleResult();
 		} catch (Exception e) {
 			return login;
-		}
-		
-		
-				
+		}				
 		return login;
-		
 	}	
+//================================= 廣告商/帳號登入 =================================
+	
+		public Member checkLoginAd(Member member) {
+			Member loginAd = null;
+			
+			String hqlstr = "from Member where acctno=:acctnoAd and pw=:pwAd";
+			try {
+				loginAd = en.createQuery(hqlstr, Member.class).
+															setParameter("acctnoAd",member.getAcctno()).
+															setParameter("pwAd",member.getPw()).
+															getSingleResult();
+			} catch (Exception e) {
+				return loginAd;
+			}				
+			return loginAd;
+		}	
+
 
 //================================= 查詢全部 =================================	boot
 

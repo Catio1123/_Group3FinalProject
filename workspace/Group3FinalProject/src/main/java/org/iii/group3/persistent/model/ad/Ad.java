@@ -39,7 +39,7 @@ public class Ad implements Serializable {
 	private String text;
 
 	@Column(name = "company_id")
-	private Integer companyId;
+	private String companyId;
 
 	@Column(name = "url")
 	private String url;
@@ -98,11 +98,11 @@ public class Ad implements Serializable {
 		this.url = url;
 	}
 
-	public Integer getCompanyId() {
+	public String getCompanyId() {
 		return companyId;
 	}
 
-	public void setCompanyId(Integer companyId) {
+	public void setCompanyId(String companyId) {
 		this.companyId = companyId;
 	}
 

@@ -237,17 +237,17 @@
 					</div>
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table me-1"></i> 歡迎${company.name }
+							<i class="fas fa-table me-1"></i> 歡迎${Member.name }
 						</div>
 						<div class="card-body">
 							<h2>廣告商</h2>
-							<form action="<c:url value='/insert/${company.id}'/>"
+							<form action="<c:url value='/insert'/>"
 								method="post">
 								<table>
 									<tr>
 										<td>廣告商:</td>
 										<td><input type="text" name="company"
-											value="${company.name }" readonly="readonly" /></td>
+											value="${Member.name }" readonly="readonly" /></td>
 									</tr>
 									<tr>
 										<td>廣告內容:</td>
@@ -290,10 +290,10 @@
 											<td>${ad.adTotalClick }</td>
 											<td>${ad.sponsorshipAmount }</td>
 											<td><a
-												href="<c:url value='/updateProcess/${ad.id}/${company.id}'/>">修改</a></td>
+												href="<c:url value='/updateProcess/${ad.id}'/>">修改</a></td>
 
 											<td><a
-												href="<c:url value='/delete/${ad.id}/${company.id}'/>">刪除</a></td>
+												href="<c:url value='/delete/${ad.id}'/>">刪除</a></td>
 
 										</tr>
 									</c:forEach>
