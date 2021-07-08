@@ -86,7 +86,7 @@ public class MemberController {
 			
 		    Member login = memberDao.checkLoginAd(new Member(acctnoAd, pwAd));
 			
-			if(login != null && login.getRole() != null && login.getRole().equals("admin")) {
+			if(login != null && login.getRole() != null && login.getRole().equals("company")) {
 				m.addAttribute("Member", login);
 				return "member/loginSuccess";
 			}
