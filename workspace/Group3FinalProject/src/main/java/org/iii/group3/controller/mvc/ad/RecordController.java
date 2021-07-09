@@ -107,7 +107,8 @@ public class RecordController {
 	}
 
 	@PostMapping("/recordClickTimeAdd")
-	public void clickTimeAdd(Integer aid, Integer uid, int clickTimes) {
+	@ResponseBody
+	public String clickTimeAdd(Integer aid, Integer uid) {
 
 		Ad ad = adService.select(aid);
 		User user = userService.select(uid);
@@ -120,11 +121,11 @@ public class RecordController {
 			recordService.addClicktime(ad, user, c.getClickTimeCount());
 
 		} else if (c.getClickTimeCount() == r.getAdClick() && r.getAdClick() != 0) {
-			double g = c.getClickTimeCount() + clickTimes;
+			double g = c.getClickTimeCount() + 1;
 			recordService.addClicktime(ad, user, g);
 
-		} else if (c.getClickTimeCount() < r.getAdClick() | c.getClickTimeCount() == 0 | r.getAdClick() == 0) {
-			double clickTimed = r.getAdClick() + clickTimes;
+		} else if (c.getClickTimeCount() < r.getAdClick() | (c.getClickTimeCount() == 0 && r.getAdClick() == 0)) {
+			double clickTimed = r.getAdClick() + 1;
 			recordService.addClicktime(ad, user, clickTimed);
 		}
 
@@ -135,6 +136,6 @@ public class RecordController {
 		System.out.println("money=" + ad.getSponsorshipAmount());
 		System.out.println(Math.round(bonus));
 		recordService.addBonus(ad, user,  Math.round(bonus));
+		return "1";
 	}
-
 }

@@ -1,7 +1,9 @@
 package org.iii.group3.controller.mvc.ad;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.iii.group3.persistent.dao.ad.ClickTimeDto;
 import org.iii.group3.persistent.model.ad.Ad;
 import org.iii.group3.persistent.model.ad.ClickTime;
 import org.iii.group3.persistent.model.ad.User;
@@ -25,7 +27,7 @@ public class AdBaseController {
 
 	@Autowired
 	private AdService adService;
-	
+
 	@Autowired
 	private ClickTimeService clickTimeService;
 
@@ -43,9 +45,22 @@ public class AdBaseController {
 
 	@GetMapping("/userpodcast/{uid}")
 	public String userpodcast(Model m, @PathVariable(value = "uid", required = true) int uid) {
+
 		User user = userService.select(uid);
 		List<ClickTime> clickAll = clickTimeService.clickTimeByUser(user);
-		m.addAttribute("clicktime", clickAll);
+		List<ClickTimeDto> clickDto = new ArrayList<>();
+		for (ClickTime c : clickAll) {
+			ClickTimeDto dto = new ClickTimeDto();
+			dto.setUrl(c.getAd().getUrl());
+			dto.setPictureString(c.getAd().getPictureString());
+			dto.setClickControUrl("/ipodcast/clicktimeadd");
+			dto.setRecordControUrl("/ipodcast/recordClickTimeAdd");
+			dto.setAdControUrl("/ipodcast/addTotalClick");
+
+			clickDto.add(dto);
+		}
+		m.addAttribute("clickTime", clickDto);
+//		m.addAttribute("clicktime", clickAll);
 
 		return "ad/userpodcast";
 	}

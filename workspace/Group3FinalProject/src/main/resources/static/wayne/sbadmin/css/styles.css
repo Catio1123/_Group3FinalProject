@@ -10,6 +10,27 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ .updbtn{
+ 
+ background-color: #555555;
+ color: white;
+ border: none;
+ font-size: 14px;
+ border-radius: 4px;
+ font-weight:bold;
+ }
+ 
+ .delbtn{
+ 
+  background-color: #ff6970;
+ color: white;
+ border: none;
+ font-size: 14px;
+ border-radius: 4px;
+ font-weight:bold;
+ 
+ }
+ 
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;

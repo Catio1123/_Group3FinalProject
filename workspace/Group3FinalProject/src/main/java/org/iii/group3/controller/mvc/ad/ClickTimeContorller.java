@@ -12,12 +12,13 @@ import org.iii.group3.service.ad.ClickTimeService;
 import org.iii.group3.service.ad.RecordService;
 import org.iii.group3.service.ad.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ClickTimeContorller {
@@ -66,19 +67,21 @@ public class ClickTimeContorller {
 	}
 
 	@PostMapping("/clicktimeadd")
-	public void clickTimeAdd(Integer aid, Integer uid, Integer clickTime) {
+	@ResponseBody
+	public String clickTimeAdd(Integer aid, Integer uid) {
 
 		Ad ad = adService.select(aid);
 		User user = userService.select(uid);
 		ClickTime c = clickTimeService.select(user, ad);
 		if (c.getClickTimeCount() != 0) {
-			double clickTimes = clickTime + c.getClickTimeCount();
+			double clickTimes = 1 + c.getClickTimeCount();
 
 			clickTimeService.addClickTime(ad, user, clickTimes);
 
 		} else {
-			clickTimeService.addClickTime(ad, user, clickTime);
+			clickTimeService.addClickTime(ad, user, 1);
 		}
+		return "1" ;
 	}
 
 	@GetMapping(path = "/deleteFront/{aid}/{uid}")

@@ -2,6 +2,7 @@ package org.iii.group3.persistent.model.ad;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,14 +14,16 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.DynamicUpdate;
+import org.iii.group3.utils.ad.AdSystemUtils;
+import org.springframework.web.multipart.MultipartFile;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Ad")
-@DynamicUpdate
 public class Ad implements Serializable {
 
 	/**
@@ -43,14 +46,59 @@ public class Ad implements Serializable {
 
 	@Column(name = "url")
 	private String url;
-	
+
 	@Column(name = "ad_total_click")
 	private double adTotalClick;
 
-	@Column(name="sponsorship_amount")
+	@Column(name = "sponsorship_amount")
 	private double sponsorshipAmount;
+
+	@Column(name = "mime_type")
+	String mimeType;
+
+	@JsonIgnore
+	@Column(name = "picture")
+	Blob picture;
+
+	@Transient // 短暫. 臨時 Persistence: 永續儲存
+	String pictureString; // data:image/gif;base64,.....
+
+	@Transient
+	MultipartFile placeImage;
 	
 	
+	public String getPictureString() {
+		return AdSystemUtils.blobToDataProtocol(mimeType, picture);
+	}
+
+	public void setPictureString(String pictureString) {
+		this.pictureString = pictureString;
+	}
+
+	public MultipartFile getPlaceImage() {
+		return placeImage;
+	}
+
+	public void setPlaceImage(MultipartFile placeImage) {
+		this.placeImage = placeImage;
+	}
+
+	public String getMimeType() {
+		return mimeType;
+	}
+
+	public void setMimeType(String mimeType) {
+		this.mimeType = mimeType;
+	}
+
+	public Blob getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Blob picture) {
+		this.picture = picture;
+	}
+
 	public Set<ClickTime> getClickTimes() {
 		return clickTimes;
 	}
@@ -60,10 +108,10 @@ public class Ad implements Serializable {
 	}
 
 	@OneToMany(mappedBy = "ad")
-    private Set<ClickTime> clickTimes = new HashSet<>();
+	private Set<ClickTime> clickTimes = new HashSet<>();
 //	@Column(name = "url")
 //	private String companyUrl;
-	
+
 //	public String getCompanyUrl() {
 //		return companyUrl;
 //	}
@@ -87,8 +135,6 @@ public class Ad implements Serializable {
 	public void setAdTotalClick(double adTotalClick) {
 		this.adTotalClick = adTotalClick;
 	}
-
-
 
 	public String getUrl() {
 		return url;

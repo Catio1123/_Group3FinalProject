@@ -242,7 +242,7 @@
 						<div class="card-body">
 							<h2>廣告商</h2>
 							<form action="<c:url value='/insert'/>"
-								method="post">
+								method="post" enctype='multipart/form-data'>
 								<table>
 									<tr>
 										<td>廣告商:</td>
@@ -262,6 +262,10 @@
 										<td><input type="number" name="sponsorshipAmount" /></td>
 									</tr>
 									<tr>
+										<td>廣告圖片:</td>
+										<td><input type="file" name="placeImage" /></td>
+									</tr>
+									<tr>
 										<td><input type="submit" value="新增"></td>
 									</tr>
 								</table>
@@ -278,8 +282,9 @@
 										<th>廣告連結</th>
 										<th>總點擊率</th>
 										<th>贊助金額</th>
+										<th>照片</th>
 
-										<th colspan=2>指令</th>
+										<th colspan=2 >指令</th>
 									</tr>
 									<c:forEach var="ad" items="${ad}">
 										<tr>
@@ -289,11 +294,11 @@
 											<td>${ad.url}</td>
 											<td>${ad.adTotalClick }</td>
 											<td>${ad.sponsorshipAmount }</td>
-											<td><a
-												href="<c:url value='/updateProcess/${ad.id}'/>">修改</a></td>
+											<td><img width='100' height='60' src='${ad.pictureString }'></td>
+											<td><button class="updbtn" onclick="window.location.href='<c:url value='/updateProcess/${ad.id}'/>';"> 修改</button><br>
+											<button class="delbtn" onclick="window.location.href='<c:url value='/delete/${ad.id}'/>';"> 刪除</button></td>
 
-											<td><a
-												href="<c:url value='/delete/${ad.id}'/>">刪除</a></td>
+
 
 										</tr>
 									</c:forEach>

@@ -1,25 +1,19 @@
-package com.infotran.springboot.utils;
+package org.iii.group3.utils.ad;
 
 import java.io.ByteArrayOutputStream;
-
-
-import java.io.CharArrayWriter;
 import java.io.File;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.sql.Blob;
-import java.sql.Clob;
 import java.util.Base64;
 
 import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialClob;
 
 import org.springframework.core.io.ClassPathResource;
 
-public class SystemUtils {
-     
+public class AdSystemUtils {
 	public static final String PLACE_IMAGE_FOLDER = "C:\\images\\place";
-	public static final String NO_IMAGE_PATH = "\\static\\images\\NoImage.png";
+	public static final String NO_IMAGE_PATH = "\\static\\wayne\\images\\NoImage.png";
+	
 	
 	public static String getExtFilename(String filename) {
 		//System.out.println("filename=" + filename);
@@ -30,6 +24,7 @@ public class SystemUtils {
 		   return "";  	
 		}
 	}
+	
 	
 	public static String blobToDataProtocol(String mimeType, Blob image) {
 		if (image == null || mimeType == null) {
@@ -100,41 +95,5 @@ public class SystemUtils {
 			e.printStackTrace();
 		}
 		return blob;
-	}
-	
-	public static Clob pathToClob(String path) {
-		Clob clob = null;
-		try {
-			ClassPathResource cpr = new ClassPathResource(path);
-			File file = cpr.getFile();
-			if (!file.exists()) {
-				return null;
-			}
-			InputStream is = cpr.getInputStream();
-			InputStreamReader isr = new InputStreamReader(is);
-    		//ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			CharArrayWriter caw = new CharArrayWriter();
-			int len = 0 ;
-			char[] b = new char[81920];
-			while ((len = isr.read(b))!= -1) {
-				caw.write(b, 0, len);   // 此敘述的口訣:  Array.Offset.Length. 
- 			}
-			char[] data = caw.toCharArray();
-			clob = new SerialClob(data);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return clob;
-	}
-	
-	public static Clob StringToClob(String str) {
-		Clob clob = null;
-		try {
-			char[] data = str.toCharArray();
-			clob = new SerialClob(data);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return clob;
 	}
 }

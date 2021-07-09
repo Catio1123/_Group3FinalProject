@@ -242,8 +242,8 @@
 						<div class="card-body">
 							<h2>更新廣告商</h2>
 							<form id="adslist"
-								action="<c:url value='/update/${ad.id }'/>"
-								method="post">
+								action="<c:url value='/update'/>"
+								method="post" enctype='multipart/form-data'>
 
 								<label for="number">廣告編號:</label> <input type="text" id="id"
 									name="id" value="${ad.id }" readonly="readonly" style="width:400px" /> 
@@ -263,6 +263,10 @@
 								<label for="text">贊助金額:</label> 
 								<input type="text" id="sponsorshipAmount" name="sponsorshipAmount"
 									value="${ad.sponsorshipAmount }" style="width:400px"/> 
+<br /> <br />
+								<label for="text">照片:</label> 
+								<input type="file" id="placeImage" name="placeImage"
+									 style="width:400px"/> 
 <br /> <br />
 									<input type="submit" value="更新">
 							</form>
