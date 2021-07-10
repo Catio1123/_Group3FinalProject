@@ -268,8 +268,11 @@
 								<input type="file" id="placeImage" name="placeImage"
 									 style="width:400px"/> 
 <br /> <br />
-									<input type="submit" value="更新">
+									<input style="border: none; background-color: #555555; color: white; border-radius: 4px;font-size: 16px;font-weight:bold;padding:5px 20px" type="submit" value="更新">
+									<button style="border: none; background-color: #555555; color: white; border-radius: 4px;font-size: 16px;font-weight:bold;padding:5px 20px" onclick="window.location.href='<c:url value='/company'/>'">回上一頁</button>
 							</form>
+							<br>
+							
 						</div>
 					</div>
 				</div>

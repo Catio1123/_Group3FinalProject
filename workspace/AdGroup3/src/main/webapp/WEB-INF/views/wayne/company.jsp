@@ -277,6 +277,8 @@
 
 										<th colspan=2>指令</th>
 									</tr>
+									</thead>
+									<tbody>
 									<c:forEach var="ad" items="${ad}">
 										<tr>
 											<td>${ad.id}</td>

@@ -147,17 +147,17 @@
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">
-					<div class="small">Logged in as:</div>
-					Start Bootstrap
+					<div class="small">使用者:</div>
+					${Member.name }
 				</div>
 			</nav>
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Dashboard</h1>
+					<h1 class="mt-4">${Member.name } , 歡迎登入 </h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active">Dashboard</li>
+						<li class="breadcrumb-item active">使廣告更美好的平台</li>
 					</ol>
 					<div class="row">
 						<div class="col-xl-3 col-md-6">
@@ -237,41 +237,42 @@
 					</div>
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table me-1"></i> 歡迎${Member.name }
+							<i class="fas fa-table me-1"></i> 歡迎${Member.name }  
 						</div>
 						<div class="card-body">
-							<h2>廣告商</h2>
+							<div style="border-style:solid;border-color:#d3d3d3;padding:15px;">
 							<form action="<c:url value='/insert'/>"
 								method="post" enctype='multipart/form-data'>
-								<table>
-									<tr>
-										<td>廣告商:</td>
-										<td><input type="text" name="company"
-											value="${Member.name }" readonly="readonly" /></td>
-									</tr>
-									<tr>
-										<td>廣告內容:</td>
-										<td><input type="text" name="text" /></td>
-									</tr>
-									<tr>
-										<td>贊助連結:</td>
-										<td><input type="text" name="url" /></td>
-									</tr>
-									<tr>
-										<td>贊助金額:</td>
-										<td><input type="number" name="sponsorshipAmount" /></td>
-									</tr>
-									<tr>
-										<td>廣告圖片:</td>
-										<td><input type="file" name="placeImage" /></td>
-									</tr>
-									<tr>
-										<td><input type="submit" value="新增"></td>
-									</tr>
-								</table>
+								
+									贊助廠商:
+									<input type="text" name="company"
+											value="${Member.name }" readonly="readonly" />
+									
+									
+										廣告內容:
+										<input type="text" name="text" />
+									
+								
+										贊助連結:
+										<input type="text" name="url" />
+								<br>
+									<br>
+										贊助金額:
+										<input type="number" name="sponsorshipAmount" />
+									
+									
+										廣告圖片:
+										<input  type="file" name="placeImage" />
+								
+									<br>
+									<br>
+										<input style="border: none; background-color: #555555; color: white; border-radius: 4px;font-size: 16px;font-weight:bold; padding:5px 20px" type="submit" value="新增">
+									
+								
 							</form>
-
-							<h2>廣告商列表</h2>
+</div>
+<br>
+							<h4>已刊登列表</h4>
 
 							<table id="datatablesSimple">
 								<thead>
@@ -284,8 +285,10 @@
 										<th>贊助金額</th>
 										<th>照片</th>
 
-										<th colspan=2 >指令</th>
+										<th colspan=4 >指令</th>
 									</tr>
+									</thead>
+									<tbody>
 									<c:forEach var="ad" items="${ad}">
 										<tr>
 											<td>${ad.id}</td>
@@ -295,7 +298,7 @@
 											<td>${ad.adTotalClick }</td>
 											<td>${ad.sponsorshipAmount }</td>
 											<td><img width='100' height='60' src='${ad.pictureString }'></td>
-											<td><button class="updbtn" onclick="window.location.href='<c:url value='/updateProcess/${ad.id}'/>';"> 修改</button><br>
+											<td colspan=4><button class="updbtn" onclick="window.location.href='<c:url value='/updateProcess/${ad.id}'/>';"> 修改</button><br><br>
 											<button class="delbtn" onclick="window.location.href='<c:url value='/delete/${ad.id}'/>';"> 刪除</button></td>
 
 
@@ -325,7 +328,7 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
-	<script src="js/scripts.js"></script>
+	<script src="/ipodcast/wayne/sbadmin/js/scripts.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
 		crossorigin="anonymous"></script>
