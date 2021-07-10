@@ -155,7 +155,7 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">${Member.name } , 歡迎登入 </h1>
+					<h1 class="mt-4">${Member.name }, 歡迎登入</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item active">使廣告更美好的平台</li>
 					</ol>
@@ -237,41 +237,40 @@
 					</div>
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table me-1"></i> 歡迎${Member.name }  
+							<i class="fas fa-table me-1"></i> 歡迎${Member.name }
 						</div>
 						<div class="card-body">
-							<div style="border-style:solid;border-color:#d3d3d3;padding:15px;">
-							<form action="<c:url value='/insert'/>"
-								method="post" enctype='multipart/form-data'>
-								
-									贊助廠商:
-									<input type="text" name="company"
-											value="${Member.name }" readonly="readonly" />
-									
-									
-										廣告內容:
-										<input type="text" name="text" />
-									
-								
-										贊助連結:
-										<input type="text" name="url" />
-								<br>
-									<br>
-										贊助金額:
-										<input type="number" name="sponsorshipAmount" />
-									
-									
-										廣告圖片:
-										<input  type="file" name="placeImage" />
-								
-									<br>
-									<br>
-										<input style="border: none; background-color: #555555; color: white; border-radius: 4px;font-size: 16px;font-weight:bold; padding:5px 20px" type="submit" value="新增">
-									
-								
-							</form>
-</div>
-<br>
+							<div
+								style="border-style: solid; border-color: #d3d3d3; padding: 15px;">
+								<form action="<c:url value='/insert'/>" method="post"
+									enctype='multipart/form-data'>
+
+									贊助廠商: <input type="text" name="company" value="${Member.name }"
+										readonly="readonly" /> 廣告內容: <input type="text" id="text"
+										name="text" placeholder="請輸入活動內容"
+										oninvalid="this.setCustomValidity('請輸入活動內容，不可空白')" required />
+
+
+									贊助連結: <input type="text" id="url" name="url"
+										placeholder="請輸入網址"
+										oninvalid="this.setCustomValidity('請輸入網址，不可空白')" required /> <br>
+									<br> 贊助金額: <input type="text" id="sponsorshipAmount"
+										name="sponsorshipAmount"
+										oninput="value=value.replace(/[^\d]/g,'')" placeholder="請輸入數字"
+										oninvalid="this.setCustomValidity('請輸入金額，不可空白')" required />
+
+
+									廣告圖片: <input type="file" name="placeImage" /> <br> <br>
+									<input
+										style="border: none; background-color: #555555; color: white; border-radius: 4px; font-size: 16px; font-weight: bold; padding: 5px 20px"
+										type="submit" value="新增"> <input
+										style="border: none; background-color: #555555; color: white; border-radius: 4px; font-size: 16px; font-weight: bold; padding: 5px 20px"
+										type="button" onclick="inport()" value="一鍵輸入">
+
+
+								</form>
+							</div>
+							<font color='red'>${successMessage}</font> <br>
 							<h4>已刊登列表</h4>
 
 							<table id="datatablesSimple">
@@ -285,10 +284,10 @@
 										<th>贊助金額</th>
 										<th>照片</th>
 
-										<th colspan=4 >指令</th>
+										<th colspan=4>指令</th>
 									</tr>
-									</thead>
-									<tbody>
+								</thead>
+								<tbody>
 									<c:forEach var="ad" items="${ad}">
 										<tr>
 											<td>${ad.id}</td>
@@ -297,9 +296,16 @@
 											<td>${ad.url}</td>
 											<td>${ad.adTotalClick }</td>
 											<td>${ad.sponsorshipAmount }</td>
-											<td><img width='100' height='60' src='${ad.pictureString }'></td>
-											<td colspan=4><button class="updbtn" onclick="window.location.href='<c:url value='/updateProcess/${ad.id}'/>';"> 修改</button><br><br>
-											<button class="delbtn" onclick="window.location.href='<c:url value='/delete/${ad.id}'/>';"> 刪除</button></td>
+											<td><img width='100' height='60'
+												src='${ad.pictureString }'></td>
+											<td colspan=4><button class="updbtn"
+													onclick="window.location.href='<c:url value='/updateProcess/${ad.id}'/>';">
+													修改</button>
+												<br>
+											<br>
+												<button class="delbtn"
+													onclick="window.location.href='<c:url value='/delete/${ad.id}'/>';">
+													刪除</button></td>
 
 
 
@@ -325,6 +331,18 @@
 			</footer>
 		</div>
 	</div>
+	<script>
+	function inport(){
+		
+		document.getElementById("text").value="好市多滿千送百免運費";
+		document.getElementById("url").value="https://www.costco.com.tw/";
+		document.getElementById("sponsorshipAmount").value="20000";
+		
+	}
+	
+	
+	
+	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>

@@ -241,11 +241,12 @@
 						</div>
 						<div class="card-body">
 							<h2>更新廣告商</h2>
+							<div style="padding:10px;">
 							<form id="adslist"
 								action="<c:url value='/update'/>"
 								method="post" enctype='multipart/form-data'>
 
-								<label for="number">廣告編號:</label> <input type="text" id="id"
+								<label for="number">廣告編號:${ad.id }</label> <input type="hidden" id="id"
 									name="id" value="${ad.id }" readonly="readonly" style="width:400px" /> 
 									<br /> <br />
 
@@ -272,7 +273,7 @@
 									<button style="border: none; background-color: #555555; color: white; border-radius: 4px;font-size: 16px;font-weight:bold;padding:5px 20px" onclick="window.location.href='<c:url value='/company'/>'">回上一頁</button>
 							</form>
 							<br>
-							
+							</div>
 						</div>
 					</div>
 				</div>

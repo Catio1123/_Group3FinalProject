@@ -62,8 +62,9 @@ public class AdController {
 	public String insertAd(@ModelAttribute("Member") Member member, @ModelAttribute("ad") Ad ad,BindingResult result,
 			RedirectAttributes ra , Model m) {
 		
-		adService.save(ad, member.getAcctno() );
 		
+		adService.save(ad, member.getAcctno() );
+		ra.addFlashAttribute("successMessage", ad.getCompany() + "廣告新增成功");
 		return "redirect:/company";
 	}
 
@@ -87,11 +88,12 @@ public class AdController {
 	public String update(@ModelAttribute("Member") Member member, @ModelAttribute("ad") Ad ad,BindingResult result,RedirectAttributes ra , Model m) {
 
 		adService.update(ad ,member.getAcctno());
+		ra.addFlashAttribute("successMessage", "編號\n"+ad.getId() + "\n廣告更新成功");
 		return "redirect:/company";
 	}
 
 	@GetMapping(path = "/delete/{aid}")
-	public String delete(@PathVariable(value = "aid", required = true) int aid) {
+	public String delete(@PathVariable(value = "aid", required = true) int aid,RedirectAttributes ra ) {
 		Ad ad = adService.select(aid);
 
 		if (clickTimeService.findByAd(ad)) {
@@ -105,7 +107,7 @@ public class AdController {
 
 			adService.delete(aid);
 		}
-
+		ra.addFlashAttribute("successMessage", "編號\n"+ad.getId() + "\n廣告刪除成功");
 		return "redirect:/company";
 
 	}

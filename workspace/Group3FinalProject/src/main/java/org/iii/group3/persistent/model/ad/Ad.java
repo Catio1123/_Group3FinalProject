@@ -1,6 +1,7 @@
 package org.iii.group3.persistent.model.ad;
 
 import java.io.Serializable;
+
 import java.math.BigDecimal;
 import java.sql.Blob;
 import java.util.HashSet;
@@ -15,8 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
 
-import org.hibernate.annotations.DynamicUpdate;
 import org.iii.group3.utils.ad.AdSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,6 +39,7 @@ public class Ad implements Serializable {
 
 	@Column(name = "company")
 	private String company;
+	
 	@Column(name = "text")
 	private String text;
 

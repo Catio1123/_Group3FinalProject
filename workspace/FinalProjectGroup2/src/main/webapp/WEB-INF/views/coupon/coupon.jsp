@@ -67,7 +67,7 @@
 										+ "<td>"
 										+ members[i].name
 										+ "</td>"
-										+ "<td align='right'>"
+										+ "<td align='left'>"
 										+ members[i].description
 										+ "&nbsp;</td>"
 										+ "<td><a href='"+tmp2+"'>"
@@ -105,7 +105,7 @@
 							+ "<td>"
 							+ members[i].name
 							+ "</td>"
-							+ "<td align='right'>"
+							+ "<td align='left'>"
 							+ members[i].description
 							+ "&nbsp;</td>"
 							+ "<td><a href='"+tmp2+"'>"

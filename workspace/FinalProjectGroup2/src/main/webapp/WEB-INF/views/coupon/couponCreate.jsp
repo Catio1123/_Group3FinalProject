@@ -216,18 +216,23 @@
 
 										<tr>
 											<td>公司:</td>
-											<td><input type="text" name="company" /></td>
+											<td><input type="text" id="company" name="company" /></td>
 										</tr>
 										<tr>
 											<td>活動名稱:</td>
-											<td><input type="text" name="name" /></td>
+											<td><input type="text" id="name" name="name" /></td>
 										</tr>
 										<tr>
 											<td>活動描述:</td>
-											<td><input type="text" name="description" /></td>
+											<td><input type="text" id="description" name="description" /></td>
 										</tr>
 										<tr>
-											<td><input style="border: none; background-color: #555555; color: white; border-radius: 4px;" type="submit" value="新增"></td>
+											<td><input style="border: none; background-color: #555555; color: white; border-radius: 4px;" type="submit" value="新增">
+											<input
+										 style="border: none; background-color: #555555; color: white; border-radius: 4px;"
+										type="button" onclick="inport()" value="一鍵輸入">
+											</td>
+										
 										</tr>
 									</table>
 								</form>
@@ -289,6 +294,14 @@
 		$(document).ready(function() {
 			$('#myTable').DataTable();
 		});
+		function inport(){
+			
+			document.getElementById("company").value="好市多";
+			document.getElementById("name").value="滿千送百免運";
+			document.getElementById("description").value="超爽的";
+			
+		};
+		
 	</script>
 </body>
 </html>
