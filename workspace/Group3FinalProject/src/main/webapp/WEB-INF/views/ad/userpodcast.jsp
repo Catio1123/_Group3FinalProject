@@ -9,58 +9,28 @@
 
 window.onload=function(){
 	<c:forEach var="clicktime" items="${clicktime}">
-	var button = document.getElementById("clickme${clicktime.ad.id}");
+	var button = document.getElementById("clickme${clicktime.aid}");
 	button.addEventListener("click", function() {
 		$.ajax({
 			method: "POST",
 			url: "<c:url value='/clicktimeadd'/>",
-			data:{ "aid" : ${clicktime.ad.id }, "uid": ${clicktime.user.id } },
+			data:{ "aid" : ${clicktime.aid }, "uid": ${clicktime.uid } },
 			
 		}),$.ajax({
 			method: "POST",
 			url: "<c:url value='/recordClickTimeAdd'/>",
-			data: { 'aid' : ${clicktime.ad.id }, 'uid' : ${clicktime.user.id } }
+			data: { 'aid' : ${clicktime.aid}, 'uid' : ${clicktime.uid } }
 			
 		}),$.ajax({
 			method: "POST",
 			url: "<c:url value='/addTotalClick'/>",
-			data: { 'aid' : ${clicktime.ad.id } }
+			data: { 'aid' : ${clicktime.aid } }
 			
 		});
 	});
 	
 	
-// 	var button = document.getElementById("clickme${clicktime.ad.id }");
-// 	var count${clicktime.ad.id } = 0;
-// 	var click_timeout;
-//     button.addEventListener("click", function() {
-// 	 if( click_timeout ) {
-// 	       clearTimeout( click_timeout );
-// 	   }
-// 		count${clicktime.ad.id } ++;
-// 		click_timeout = setTimeout( function() {
-// 		$.ajax({
-// 			method: "POST",
-// 			url: "<c:url value='/clicktimeadd'/>",
-// 			data: { 'aid' : ${clicktime.ad.id }, 'uid' : ${clicktime.user.id } ,'clickTime':count${clicktime.ad.id }}
-			
-// 		}),$.ajax({
-// 			method: "POST",
-// 			url: "<c:url value='/recordClickTimeAdd'/>",
-// 			data: { 'aid' : ${clicktime.ad.id }, 'uid' : ${clicktime.user.id },'clickTimes':count${clicktime.ad.id } }
-			
-// 		}),$.ajax({
-// 			method: "POST",
-// 			url: "<c:url value='/addTotalClick'/>",
-// 			data: { 'aid' : ${clicktime.ad.id } }
-			
-// 		}),
-		
-// 		count${clicktime.ad.id }=0;},500);
-		
-// 		document.getElementById("clicks${clicktime.ad.id }").innerHTML = count${clicktime.ad.id };
-// 		console.log("count${clicktime.ad.id }=",count${clicktime.ad.id })
-// 	});
+
 </c:forEach>
 }
 
@@ -77,9 +47,10 @@ window.onload=function(){
 	<c:forEach var="clicktime" items="${clicktime}">
 
 
-		<h3>${clicktime.ad.text }</h3>
-		<button id="clickme${clicktime.ad.id }"
-			onclick="window.open('${clicktime.ad.url}', '_blank');">${clicktime.ad.company }</button>
+		
+		<a id="clickme${clicktime.aid }"
+			href="${clicktime.url}" target="_blank"><img width='100' height='60' src='${clicktime.pictureString }'></a>
+		<h4>${clicktime.text }</h4>
 		<br>
 		<br>
 

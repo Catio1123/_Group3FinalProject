@@ -1,6 +1,9 @@
 package org.iii.group3.persistent.dao.ad;
 
 public class ClickTimeDto {
+	private Integer aid;
+	private Integer uid;
+	private String text;
 	private String url;
 	private String pictureString;
 	private String clickControUrl;
@@ -45,6 +48,30 @@ public class ClickTimeDto {
 
 	public void setPictureString(String pictureString) {
 		this.pictureString = pictureString;
+	}
+
+	public Integer getAid() {
+		return aid;
+	}
+
+	public void setAid(Integer aid) {
+		this.aid = aid;
+	}
+
+	public Integer getUid() {
+		return uid;
+	}
+
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	

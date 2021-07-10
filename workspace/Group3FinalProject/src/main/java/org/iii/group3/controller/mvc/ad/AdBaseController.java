@@ -48,9 +48,12 @@ public class AdBaseController {
 
 		User user = userService.select(uid);
 		List<ClickTime> clickAll = clickTimeService.clickTimeByUser(user);
-		List<ClickTimeDto> clickDto = new ArrayList<>();
+		List<ClickTimeDto> clickDto = new ArrayList();
 		for (ClickTime c : clickAll) {
 			ClickTimeDto dto = new ClickTimeDto();
+			dto.setAid(c.getAd().getId());
+			dto.setUid(uid);
+			dto.setText(c.getAd().getText());
 			dto.setUrl(c.getAd().getUrl());
 			dto.setPictureString(c.getAd().getPictureString());
 			dto.setClickControUrl("/ipodcast/clicktimeadd");
@@ -59,7 +62,7 @@ public class AdBaseController {
 
 			clickDto.add(dto);
 		}
-		m.addAttribute("clickTime", clickDto);
+		m.addAttribute("clicktime", clickDto);
 //		m.addAttribute("clicktime", clickAll);
 
 		return "ad/userpodcast";
