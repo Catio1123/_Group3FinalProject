@@ -71,9 +71,9 @@
 										+ members[i].description
 										+ "&nbsp;</td>"
 										+ "<td><a href='"+tmp2+"'>"
-										+ "<img width='36' height='36' src='${pageContext.request.contextPath}/images/update.jpg' ></a>"
+										+ "<img width='36' height='36' src='${pageContext.request.contextPath}/images/update.png' ></a>"
 										+ "<td><a href='"+tmp1+"'>"
-										+ "<img width='36' height='36' src='${pageContext.request.contextPath}/images/del.png' ></a>"
+										+ "<img width='36' height='36' src='${pageContext.request.contextPath}/images/del2.png' ></a>"
 										+ "</td>"
 								"</tr>";
 							}
@@ -109,9 +109,9 @@
 							+ members[i].description
 							+ "&nbsp;</td>"
 							+ "<td><a href='"+tmp2+"'>"
-							+ "<img width='36' height='36' src='${pageContext.request.contextPath}/images/update.jpg' ></a>"
+							+ "<img width='36' height='36' src='${pageContext.request.contextPath}/images/update.png' ></a>"
 							+ "<td><a href='"+tmp1+"'>"
-							+ "<img width='36' height='36' src='${pageContext.request.contextPath}/images/del.png' ></a>"
+							+ "<img width='36' height='36' src='${pageContext.request.contextPath}/images/del2.png' ></a>"
 							+ "</td>"
 					"</tr>";
 				}
@@ -296,7 +296,7 @@
 							<!-- Default box -->
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">訂位資訊</h3>
+									<h3 class="card-title">優惠方案</h3>
 
 									<div class="card-tools">
 										<button type="button" class="btn btn-tool"
@@ -311,7 +311,9 @@
 
 								</div>
 								<div>
+								<br>
 									活動名稱：<input id="cname" type='text' /><br>
+									<br>
 									<button
 										style="border: none; background-color: #555555; color: white; border-radius: 4px;"
 										id='query'>查詢</button>

@@ -75,11 +75,12 @@
 					data-bs-slide-to="1" aria-label="Slide 2"></button>
 				<button type="button" data-bs-target="#carouselExampleCaptions"
 					data-bs-slide-to="2" aria-label="Slide 3"></button>
+				
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<img
-						src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/3.jpg'/>"
+						src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/ad1.jpg'/>"
 						class="d-block w-100" alt="...">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>First slide label</h5>
@@ -89,7 +90,7 @@
 				</div>
 				<div class="carousel-item">
 					<img
-						src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/ad1.jpg'/>"
+						src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/ad2.jpg'/>"
 						class="d-block w-100" alt="...">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>Second slide label</h5>
@@ -99,7 +100,7 @@
 				</div>
 				<div class="carousel-item">
 					<img
-						src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/ad1.jpg'/>"
+						src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/ad3.jpg'/>"
 						class="d-block w-100" alt="...">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>Third slide label</h5>
@@ -107,6 +108,7 @@
 							slide.</p>
 					</div>
 				</div>
+				
 			</div>
 			<button class="carousel-control-prev" type="button"
 				data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">

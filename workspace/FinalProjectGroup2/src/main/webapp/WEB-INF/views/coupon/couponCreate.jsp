@@ -296,9 +296,9 @@
 		});
 		function inport(){
 			
-			document.getElementById("company").value="好市多";
-			document.getElementById("name").value="滿千送百免運";
-			document.getElementById("description").value="超爽的";
+			document.getElementById("company").value="客家世界獨家優惠";
+			document.getElementById("name").value="客家小炒買一送一";
+			document.getElementById("description").value="消費滿萬元以上即可使用";
 			
 		};
 		
