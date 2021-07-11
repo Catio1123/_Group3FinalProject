@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.group2.springboot.member.model.CustomerBean;
+
 
 @Repository("articleListDao")
 public class ArticleListDao {
@@ -29,9 +31,26 @@ public class ArticleListDao {
 		List<ArticleList> list = em.createQuery(hql).getResultList();
 		return list;
 	}
-	
-	
+
+	public ArticleList selectArticle(Integer articleId) {
+		return em.find(ArticleList.class, articleId);
 	}
+
+	public void addArticle(ArticleList articleBean) {
+		em.persist(articleBean);
+	}
+	
+	
+	public boolean deleteArticle(Integer articleId) {
+		ArticleList bean = em.find(ArticleList.class, articleId);
+		em.remove(bean);
+		return false;
+	}
+	
+	public void updateArticle(ArticleList articleBean) {
+		em.merge(articleBean);
+	}
+}
 
 	
 	

@@ -1,13 +1,20 @@
 package com.group2.springboot.shopreview.model;
 
+import java.sql.Blob;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.group2.springboot.utils.SystemUtils;
 
 @Entity
 @Table(name="myTable02")
@@ -35,6 +42,23 @@ public class ArticleList {
 	
 	@Column(name="name")
 	private String name;
+	
+	@Column(name="mimeType")
+	String  mimeType;
+	
+	// 圖片
+	@JsonIgnore
+	@Column(name="blogPhoto")
+	Blob blogPhoto;
+	
+	// 不要將下面這個作成資料庫欄位
+	@Transient
+	String pictureString;
+	
+	// 拿來取前端input file
+	@Transient
+	MultipartFile blogImage;
+	
 	
 	public ArticleList(float rate, String foodtype, String url, String genre, String city, String name) {
 		super();
@@ -104,6 +128,38 @@ public class ArticleList {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getMimeType() {
+		return mimeType;
+	}
+
+	public void setMimeType(String mimeType) {
+		this.mimeType = mimeType;
+	}
+
+	public Blob getBlogPhoto() {
+		return blogPhoto;
+	}
+
+	public void setBlogPhoto(Blob blogPhoto) {
+		this.blogPhoto = blogPhoto;
+	}
+
+	public String getPictureString() {
+		return SystemUtils.blobToDataProtocol(mimeType, blogPhoto);
+	}
+
+	public void setPictureString(String pictureString) {
+		this.pictureString = pictureString;
+	}
+
+	public MultipartFile getBlogImage() {
+		return blogImage;
+	}
+
+	public void setBlogImage(MultipartFile blogImage) {
+		this.blogImage = blogImage;
 	}
 	
 	

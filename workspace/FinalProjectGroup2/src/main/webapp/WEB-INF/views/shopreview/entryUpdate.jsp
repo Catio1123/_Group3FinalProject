@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix='form' uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,109 +19,30 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/bookerTemplate/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/bookerTemplate/dist/css/adminlte.min.css">
-  <script>
-window.onload = function() {
+<script>
+
+window.addEventListener("load", function(){
 	
-	let btnselectone = document.getElementById("btnselectone");
-	let dataArea1 = document.getElementById("dataArea1");
+    //預覽圖片
+    imgInp.onchange = evt => {
+   	  const [file] = imgInp.files
+   	  if (file) {
+   	    blah.src = URL.createObjectURL(file)
+   	  }
+   	}
+
 	
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "<c:url value='/articleList' />", true);
-	xhr.send();
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			var content = "<table id=myTable02><thead>";
-			content += "<tr><th>編號</th><th>餐廳名稱</th><th>評分</th><th>城市</th><th>食記連結</th><th>食物類型</th><th>餐廳類型</th><th>照片</th><th>編輯</th><th>刪除</th></tr></thead><tbody>";
-			var entries = JSON.parse(xhr.responseText);
-			for(var i=0; i < entries.length; i++){
-				
-				let entry = entries[i];
-				let urlUpdate = "<c:url value='/articleNotRestUpdate/'/>"  + entry.id;
-				let urlDelete = "<c:url value='/articleNotRestDelete/'/>"  + entry.id;
-				
-				tmp = "<c:url value='/articleList' />";
-			    content += 	"<tr><td width='70'>" + entries[i].id + "</td>" +
-			                "<td align='center'>" + entries[i].name + "</td>" +
-		        	       	"<td>" + entries[i].rate + "</td>" +
-		            	   	"<td align='right'>" + entries[i].city + "&nbsp;</td>" +
-							"<td>" + entries[i].url + "</td>" +
-							"<td>" + entries[i].foodtype + "</td>" +
-							"<td>" + entries[i].genre + "</td>" +
-							 "<td><img width='100' height='60' src='" + entries[i].pictureString + "'></td>"+
-							"<td><a href='" + urlUpdate + "'>" + 
-			    			"<img width='36' height='36' src='${pageContext.request.contextPath}/images/editwcolor.png' ></a>" + "</td>" +
-							"<td><a href='" + urlDelete + "'>" + 
-			    			"<img width='36' height='36' src='${pageContext.request.contextPath}/images/del.png' ></a>" + "</td>" +
-		               		"</tr>";
-			}
-			content += "</tbody></table>";
-			var divs = document.getElementById("somedivS");
-			divs.innerHTML = content;
-		}
-	}
-	
+})
 
-			btnselectone.onclick = function() {
-
-					let uid = document.getElementById("selectone");
-					let xhr = new XMLHttpRequest();
-
-					var url = "<c:url value='/articleSelect.controller/"+uid.value+"'/>";
-					xhr.open("GET", url, true);
-					xhr.send();
-					xhr.onreadystatechange = function() {
-						if (xhr.readyState == 4 && xhr.status == 200) {
-
-							dataArea1.innerHTML = showSingleArticle(xhr.responseText);
-
-						} else {
-							dataArea1.innerHTML = "查無資料，請輸入正確食記ID";
-						}
-					};
-				};
-				
-				function showSingleArticle(text) {
-					var entry = JSON.parse(text);
-					var segment = "";
-						segment = "<table border='1'>";
-						segment += "<tr>";
-						segment += "<th>食記ID</th>";
-						segment += "<th>餐廳名稱</th>";
-						segment += "<th>評分</th>";
-						segment += "<th>城市</th>";
-						segment += "<th>食物類型</th>";
-						segment += "<th>餐廳類型</th>";
-						segment += "<th>食記連結</th>";
-// 						segment += "<th>會員電話</th>";
-// 						segment += "<th>會員地址</th>";
-						segment += "<th>會員圖片</th>";
-						segment += "</tr>";
-
-						segment += "<tr>";
-						segment += "<td>" + entry.id + "</td>";
-						segment += "<td>" + entry.name + "</td>";
-						segment += "<td>" + entry.rate + "</td>";
-						segment += "<td>" + entry.city + "</td>";
-						segment += "<td>" + entry.foodtype + "</td>";
-						segment += "<td>" + entry.genre + "</td>";
-						segment += "<td>" + entry.url + "</td>";
-// 						segment += "<td>" + member.cellphone + "</td>";
-// 						segment += "<td>" + member.address + "</td>";
-						segment += "<td><img width='100' height='60' src='" + entry.pictureString + "'></td>";
-						segment += "</tr>";
-						segment += "</table>";
-				
-						
-					return segment;
-
-				}
-
-			}
-		</script>
+</script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
 </head>
+
+
+
 <body class="hold-transition sidebar-mini layout-fixed">
-<!-- Site wrapper -->
+	
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -135,15 +58,15 @@ window.onload = function() {
         <a href="#" class="nav-link">Contact</a>
       </li>
     </ul>
-
-    <!-- Right navbar links -->
+    
+        <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
           <i class="fas fa-search"></i>
         </a>
-        <div class="navbar-search-block">
+            <div class="navbar-search-block">
           <form class="form-inline">
             <div class="input-group input-group-sm">
               <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
@@ -158,6 +81,8 @@ window.onload = function() {
             </div>
           </form>
         </div>
+
+
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -229,39 +154,9 @@ window.onload = function() {
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<c:url value='/exciseSelectAll'/>" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>會員</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<c:url value='/orderList'/>" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>訂單/訂位</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a href="<c:url value='/article'/>" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>食記文章</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<c:url value='/restaurant'/>" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>餐廳管理</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<c:url value='/list'/>" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>營養資訊</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<c:url value='/coupon'/>" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>廣告優惠</p>
+                  <p>食記/文章</p>
                 </a>
               </li>
             </ul>
@@ -302,7 +197,7 @@ window.onload = function() {
             <!-- Default box -->
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">食記一覽表</h3>
+                <h3 class="card-title">訂位資訊</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -313,28 +208,99 @@ window.onload = function() {
                   </button>
                 </div>
               </div>
+				<div align="center">
+					<fieldset style="width: 1000px;">
+						<legend align="center">修改食記條目</legend>
+					<form:form id="sregform" method="POST" modelAttribute="articleList" enctype='multipart/form-data'>
+						<table border="1" style="width: 1000px" width="100%">
+	
+	
+	
+					<tr>
+						<td>餐廳名稱:&nbsp;&nbsp;<form:input class="inputLbox" type="text" id="nameUpdate" path="name" />
+							<img id="snameimg"><span id="snamesp"></span>&nbsp;&nbsp;
+							<p class="rule">不可空白</p>
+						</td>
+					</tr>
 
-								<form>
+					<tr>
+						<td>評分:&nbsp;&nbsp;<form:input class="inputLbox"	type="double" id="rateUpdate" path="rate" />
+							<img id="sphoneimg"><span id="sphonesp"></span>
+							<p class="rule">(不可空白)</p>
+						</td>
+					</tr>
 
-									<table border="1">
+					<tr>
+						<td>城市:&nbsp;&nbsp;<form:input class="inputLbox" type="text" id="cityUPdate" path="city" />
+							<img id="sphoneimg"><span id="sphonesp"></span>
+							<p class="rule">(不可空白)</p>
+						</td>
+					</tr>
 
+					<tr>
+						<td>食物類型:&nbsp;&nbsp;<form:input class="inputLbox" type="text" id="foodtypeUpdate" path="foodtype" />
+							<img id="sphoneimg"><span id="sphonesp"></span>
+							<p class="rule">(不可空白)</p>
+						</td>
+					</tr>
 
+					<tr>
+						<td>餐廳類型:&nbsp;&nbsp;
+							<form:input class="inputLbox" type="text" id="genreUpdate" path="genre" /> 
+							<img id="sphoneimg"><span id="sphonesp"></span>
+							<p class="rule">(不可空白)</p>
+						</td>
+					</tr>
 
-									</table>
+<!-- 												<tr> -->
+<!-- 													<td>消費日期:&nbsp;&nbsp; -->
+<%-- 														<form:input class="inputLbox" type="date" id="visitdateUpdate" path="visitdate" value="${ArticleList.visitdate}" placeholder="消費日期" /> --%>
+<!-- 														<img id="saddressimg"><span id="saddresssp"></span> -->
+<!-- 													</td> -->
+<!-- 												</tr> -->
 
-									<input type='text' id=selectone> <input type="button"
-										id='btnselectone' value="查詢單筆食記">
-									<!--  <button type="submit">確定新增(submit)</button>-->
-									<a href="<c:url value='/entryInsert'/>"><input
-										type="button" value="新增食記條目"></a>
-									<hr>
-									<div id='dataArea1' value="222">&nbsp;</div>
-									<hr>
-									<div id='dataArea' style='max-height: 300px; overflow: auto;'>&nbsp;</div>
+<!-- 												<tr> -->
+<!-- 													<td> -->
+<%-- 														<form:label id= "idgender" path="gender">性別:&nbsp;&nbsp;</form:label> --%>
+<%-- 														<form:radiobutton path="gender" value="男" label="男"/> <form:radiobutton path="gender" value="女" label="女" /><br> --%>
+<!-- 													</td> -->
+<!-- 												</tr> -->
 
+					<tr>
+						<td>Blog網址:&nbsp;&nbsp;
+							<form:input class="inputLbox" type="text" id="urlUpdate" path="url" value="${ArticleList.url}" />
+							<img id="saddressimg"><span	id="saddresssp"></span>
+							<p class="rule">(不可空白)</p>
+						</td>
+					</tr>
 
-								</form>
-								<div class="card-body">
+<!-- 												<tr> -->
+<!-- 													<td>地址:&nbsp;&nbsp; -->
+<%-- 														<form:input class="inputLbox" type="text" id="idaddress" path="address" value="${CustomerInfo.address}" /> --%>
+<!-- 														<img id="saddressimg"><span id="saddresssp"></span> -->
+<!-- 														<p class="rule">(不可空白)</p> -->
+<!-- 													</td> -->
+<!-- 												</tr> -->
+					<hr>
+
+						<tr>
+							<td>照片:&nbsp;&nbsp;
+							<img id="blah" width='150' height='200' src="${ArticleList.pictureString} "><br>
+<!-- 								<img id="blah" src="#" alt="your image" width='150' height='200' /> -->
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<form:input	id="imgInp" path="blogImage" type='file' />
+								<img id="saddressimg"><span id="saddresssp"></span>
+							</td>
+						</tr>
+						</table>
+						<br> 
+						<input class="sendbutton" type="submit" value="提交"><br>
+	
+						</form:form>
+					</fieldset>
+				</div>
+
+					<div class="card-body">
               		<div class='center'  id='somedivS'></div><br>
               </div>
               
@@ -382,10 +348,13 @@ window.onload = function() {
 <script src="${pageContext.request.contextPath}/bookerTemplate/dist/js/demo.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-<script>
-        $(document).ready(function () {
-            $('#myTable').DataTable();
-        });
-</script>
+
+</body>
+</html>
+
+
+
+
+
 </body>
 </html>
