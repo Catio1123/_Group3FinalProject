@@ -259,7 +259,7 @@
 								<tbody>
 									<c:forEach var="adDtos" items="${adDtos}">
 
-										<form:form id="a${adDtos.ad.id }"
+										<form:form id="${adDtos.ad.id }"
 											action="/ipodcast/addRecord/${adDtos.ad.id}/${user.id}"
 											method="post">
 

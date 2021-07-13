@@ -65,6 +65,7 @@
 	</nav>
 	<!-- Masthead-->
 	<header class="masthead">
+	
 		<div id="carouselExampleCaptions" class="carousel slide"
 			data-bs-ride="carousel">
 			<div class="carousel-indicators">
@@ -121,6 +122,7 @@
 				<span class="visually-hidden">Next</span>
 			</button>
 		</div>
+		
 	</header>
 	<!-- About-->
 	<section class="page-section bg-primary" id="about">
@@ -279,10 +281,9 @@
 		<div class="container px-4 px-lg-5">
 			<div class="row gx-4 gx-lg-5 justify-content-center">
 				<div class="col-lg-8 col-xl-6 text-center">
-					<h2 class="mt-0">Let's Get In Touch!</h2>
+					<h2 class="mt-0">最新客製化 Podcast 廣告投放，您也有興趣嗎？</h2>
 					<hr class="divider" />
-					<p class="text-muted mb-5">Ready to start your next project
-						with us? Send us a messages and we will get back to you as soon as
+					<p class="text-muted mb-5">膩了一般社群，想試試 Podcast 廣告投放嗎？ 放心交給我們，精心客製化的設計，絕對讓您的品牌更加分。 Send us a messages and we will get back to you as soon as
 						possible!</p>
 				</div>
 			</div>
@@ -300,16 +301,22 @@
 						<div class="form-floating mb-3">
 							<input class="form-control" id="name" type="text"
 								placeholder="Enter your name..." data-sb-validations="required" />
-							<label for="name">Full name</label>
-							<div class="invalid-feedback" data-sb-feedback="name:required">A
-								name is required.</div>
+							<label for="name">姓名</label>
+							<div class="invalid-feedback" data-sb-feedback="name:required">請填寫姓名</div>
+						</div>
+						<div class="form-floating mb-3">
+							<input class="form-control" id="name" type="text"
+								placeholder="Enter your name..." data-sb-validations="required" />
+							<label for="name">公司名稱</label>
+							<div class="invalid-feedback" data-sb-feedback="name:required">
+								請填寫公司名稱</div>
 						</div>
 						<!-- Email address input-->
 						<div class="form-floating mb-3">
 							<input class="form-control" id="email" type="email"
 								placeholder="name@example.com"
 								data-sb-validations="required,email" /> <label for="email">Email
-								address</label>
+								</label>
 							<div class="invalid-feedback" data-sb-feedback="email:required">An
 								email is required.</div>
 							<div class="invalid-feedback" data-sb-feedback="email:email">Email
@@ -319,18 +326,18 @@
 						<div class="form-floating mb-3">
 							<input class="form-control" id="phone" type="tel"
 								placeholder="(123) 456-7890" data-sb-validations="required" />
-							<label for="phone">Phone number</label>
+							<label for="phone">聯絡電話</label>
 							<div class="invalid-feedback" data-sb-feedback="phone:required">A
-								phone number is required.</div>
+								請填寫電話</div>
 						</div>
 						<!-- Message input-->
 						<div class="form-floating mb-3">
 							<textarea class="form-control" id="message" type="text"
 								placeholder="Enter your message here..." style="height: 10rem"
 								data-sb-validations="required"></textarea>
-							<label for="message">Message</label>
+							<label for="message">詢問內容</label>
 							<div class="invalid-feedback" data-sb-feedback="message:required">A
-								message is required.</div>
+								請填寫想詢問的內容</div>
 						</div>
 						<!-- Submit success message-->
 						<!---->
@@ -354,7 +361,7 @@
 						<!-- Submit Button-->
 						<div class="d-grid">
 							<button class="btn btn-primary btn-xl disabled" id="submitButton"
-								type="submit">Submit</button>
+								type="submit">送出</button>
 						</div>
 					</form>
 				</div>
@@ -362,7 +369,7 @@
 			<div class="row gx-4 gx-lg-5 justify-content-center">
 				<div class="col-lg-4 text-center mb-5 mb-lg-0">
 					<i class="bi-phone fs-2 mb-3 text-muted"></i>
-					<div>+1 (555) 123-4567</div>
+					<div> (03)-425-1108</div>
 				</div>
 			</div>
 		</div>
@@ -371,7 +378,7 @@
 	<footer class="bg-light py-5">
 		<div class="container px-4 px-lg-5">
 			<div class="small text-center text-muted">Copyright &copy; 2021
-				- Company Name</div>
+				- 資策會</div>
 		</div>
 	</footer>
 	<!-- Bootstrap core JS-->
