@@ -44,6 +44,25 @@ font-size: 30px;
 font-family:Microsoft JhengHei
 }
 
+.frame {  
+    height: 50px; /*can be anything*/
+    width: 50px; /*can be anything*/
+    position: relative;
+}
+.pic {  
+    max-height: 100%;  
+    max-width: 100%; 
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+    border-radius:40%;
+}
+
     </style>
 </head>
 
@@ -95,15 +114,19 @@ font-family:Microsoft JhengHei
                                 <ul>
                                     <li><a id="login" href="<c:url value='/loginController' />">登入</a></li>
                                     <li><a id="logout" href="<c:url value='/logout' />">登出</a></li>
-                                    <li><a style="font-family:DFKai-SB;color:#6A6AFF">${Member.name}</a>
+                                    <li><a style="font-family:DFKai-SB;color:#6A6AFF">${Member.name}</a></li>
                                     <li><a style="display:none" id="role">${Member.role}</a>
                                       <ul class="dropdown">
                                             <li><a id="general" href="<c:url value='/updateMember' />" >修改訊息 </a></li>
-                                            <li><a id="admin"   href="<c:url value='/memberCentre' />" >管理者後台</a></li>
+                                            <li><a id="admin"   href="<c:url value='/backstageMember' />" >管理者後台</a></li>
                                             <li><a id="company" href="<c:url value='/adindex' />" >   廣告商後台</a></li>
                                       </ul>
                                    </li>
-                                </ul>               
+                                </ul>   
+                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class=frame>         
+                                    <img src = "${Member.pictureString}" class=pic>
+                               </div>
                             </div>
                             <!-- Nav End -->
                         </div>
@@ -120,7 +143,7 @@ let general   = document.getElementById("general");
 let admin     = document.getElementById("admin");
 let company   = document.getElementById("company");
 window.onload=function(){
-
+	
 	load();
 	
 	}

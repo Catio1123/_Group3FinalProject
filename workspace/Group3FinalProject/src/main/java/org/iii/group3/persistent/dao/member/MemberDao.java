@@ -62,12 +62,31 @@ public class MemberDao {
 		return en.createQuery(hql).getResultList();
 	}
 	
-//================================= 查詢單筆 =================================boot
+//================================= 查詢單筆(帳號尋找-主鍵) =================================boot
 	
-	public Member findByAcct(String acctno) {
+//	public Member findByAcct(String acctno) {
+//		
+//		return en.find(Member.class, acctno);
+//	}
+
+//================================= 查詢單筆(尋找id) =================================boot
+	
+		public Member findById(int id) {
+			
+			return en.find(Member.class, id);
+		}
+
+//================================= 查詢單筆(帳號尋找-非主鍵) =================================boot
 		
-		return en.find(Member.class, acctno);
-	}
+		public Member findByAcct(String acctno) {
+			
+	    String hql = "From Member WHERE acctno = :acctno";
+	    
+		return en.createQuery(hql , Member.class)
+				 .setParameter("acctno", acctno)
+				 .getSingleResult();
+				
+	   }
 
 //================================= 模糊查詢 =================================boot
 	

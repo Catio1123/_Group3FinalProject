@@ -1,5 +1,7 @@
 package org.iii.group3.controller.mvc.ad;
 
+import java.util.List;
+
 import org.iii.group3.persistent.model.ad.Ad;
 import org.iii.group3.persistent.model.ad.Company;
 import org.iii.group3.service.ad.AdService;
@@ -30,14 +32,14 @@ public class AdController {
 
 	@Autowired
 	private ClickTimeService clickTimeService;
-//	@GetMapping(path = "/company")
-//	public String wayne(Model m) {
-//
-//		List<Ad> adAll = adService.selectAll();
-//		m.addAttribute("ads", adAll);
-////		m.addAttribute("uid", id);
-//		return "company";
-//	}
+	@GetMapping(path = "/company")
+	public String wayne(Model m) {
+
+		List<Ad> adAll = adService.selectAll();
+		m.addAttribute("ads", adAll);
+//		m.addAttribute("uid", id);
+		return "company";
+	}
 
 	@PostMapping(path = "/insert/{cid}")
 	public String insertAd(@PathVariable(value = "cid", required = true) Integer cid, @ModelAttribute("ad") Ad ad,

@@ -15,6 +15,9 @@
 	<link rel="stylesheet" href="<c:url value='/ben/css/owl.carousel.min.css'/> ">
 	<link rel="stylesheet" href="<c:url value='/ben/css/animate.min.css'/> ">
     <link rel="stylesheet" href="<c:url value='/ben/css/quill.snow.css'/>">
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 	
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="<c:url value='/ben/css/style.css'/> ">
@@ -44,7 +47,7 @@ body{
 <!--     MAIN CSS -->
 <!--     <link rel="stylesheet" href="css/style.css">     -->
   </head>
-  <body id="top">
+  <body>
 
 <!-- 進入畫面 -->
 <!--   <div id="overlayer"></div> -->
@@ -53,6 +56,8 @@ body{
 <!--       <span class="sr-only">Loading...</span> -->
 <!--     </div> -->
 <!--   </div> -->
+
+
     
 
 <div class="site-wrap">
@@ -73,24 +78,6 @@ body{
         <div class="row align-items-center">
           <div class="logo"><a href="/ipodcast" class="logo">iPodcast</a></div>
 
-          <nav class="mx-auto site-navigation">
-            <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="index.html" class="nav-link">Home</a></li>
-              <li><a href="services.html" class="active">Pages</a></li>
-              <li><a href="blog.html">Blog</a></li>
-              <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Comment</a></li>
-              <li class="d-lg-none"><a href="login.html">Log In</a></li>
-            </ul>
-          </nav>
-          
-<!--           <div class="right-cta-menu text-right d-flex aligin-items-center col-6"> -->
-<!--             <div class="ml-auto"> -->
-<!--               <a href="post-job.html" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Comment</a> -->
-<!--               <a href="login.html" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a> -->
-<!--             </div> -->
-<!--             <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a> -->
-<!--           </div> -->
-
         </div>
       </div>
     </header>
@@ -109,6 +96,7 @@ body{
 <!--         </div> -->
       </div>
     </section>
+<!--================================= 一般會員登入 =================================-->
 
     <section class="site-section">
       <div class="container">
@@ -132,21 +120,16 @@ body{
                   <input type="password" id="fname" name="pw" class="form-control" placeholder="Password">
                 </div>
               </div>
-<!--               <div class="row form-group mb-4"> -->
-<!--                 <div class="col-md-12 mb-3 mb-md-0"> -->
-<!--                   <label class="text-black" for="fname">Re-Type Password</label> -->
-<!--                   <input type="password" id="fname" class="form-control" placeholder="Re-type Password"> -->
-<!--                 </div> -->
-<!--               </div> -->
+              
                 <div style=color:red;>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                 ${errors.msg}</div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="submit" value="Log in" class="btn px-4 btn-primary text-white">
+                  <input type="submit" id="log" value="Log in" class="btn px-4 btn-primary text-white">
                   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                  <a href="/ipodcast">忘記密碼</a>
-                </div>
+                  <a href="/sendMail">忘記密碼</a>
+                </div>               
                 <br>
                 <br>
                 <div>
@@ -154,24 +137,25 @@ body{
                  還不是會員嗎?<a href="<c:url value='/signUpMember' />">註冊</a>
                 </div>
               </div>
-
             </form>
           </div>
+            
+<!--================================= 廣告商登入 =================================-->
           <div class="col-lg-6">
             <h2 class="mb-4">廣告商登入</h2>
             <form action="checkloginAd" method="Post" class="p-4 border rounded">
 
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
-                <span style=color:red;>${errors.acctnoAd}</span>
                   <label class="text-black" for="fname">帳號 :</label>
-                  <span style=color:red;>${errors.pwAd}</span>
+                <span style=color:red;>${errors.acctnoAd}</span>
                   <input type="text" id="fname" name="acctnoAd" class="form-control" placeholder="User">
                 </div>
               </div>
               <div class="row form-group mb-4">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="text-black" for="fname">密碼 :</label>
+                  <span style=color:red;>${errors.pwAd}</span>
                   <input type="password" id="fname" name="pwAd" class="form-control" placeholder="Password">
                 </div>
               </div>
@@ -182,21 +166,25 @@ body{
                 <div class="col-md-12">
                   <input type="submit" value="Log In" class="btn px-4 btn-primary text-white">
                   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                  <a href="/ipodcast">忘記密碼</a>
-                </div>  
+                  <a href="/sendMail">忘記密碼</a>
+                </div>
+                  
                <br>
                <br>
                <div>
                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                  還不是會員嗎?<a href="<c:url value='/signUpMember' />">註冊</a>
                </div>
-              </div>
-
+              </div>              
             </form>
           </div>
         </div>
       </div>
     </section>
+    
+
+    
+    
     
     
     <footer class="site-footer">
@@ -261,7 +249,7 @@ body{
     <script src="<c:url value='/ben/js/owl.carousel.min.js'/> "></script>
     
     <script src="<c:url value='/ben/js/bootstrap-select.min.js'/> "></script>
-    
+
     <script src="<c:url value='/ben/js/custom.js'/> "></script>
   
   </body>

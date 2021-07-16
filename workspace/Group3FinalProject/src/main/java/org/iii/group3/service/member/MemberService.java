@@ -37,6 +37,12 @@ public class MemberService {
 		return memberDao.findByAcct(acctno);
 	}
 	
+//================================= 查詢單筆(id) =================================boot
+	
+		public Member findById(int id) {
+			return memberDao.findById(id);
+		}
+	
 //================================= 模糊查詢 =================================	boot
 	public List<Member> findByName(String name) {
 		return memberDao.findByName(name);
@@ -51,7 +57,12 @@ public class MemberService {
 //================================= 修改 ====================================boot
 
 	public void update(Member member) {
-		memberDao.update(member);
+		 memberDao.update(member);
+	}
+	
+	
+	public void update(Member member,int id) {
+			 memberDao.update(member);
 	}
 
 //================================= 刪除 =================================

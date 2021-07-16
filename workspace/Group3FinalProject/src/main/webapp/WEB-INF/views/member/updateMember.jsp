@@ -2,56 +2,116 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>	
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>更新訊息</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+	<link rel="stylesheet" href="<c:url value='/ben/css/custom-bs.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/ben/css/jquery.fancybox.min.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/ben/css/bootstrap-select.min.css'/> ">
+	
+	<link rel="stylesheet" href="<c:url value='/ben/css/owl.carousel.min.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/ben/css/animate.min.css'/> ">
+    <link rel="stylesheet" href="<c:url value='/ben/css/quill.snow.css'/>">
+	
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="<c:url value='/ben/css/style.css'/> ">
+
+<title>更新會員資料</title>
 <style>
 fieldset {
-            width: 960px;
-            border: 1px solid #FF5151;
-            border-radius: 20px;
-            margin: 15px;
-            margin: auto;
-            
-        }
+	width: 600px;
+	border: 1px solid #ADADAD;
+	border-radius: 20px;
+	margin: 15px;
+	margin: auto;
+}
 
-        legend {
-            color: #FF8040;
-            margin-left: 50px;
-            font-family: fantasy;
-            font-weight: bold;
-            font-size: 20px;
-        }
+legend {
+	color: #FF8040;
+	margin-left: 50px;
+	font-family: fantasy;
+	font-weight: bold;
+	font-size: 20px;
+}
 
-        h1 {
-            font-family: sans-serif;
+h1 {
+	font-family: sans-serif;
+}
 
-        }
+.s1 {
+	width: 500px;
+	border-bottom: 3px dashed #ADADAD;
+	margin: 20px;
+	padding-bottom: 10px;
+	color: black;
+	font-weight: bold;
+	font-size: 120%;
+}
 
-        .s1 {
-            width: 450px;
-            border-bottom: 3px dashed #FF5151;
-            margin: 20px;
-            padding-bottom: 10px;
-        }
+body {
+	background-color: #F0F0F0
+}
+
+.logo {
+	font-family: sans-serif;
+	text-align: center;
+	background: linear-gradient(to top, #3a1c71, #d76d77, #ffaf7b);
+	background: -webkit-linear-gradient(to top, #3a1c71, #d76d77, #ffaf7b);
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	font-size: 50px;
+}
 
 </style>
 
 </head>
 <body>
 <div align="center">
-<fieldset>
-	<legend >更新資料</legend> 
 
-<form:form method="POST" modelAttribute="member">
+   <header class="site-navbar mt-3">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="logo"><a href="/ipodcast" class="logo">iPodcast</a></div>
+        </div>
+      </div>
+    </header>
+   
+        <section class="section-hero overlay inner-page bg-image" style="background-image: url('/ipodcast/kevin/images/blogUpdate4.png');" id="home-section">
+      <div class="container">
+      <br>
+          <div class="col-md-7">
+            <h2 class="text-white font-weight-bold">個人資料修改</h2>
+            <br>
+
+          </div>
+      </div>
+    </section>
+     <br><br><br>
+
+<fieldset>
+
+<form:form action="/ipodcast/updateMember/toUpdate" method="POST" modelAttribute="member" enctype='multipart/form-data'>
 				<Table>
 					<tr>
 						<td>
+							<div style=display:none;>
+								id:&nbsp;&nbsp;
+								<form:input  path="id" />
+							</div>
+							
 							<div class="s1">
-								帳號:&nbsp;&nbsp;
-								<form:input path="acctno" />
+							   帳號:&nbsp;&nbsp;
+							   <form:label path = 'acctno'>${member.acctno}</form:label>
+							</div>
+	
+							<div style=display:none; >
+								<form:input path = 'acctno' />
 								<form:errors path='acctno' />
 							</div>
 
@@ -97,7 +157,17 @@ fieldset {
 								<form:input path="gender"  />
 								<form:errors path="gender" />
 							</div>
-
+							
+			                <div class="s1">				
+			                    <form:input path="memberImage" type='file'/><br>&nbsp;
+	   	  	                    <form:errors path="memberImage"  cssClass="error" />
+                            </div>
+							
+							<div style=display:none;>
+								Role:&nbsp;&nbsp;
+								<form:input  path="role" />
+								<form:errors path="role" />
+							</div>
 
 							
 						</td>

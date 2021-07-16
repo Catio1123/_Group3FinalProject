@@ -4,24 +4,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<meta charset="UTF-8">
-<title>新增成功</title>
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <style>
+      body{
+          background-color:#F0F0F0	
+      }
+
+    </style>
+
+
+<meta charset="UTF-8">
+<title>資料修改成功</title>
 </head>
 <body>
          <script>
             
             swal({
-                title: "註冊成功",
-                text: "歡迎您進入iPodcast的世界！",
+                title: "修改成功",
+                text: "即將回到首頁",
                 type: "success",
 
             }).then(function () {
-                    window.location.href = "<c:url value='/loginController' />"
+                    window.location.href = "<c:url value='/backstageMember' />"
                 });
             
           
 	     </script>
+
+
+
+
 </body>
 </html>
