@@ -35,11 +35,20 @@ public class AdService {
 	ClickTimeRepo clickTimeRepo;
 
 	@Autowired
-	RecordRepo recordRepo;
+	RecordService recordService;
 
 	@Autowired
 	ServletContext context;
 
+	
+	public void updateClickTime(Integer aid) {
+		
+		Ad ad = adRepo.getById(aid);
+		Integer totalClick = recordService.sumClickByAd(ad);
+		updateClick(aid, totalClick);
+		
+	}
+	
 	public Ad select(Integer id) {
 		Optional<Ad> ad = adRepo.findById(id);
 		Ad selectAd = new Ad();

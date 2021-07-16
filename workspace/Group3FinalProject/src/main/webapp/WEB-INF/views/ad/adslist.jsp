@@ -28,9 +28,16 @@
 
 <!-- Custom styles for this template-->
 <link href="/ipodcast/wayne/sb2/css/sb-admin-2.min.css" rel="stylesheet">
+<!-- <link rel="stylesheet" href="https://npmcdn.com/sweetalert2@4.0.15/dist/sweetalert2.min.css"> -->
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+	type="text/javascript"></script>
+<!-- <script src="https://npmcdn.com/sweetalert2@4.0.15/dist/sweetalert2.min.js"></script> -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.all.js" integrity="sha512-L75ujuHj04ye7EqWOTRxioEKz7fQrNcYEX2+k2YMt3kG6TvLe1BAGZ7EjY0sIbEUeougiQ5Dqoean/93XLww5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.css" integrity="sha512-DYOwgMAsSbNzrSwEU3nQ7bcYo5aEqpIq1lOe5doeuUwXjuFYjIPvIZDZrEOH+QMIXvRpqcc8gPKcoIMIyAZMCg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body id="page-top">
@@ -412,9 +419,9 @@
 												value="${ad.sponsorshipAmount }" style="width: 400px" /> <br />
 											<br /> <label for="text">照片:</label> <input type="file"
 												id="placeImage" name="placeImage" style="width: 400px" /> <br />
-											<br /> <input
+											<br /> <button id='subbtn'
 												style="border: none; background-color: #555555; color: white; border-radius: 4px; font-size: 16px; font-weight: bold; padding: 5px 20px"
-												type="submit" value="更新">
+												type="button" value="更新"> 更新</button>
 											<button
 												style="border: none; background-color: #555555; color: white; border-radius: 4px; font-size: 16px; font-weight: bold; padding: 5px 20px"
 												onclick="window.location.href='<c:url value='/company'/>'">回上一頁</button>
@@ -488,6 +495,19 @@
 		
 	}
 	
+	$('#subbtn').click(function(){
+        var form = document.getElementById('adslist');
+       
+        Swal.fire(
+                "新增成功!",
+                "Message!",
+                "success"
+            ).then(function(){
+         form.submit()
+         })
+         
+        
+        })
 	
 	
 	</script>

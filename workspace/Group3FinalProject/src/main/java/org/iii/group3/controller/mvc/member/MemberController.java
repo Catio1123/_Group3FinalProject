@@ -135,7 +135,6 @@ public class MemberController {
 		// 新增或修改成功，要用response.sendRedirect(newURL) 通知瀏覽器對newURL發出請求
 		@PostMapping("/signUpMember")
 		public String saveSignUpMember(Member member,RedirectAttributes ra) {
-			System.out.println("123");
 			int n = 0;
 			n = memberService.save(member);
 			if (n == 1) {
@@ -169,12 +168,12 @@ public class MemberController {
 //=================================== 刪除 ===================================	
 		@GetMapping(path = "/member/{acctno}")
 		public String delectMember(@PathVariable(value = "acctno", required = true) String acctno ,Member member,BindingResult result,RedirectAttributes ra,Model model) {
-	        member=memberService.findByAcct(acctno); 
+	        member = memberService.findByAcct(acctno); 
 	        System.out.println("12345"+member.getAcctno());
+	        ra.addFlashAttribute("successMessage", member.getAcctno() + "刪除成功");
 			memberService.delete(member);
-	         ra.addFlashAttribute("successMessage", member.getAcctno() + "刪除成功");
 //				model.addAttribute("Member", member);
-			return "redirect:member/memberCentre";  
+			return "redirect:/memberCentre";  
 
 }	
 		

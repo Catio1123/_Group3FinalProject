@@ -291,14 +291,11 @@ fieldset {
 	<legend>註冊會員資料</legend> 
 <hr>
 <div id='resultMsg' style="height: 18px; font-weight: bold;"></div>
-			<form:form method="POST" modelAttribute="member">
-				<Table>
-					<tr>
-						<td>
+			<form action="signUpMember" method="POST" >
+				
 							<div class="s1">
 								帳號:&nbsp;&nbsp;
-								<form:input path="acctno" />
-								<form:errors path='acctno' />
+								<input type="text" id="acctno" name="acctno" >
 								<a href='#' id='accountCheck' style='font-size: 10pt;'>檢查帳號</a>
 								<div id='result0c' style="height: 10px;"></div>
 								${failMessage}
@@ -306,58 +303,57 @@ fieldset {
 
 							<div class="s1">
 								密碼:&nbsp;&nbsp;
-								<form:input path="pw" type="Password"/>
-								<form:errors path='pw' />
+								<input type="Password" id="pw" name="pw" >
 								<div id='result1c' style="height: 10px;"></div>
 
 							</div>
 
 							<div class="s1">
 								姓名:&nbsp;&nbsp;
-								<form:input path='name' />
-								<form:errors path='name' />
+								<input type="text" id="name" name="name" >
 								<div id='result2c' style="height: 10px;"></div>
 							</div>
 
 							<div class="s1">
 								暱稱:&nbsp;&nbsp;
-								<form:input path="nickname" />
-								<form:errors path='nickname' />
+								<input type="text" id="nickname" name="nickname" >
 								<div id='result3c' style="height: 10px;"></div>
 							</div>
 
 							<div class="s1">
 								E-mail:&nbsp;&nbsp;
-								<form:input path="email" />
-								<form:errors path='email' />
+								<input type="text" id="email" name="email" >
 								<div id='result4c' style="height: 10px;"></div>
 							</div>
 
 							<div class="s1">
 								手機號:&nbsp;&nbsp;
-								<form:input path="celno" />
-								<form:errors path='celno' />
+								<input type="text" id="celno" name="celno" >
 								<div id='result5c' style="height: 10px;"></div>
 							</div>
 
 							<div class="s1">
 								生日:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<form:input path="dob" type="Date"/>
-								<form:errors path='dob' />
-								&nbsp;&nbsp;<div id='result6c' style="height: 10px;"></div>
+								<input type="Date" id="dob" name="dob" >
+								&nbsp;&nbsp;
+								<div id='result6c' style="height: 10px;"></div>
 							</div>
 
 							<div class="s1">
 								性別:&nbsp;&nbsp;
-								<form:input path="gender" />
-								<form:errors path="gender" />
+								<input type="text" id="gender" name="gender" >
 								<div id='result7c' style="height: 10px;"></div>
 							</div>
+							
+							<div style=display:none;>
+								性別:&nbsp;&nbsp;
+								<input type="text" name="role" value="general">
+							</div>
+							
 
-						<td colspan='4' align='center'><button id='sendData'>送出</button></td>
-					</tr>
-				</Table>
-			</form:form>
+						<button id='sendData'>送出</button>
+		
+			</form>
 
 		</fieldset>
 </div>

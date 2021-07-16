@@ -7,6 +7,7 @@ import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -55,8 +56,13 @@ public class Ad implements Serializable {
 	@Column(name = "sponsorship_amount")
 	private double sponsorshipAmount;
 
+	
 	@Column(name = "mime_type")
 	String mimeType;
+	
+	@OneToMany(mappedBy = "ad", cascade = CascadeType.REMOVE)
+	private Set<Record> records = new HashSet<Record>();
+	
 
 	@JsonIgnore
 	@Column(name = "picture")
@@ -101,26 +107,15 @@ public class Ad implements Serializable {
 		this.picture = picture;
 	}
 
-	public Set<ClickTime> getClickTimes() {
-		return clickTimes;
+	
+	
+	public Set<Record> getRecords() {
+		return records;
 	}
 
-	public void setClickTimes(Set<ClickTime> clickTimes) {
-		this.clickTimes = clickTimes;
+	public void setRecords(Set<Record> records) {
+		this.records = records;
 	}
-
-	@OneToMany(mappedBy = "ad")
-	private Set<ClickTime> clickTimes = new HashSet<>();
-//	@Column(name = "url")
-//	private String companyUrl;
-
-//	public String getCompanyUrl() {
-//		return companyUrl;
-//	}
-//
-//	public void setCompanyUrl(String companyUrl) {
-//		this.companyUrl = companyUrl;
-//	}
 
 	public double getSponsorshipAmount() {
 		return sponsorshipAmount;

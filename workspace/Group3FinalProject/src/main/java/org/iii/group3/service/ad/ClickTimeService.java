@@ -1,15 +1,19 @@
 package org.iii.group3.service.ad;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
+import org.iii.group3.persistent.dao.ad.AdRepo;
 import org.iii.group3.persistent.dao.ad.ClickTimeRepo;
 import org.iii.group3.persistent.model.ad.Ad;
 import org.iii.group3.persistent.model.ad.ClickTime;
 import org.iii.group3.persistent.model.ad.ClickTimeKey;
-import org.iii.group3.persistent.model.ad.User;
+import org.iii.group3.persistent.model.ad.Record;
+import org.iii.group3.persistent.model.member.Member;
+import org.iii.group3.persistent.model.podcaster.Channel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,19 +25,23 @@ public class ClickTimeService {
 	ClickTimeRepo clickTimeRepo;
 
 	@Autowired
-	private EntityManager entityManager;
-
-	public void addOne(Ad ad, User user) {
-		Ad ads = entityManager.find(Ad.class, ad.getId());
-		User users = entityManager.find(User.class, user.getId());
+	AdRepo adRepo;
+	
+	
+	public boolean isExistById(Long cid, Integer aid) {
+		return findById(aid, cid).isPresent();
+	}
+	
+	public List<ClickTime> findByAdId(Integer adId){
+		return clickTimeRepo.findByAdId(adId);
+	}
+	
+	public void addOne(Ad ad, Channel channel, Record record) {
+		Ad ads = adRepo.getById(ad.getId());
 		ClickTime clickTime = new ClickTime();
-		ClickTimeKey clickTimeKey = new ClickTimeKey();
 		clickTime.setAd(ad);
-		clickTime.setUser(user);
-		clickTimeKey.setAdId(ad.getId());
-		clickTimeKey.setUserId(user.getId());
-		clickTime.setClickTimeCount(0);
-		clickTime.setId(clickTimeKey);
+		clickTime.setChannel(channel);;
+		clickTime.setRecord(record);
 		clickTimeRepo.save(clickTime);
 
 	}
@@ -43,30 +51,24 @@ public class ClickTimeService {
 		return findAll;
 	}
 	
-	public List<ClickTime> clickTimeByUser(User user) {
+	public List<ClickTime> findByChannelId(Long channelId) {
 
-		return clickTimeRepo.findByUser(user);
+		return clickTimeRepo.findByChannelId(channelId);
 	}
 	
-	public void  addClickTime(Ad ad , User user , double clickTimeCount) {
+	public void  increaseClickTime(Integer aid, Long cid, Integer count) {
 		
-		
-		ClickTime clickTime = new ClickTime();
-		ClickTimeKey clickTimeKey = new ClickTimeKey();
-		clickTime.setAd(ad);
-		clickTime.setUser(user);
-		clickTimeKey.setAdId(ad.getId());
-		clickTimeKey.setUserId(user.getId());
-		clickTime.setClickTimeCount(clickTimeCount);
-		clickTime.setId(clickTimeKey);
-		clickTimeRepo.save(clickTime);
-		
-		
-		
+		Optional<ClickTime> optionalClickTime = findById(aid, cid);
+		if(optionalClickTime.isPresent()) {
+			ClickTime clickTime = optionalClickTime.get();
+			clickTime.setClickTimeCount(clickTime.getClickTimeCount() + count);
+			clickTimeRepo.save(clickTime);
+		}
 	}
 	
-	public ClickTime select(User user, Ad ad) {
-		ClickTime findByUserAd = clickTimeRepo.findByUserAndAd(user,ad );
+	public Optional<ClickTime> findById(Integer aid, Long cid) {
+		
+		Optional<ClickTime> findByUserAd = clickTimeRepo.findById(new ClickTimeKey(cid, aid));
 		
 		return findByUserAd;
 	}
@@ -86,8 +88,9 @@ public class ClickTimeService {
 		 return true;
 	}
 	
-	public void deleteByUserAndAd(User user, Ad ad) {
-	clickTimeRepo.deleteByUserAndAd(user, ad);
+	public void deleteById(int aid, Long cid) {
+		
+		clickTimeRepo.deleteById(new ClickTimeKey(cid, aid));
 	}
 	
 	
