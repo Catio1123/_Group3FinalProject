@@ -431,8 +431,8 @@ h1, h2, h3, h4 {
   color: #000; }
 
 .site-section {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   position: relative;
   z-index: 2; }
   @media (max-width: 991.98px) {
@@ -704,7 +704,7 @@ h1, h2, h3, h4 {
 .job-listings {
   padding: 0;
   margin: 0;
-  border: 1px solid #eee;
+  border: 0px solid #eee;
   border-radius: 7px;
   overflow: hidden;
   position: relative;
@@ -717,7 +717,7 @@ h1, h2, h3, h4 {
       width: 100% !important; } }
   .job-listings .job-listing {
     position: relative;
-    border-bottom: 1px solid #eee;
+    border-bottom: 2.5px solid #ccc;
     -webkit-transition: .3s all ease;
     -o-transition: .3s all ease;
     transition: .3s all ease; }
@@ -892,19 +892,22 @@ h1, h2, h3, h4 {
   display: inline-block; }
   .popular-keywords .keywords li {
     display: inline-block; }
-    .popular-keywords .keywords li a {
+    .popular-keywords .keywords li button {
       border-radius: 5px;
       display: inline-block;
       background: rgba(255, 255, 255, 0.2);
-      border: 2px solid #fff;
-      color: #fff;
-      padding: .2rem .7rem;
-      font-size: .7rem;
+      border: 2px solid #5B5B00;
+      color: #5B5B00;
+      padding: .4rem 2.9rem;
+      margin-left:5px;
+      margin-right:5px;      
+      font-size: 1.0rem;
       font-weight: 700;
       text-decoration: none; }
-      .popular-keywords .keywords li a:hover {
+      .popular-keywords .keywords li button:hover {
         background: #fff;
-        color: #89ba16; }
+        color: #89ba16;
+        border: 2px solid #89ba16; }
 
 .btn:after, .btn:before {
   display: none; }

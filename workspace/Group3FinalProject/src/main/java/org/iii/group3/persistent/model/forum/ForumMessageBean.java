@@ -13,11 +13,19 @@ public class ForumMessageBean {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "MID")
 	private int MID;
 	
+	@Column(name = "FID")
 	private int FID;
-	private int UID;
+	
+	@Column(name = "UID")
+	private String UID;
+	
+	@Column(name = "UNAME")
 	private String UNAME;
+	
+	@Column(name = "COMMENT")
 	private String COMMENT;
 	
 	@Column(name = "Date",insertable = false)
@@ -29,6 +37,14 @@ public class ForumMessageBean {
 	}
 	
 	
+	public ForumMessageBean(int fID, String uID, String uNAME, String cOMMENT) {
+		FID = fID;
+		UID = uID;
+		UNAME = uNAME;
+		COMMENT = cOMMENT;
+	}
+
+
 	public int getMID() {
 		return MID;
 	}
@@ -41,10 +57,10 @@ public class ForumMessageBean {
 	public void setFID(int fID) {
 		FID = fID;
 	}
-	public int getUID() {
+	public String getUID() {
 		return UID;
 	}
-	public void setUID(int uID) {
+	public void setUID(String uID) {
 		UID = uID;
 	}
 	public String getUNAME() {

@@ -2,13 +2,17 @@ package org.iii.group3.service.forum;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.iii.group3.persistent.dao.forum.ForumMessageDao;
 import org.iii.group3.persistent.model.forum.ForumMessageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class ForumMessageService {
+	
 	@Autowired
 	private ForumMessageDao dao;
 	
@@ -16,42 +20,48 @@ public class ForumMessageService {
 		try {
 			return dao.findById(id);			
 		} catch (Exception e) {
+			System.out.println("findById error: "+e.getMessage());
 			return null;
 		}
 	}
 	
-	public List<ForumMessageBean> findAll(){
-		try {
-			return dao.findAll();
+	public List<ForumMessageBean> findByContentId(int id){
+		try {			
+			return dao.findByContentId(id);
 		} catch (Exception e) {
+			System.out.println("findByContentId error: "+e.getMessage());
 			return null;
 		}
 	}
 	
-	public boolean insertMessage(ForumMessageBean bean) {
+	public String insertMessage(ForumMessageBean bean) {
 		try {
 			dao.insertMessage(bean);
-			return true;
+			return "新增成功";
 		} catch (Exception e) {
-			return false;
+			String error = "刪除 error: " + e.getMessage();
+			return error;
 		}
 	}
 	
-	public boolean updateMessage(ForumMessageBean bean) {
+	public String updateMessage(ForumMessageBean bean) {
 		try {
 			dao.updateMessage(bean);
-			return true;
+			return "更新成功";
 		} catch (Exception e) {
-			return false;
+			String error = "刪除 error: " + e.getMessage();
+			return error;
 		}
 	}
 	
-	public boolean deleteMessage(ForumMessageBean bean) {
+	public String deleteMessage(Integer id) {
 		try {
-			dao.deleteMessage(bean);
-			return true;
+			ForumMessageBean result = dao.findById(id);
+			dao.deleteMessage(result);
+			return "刪除成功";
 		} catch (Exception e) {
-			return false;			
+			String error = "刪除留言 error: " + e.getMessage();
+			return error;
 		}
 	}
 }

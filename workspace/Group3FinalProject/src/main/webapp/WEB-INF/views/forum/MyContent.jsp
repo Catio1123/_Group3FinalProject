@@ -42,11 +42,15 @@
     	font-weight:bold;
     	font-size:16px;
     	}
+    	#forumCon > p{
+    	margin-bottom:1px;
+    	}
     	
     </style>    
   </head>
   <body id="top">
 
+<!-- 跳轉動畫 -->
   <div id="overlayer"></div>
   <div class="loader">
     <div class="spinner-border text-primary" role="status">
@@ -71,22 +75,22 @@
     <header class="site-navbar mt-3">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6" style=""><a href="<c:url value='/'/>">IPodcast</a></div>
+          <div class="site-logo col-6" style=""><a href="<c:url value='/'/>">to IPodcast</a></div>
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="<c:url value='/forum'/>" class="nav-link">Forum Home</a></li>
-              <li><a href="services.html" class="active">Pages</a></li>
+<%--               <li><a href="<c:url value='/forum'/>" class="nav-link">Forum Home</a></li> --%>
+<!--               <li><a href="services.html" class="active">Pages</a></li> -->
 
-              <li class="d-lg-none"><a href="<c:url value='/AddPage'/>"><span class="mr-2">+</span> Post a Comment</a></li>
-              <li class="d-lg-none"><a href="login.html">Log In</a></li>
+              <li class="d-lg-none"><a href="<c:url value='/forum'/>"><span class="mr-2 icon-home"></span>回論壇</a></li>
+              <li class="d-lg-none"><a href="#"><span class="mr-2 icon-user"></span>${Member.name}</a></li>
             </ul>
           </nav>
           
           <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
             <div class="ml-auto">
-              <a href="<c:url value='/forum/AddPage'/>" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>我要PO文</a>
-	          <a href="<c:url value='/forum/LoginPage'/> "class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="icon-user"> </span>${Member.name}</a>
+              <a href="<c:url value='/forum'/>" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>回論壇</a>
+	          <a href="#" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="icon-user"> </span>${Member.name}</a>
             </div>
             <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
           </div>
@@ -235,14 +239,14 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 blog-content">
-            <div class="pt-5">
-              <p>Categories:  <a href="#">Design</a>, <a href="#">Events</a>  Tags: <a href="#">#html</a>, <a href="#">#trends</a></p>
-            </div>
+<!--             <div class="pt-5"> -->
+<!--               <p>Categories:  <a href="#">Design</a>, <a href="#">Events</a>  Tags: <a href="#">#html</a>, <a href="#">#trends</a></p> -->
+<!--             </div> -->
 
 
             <div class="pt-5">
-              <h3 class="mb-5">6 Comments</h3>
-              <ul class="comment-list">
+              <h3 id="mb5" class="mb-5">6 Comments</h3>
+              <ul id="commentlist" class="comment-list">
                 <li class="comment">
                   <div class="vcard bio icon-user" style="font-size:48px;">
 <!--                     <img src="/ipodcast/ben/image/user02.png" alt="Image placeholder"> -->
@@ -339,12 +343,11 @@
             
             <div class="sidebar-box">
               <div class="categories">
-                <h3>Categories</h3>
-                <li><a href="#">Creatives <span>(12)</span></a></li>
-                <li><a href="#">News <span>(22)</span></a></li>
-                <li><a href="#">Design <span>(37)</span></a></li>
-                <li><a href="#">HTML <span>(42)</span></a></li>
-                <li><a href="#">Web Development <span>(14)</span></a></li>
+                <h3>類別:</h3>
+                <li><a href="#">八卦 <span></span></a></li>
+                <li><a href="#">求學 <span></span></a></li>
+                <li><a href="#">寵物 <span></span></a></li>
+                <li><a href="#">感情 <span></span></a></li>
               </div>
             </div>
             
@@ -596,7 +599,7 @@
           </div>
         </div>
 
-        <div class="row text-center">
+        <div class="row text-center" on>
           <div class="col-12">
             <p class="copyright"><small>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -625,6 +628,8 @@
     
     <script src="/ipodcast/ben/js/custom.js"></script>
     <script type="text/javascript">
+    
+    
     window.onload = function(){
     	
     	let forumCon = document.getElementById("forumCon");
@@ -643,8 +648,8 @@
     	xhrcontent.send();
     	xhrcontent.onreadystatechange = function(){
 			 if(xhrcontent.readyState == 4 && xhrcontent.status == 200){
-				
-				 let content = unpack(xhrcontent.responseText);
+				 console.log(xhrcontent.responseText);
+				 let content = unpackForContent(xhrcontent.responseText);
 				 let stringData = content.con;
 				 let newData = stringData.replace(new RegExp('\r\n','g'), '<br />');
 				 forumCon.innerHTML = newData;
@@ -662,37 +667,124 @@
 			 }
 		 }
     	
+    	let acctno;
     	let xhruser = new XMLHttpRequest();
     	xhruser.open("GET", "<c:url value='/forum/getUserAcctno'/>", true);
     	xhruser.send();
     	xhruser.onreadystatechange = function(){
     		if(xhruser.readyState == 4 && xhruser.status == 200){
-		    let acctno = xhruser.responseText;
+		    	acctno = xhruser.responseText;
 		    	console.log(acctno == Conuid);
-		    	if(acctno == Conuid){
+		    	if(acctno === Conuid){
 		    		updatebtn.hidden = false;
 		    		deletebtn.hidden = false;    		
 		    	}
     		}
     	}
     	
-    	SendMessagebtn.onclick = function(){
+    	findAllMessage();
+    	
+    	
+    	SendMessagebtn.addEventListener("click",function(){
     		let message = document.getElementById("message");
-    		
-    		let xhr = new XMLHttpResponse();
-    		let url = "<c:url value='"+"/forum/insertForumMessage/" + message.value + "/" + ${Member.acctno} + "/" + ${fcontent.fid} +  "' />";
-    		xhr.open("POST", url, true);
-    		xhr.send();
-    	}
-    	
-    	  	
-    	
+    		console.log(message.value);
+    		if(message.value != null){
+	    		let xhr = new XMLHttpRequest();
+	    		let url = "<c:url value='/forum/insertForumMessage/"+message.value+"' />";
+	    		xhr.open("GET", url, true);
+	    		xhr.send();
+	    		xhr.onreadystatechange = function(){
+	    			if(xhr.readyState == 4 && xhr.status == 200){
+	    				let commentlist = document.getElementById("commentlist");
+	    				commentlist.innerHTML = unpackForMessage(xhr.responseText);
+	    			}
+	    		}	
+    		}
+    	});
+  	
     }
     
-   	function unpack(text){
+    function findAllMessage(){
+    	let xhrmessage = new XMLHttpRequest();
+    	xhrmessage.open("GET", "<c:url value='/forum/findForumMessage'/>", true);
+    	xhrmessage.send();
+    	xhrmessage.onreadystatechange = function(){
+			 if(xhrmessage.readyState == 4 && xhrmessage.status == 200){
+				 let commentlist = document.getElementById("commentlist");
+
+				 commentlist.innerHTML = unpackForMessage(xhrmessage.responseText);
+			 }
+		 }
+    }
+    
+   	function unpackForContent(text){
    		let content = JSON.parse(text);
    		return content;
    	}
+   	
+   	function unpackForMessage(text){
+   		let messages = JSON.parse(text);
+   		let mb5 = document.getElementById("mb5");
+   		mb5.innerHTML = messages.length + "則留言";
+   		let segment="";
+   		for(let i = 0; i<messages.length;i++){
+   			let message = messages[i];
+   			segment += "<li class='comment'>";
+   	   		segment += "<div class='vcard bio icon-user' style='font-size:48px;'></div>";
+   	   		segment += "<div class='comment-body' onmouseenter='changeTags(this);'>";
+   			segment += "<h3 style='font-weight:bold;'>"+message.uname+"</h3>";
+   			segment += "<div class='meta'>"+message.date+"</div>";
+   			segment += "<p>"+message.comment+"</p>";
+   			segment += "<textarea hidden='true' onkeyup='autogrow(this);' style='resize:none;' rows='1'>"+message.comment+"</textarea>";
+   			segment += "<p><button class='btn-primary' style='border:none;width:70px;display:inline-block;'>修改</button>&nbsp;<button id='"+message.mid+"' class='btn-primary' style='border:none;width:70px;display:inline-block;'>移除</button></p>";
+   			segment += "</div>";
+   	   		segment += "</li>";
+   		}
+   		return segment;
+   	}
+   	
+   	function changeTags(messageDiv){
+//    		if(messageDiv.onmouseleave){
+//    			return;
+//    		}
+   		let innerP = messageDiv.getElementsByTagName("p")[0];
+   		let innerUpdateBtn = messageDiv.getElementsByTagName("button")[0];
+   		let innerDeleteBtn = messageDiv.getElementsByTagName("button")[1];
+   		let innerTextarea = messageDiv.getElementsByTagName("textarea")[0];
+   		let text = innerP.innerHTML;
+   	 	
+   		innerDeleteBtn.addEventListener("click", function(){
+   			let xhrDeleteMessage = new XMLHttpRequest();
+   			let url = "<c:url value='/forum/deleteMessage/"+innerDeleteBtn.id+"' />"
+   			xhrDeleteMessage.open("POST", url, true);
+   			xhrDeleteMessage.send();
+   			xhrDeleteMessage.onreadystatechange = function(){
+   				if(xhrDeleteMessage.readyState == 4 && xhrDeleteMessage.status == 200){
+   					console.log(xhrDeleteMessage.responseText);
+   				}
+   			}
+   			
+   		});
+   		
+   		innerUpdateBtn.addEventListener("click", function(){
+   			innerP.hidden = true;
+	   		innerTextarea.hidden = false;
+	   		innerDeleteBtn.hidden = true;
+	   		innerUpdateBtn.innerHTML = "送出";
+   		});
+   		
+   			
+// 	   		innerUpdateBtn.onclick = "SendUpdateMessage()";   	 		
+   	 	
+   		
+   	}
+   	
+//    	function SendUpdateMessage(){
+//    		let xhr = new XMLHttpRequest();
+//    		let url = "<c:url value=''/>"
+//    		xhr.open("POST", url, true);
+//    		xhr.send();
+//    	}
    	
    	function autogrow(textarea){
    		let adjustedHeight = textarea.clientHeight;
@@ -705,6 +797,7 @@
    			textarea.style.height = (textarea.scrollHeight-24) +'px';
    		}
    	}
+   	
     </script>
   </body>
 </html>

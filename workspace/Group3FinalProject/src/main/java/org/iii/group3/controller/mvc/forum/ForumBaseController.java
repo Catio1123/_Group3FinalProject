@@ -48,4 +48,6 @@ public class ForumBaseController {
 	public String toAdminPage() {
 		return "forum/ForumServerSide";
 	}
+	
+	
 }

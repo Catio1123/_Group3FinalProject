@@ -47,13 +47,13 @@
     <header class="site-navbar mt-3">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6"><a href="index.html">IForum</a></div>
+          <div class="site-logo col-6"><a href="<c:url value='/'/>">to IForum</a></div>
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="<c:url value='/' />" class="nav-link">Home</a></li>
-              <li><a href="services.html" class="active">Pages</a></li>
-              <li><a href="blog.html">Blog</a></li>
+<%--               <li><a href="<c:url value='/' />" class="nav-link">Home</a></li> --%>
+<!--               <li><a href="services.html" class="active">Pages</a></li> -->
+<!--               <li><a href="blog.html">Blog</a></li> -->
 
 <!--               <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> </a></li> -->
               <li class="d-lg-none"><a href="<c:url value='/LoginPage'/>">Log In</a></li>
@@ -118,7 +118,7 @@
                   <textarea id="content001" name="content" hidden="true"></textarea>	
               <div class="form-group">
                 <label for="job-description">文章內容</label>
-                <div onkeyup="Synchronizetoinput()" class="editor" id="editor-1">
+                <div onkeyup="divToInput()" class="editor" id="editor-1">
 <!--                   <p></p> -->
 			
                 </div>
@@ -199,7 +199,7 @@
 <!--       </a> -->
 
       <div class="container">
-        <div class="row mb-5">
+        <div class="row mb-1">
           <div class="col-6 col-md-3 mb-4 mb-md-0">
             <h3>Search Trending</h3>
             <ul class="list-unstyled">
@@ -243,7 +243,7 @@
           <div class="col-12">
             <p class="copyright"><small>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            本專案僅供中壢資策會使用</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
           </div>
         </div>
@@ -269,12 +269,12 @@
     
     <script src="<c:url value='/ben/js/custom.js'/> "></script>
 	<script type="text/javascript">
-		function Synchronizetoinput(){
+		function divToInput(){
 			let x = document.getElementsByClassName("ql-editor")[0]
-			let pmark = x.getElementsByTagName("p")[0];
-			let forcontent = document.getElementById("content001");
+			let y = x.getElementsByTagName("p")[0];
+			let z = document.getElementById("content001");
 
-			forcontent.value = pmark.innerText;
+			z.value = x.innerHTML;
 		}
 		
 		 function check()

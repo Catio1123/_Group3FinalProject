@@ -34,6 +34,12 @@ public class FcDao {
 		return entityManager.createQuery(sqlString).getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<ForumContentBean> findByTypeSearch(String name){
+		String sqlString = "from ForumContentBean f where f.type like '%" + name + "%'";
+		return entityManager.createQuery(sqlString).getResultList();
+	}
+	
 	public List<ForumContentBean> selectAll(){
 //		Session session = factory.getCurrentSession();
 		Session session = entityManager.unwrap(Session.class);

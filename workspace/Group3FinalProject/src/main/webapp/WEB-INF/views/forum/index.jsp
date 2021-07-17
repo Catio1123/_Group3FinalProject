@@ -53,17 +53,17 @@
     <header class="site-navbar mt-3">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6"><a href="index.html">IForum</a></div>
+          <div class="site-logo col-6"><a href="<c:url value='/'/>">to IPodcast</a></div>
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="index.html" class="nav-link">Home</a></li>
-              <li><a href="services.html" class="active">Pages</a></li>
-              <li><a href="blog.html">Blog</a></li>
+<!--               <li><a href="index.html" class="nav-link">Home</a></li> -->
+<!--               <li><a href="services.html" class="active">Pages</a></li> -->
+<!--               <li><a href="blog.html">Blog</a></li> -->
               <li><a href="<c:url value='/form/toServerSidePage'/>">ServerSide</a></li>
 
-<%--               <li class="d-lg-none"><a href="<c:url value='/forum/AddPage'/>"><span class="mr-2">+</span> 我要PO文</a></li> --%>
-<%--               <li class="d-lg-none"><a href="<c:url value='/forum/LoginPage'/>">Log In</a></li> --%>
+              <li class="d-lg-none"><a href="<c:url value='/forum/AddPage'/>"><span class="mr-2">+</span> 我要PO文</a></li>
+              <li class="d-lg-none"><a href="<c:url value='/forum/LoginPage'/>">${Member.name}</a></li>
             </ul>
           </nav>
          
@@ -90,9 +90,10 @@
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-12">
-            <div class="mb-5 text-center">
-              <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
+            <div class="mb-5 text-left">
+              <h1 class="text-white site-logo" style="font-weight:400;">i F O R U M</h1>
+              <p>隨時分享最新的IPodcast話題 .</p>
+              <p>一起進到Podcast的世界互相交流吧！</p>
             </div>
 <!--             <form method="post" class="search-jobs-form"> -->
               <div class="row mb-5">
@@ -119,39 +120,38 @@
                   </select>
                 </div> -->
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                  <button id="searchbtn" type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search Job</button>
+                  <button id="searchbtn" type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search</button>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12 popular-keywords">
-                  <h3>Trending Keywords:</h3>
-                  <ul class="keywords list-unstyled m-0 p-0">
-                    <li><a href="#" class="">UI Designer</a></li>
-                    <li><a href="#" class="">Python</a></li>
-                    <li><a href="#" class="">Developer</a></li>
-                  </ul>
-                </div>
-              </div>
+              
 <!--             </form> -->
           </div>
         </div>
       </div>
     </section>
-    
-    
-
-    
 
     <section class="site-section">
+                  
       <div class="container">
-
+              <div class="row">
+               <h3>關鍵字:</h3>
+               <div class="col-md-12 popular-keywords">
+                <ul class="keywords list-unstyled m-0 p-0" >
+                 <li><button class="typeSearch">八卦</button></li>
+                 <li><button class="typeSearch">寵物</button></li>
+                 <li><button class="typeSearch">感情</button></li>
+                 <li><button class="typeSearch">求學</button></li>
+                </ul>
+               </div>
+              </div>
         <div class="row mb-5 justify-content-center">
           <div class="col-md-7 text-center">
 <!--             <h2 class="section-title mb-2">43,167 Content Listed</h2> -->
+	  	      
           </div>
         </div>
         
-        <ul id="topicform" class="job-listings mb-5">
+        <ul id="topicform" class="job-listings mb-5" >
 
 <!--           <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center"> -->
 <!--             <a href="job-single.html"></a> -->
@@ -309,14 +309,17 @@
     <script src="<c:url value='/ben/js/custom.js'/> "></script>
 
      <script type="text/javascript">
+	     let typeSearch = document.getElementsByClassName("typeSearch");
+     	
 	     window.onload = function(){
+	    	 
 	    	 let searchbtn = document.getElementById("searchbtn");
 	    	 let searchtxt = document.getElementById("searchtxt");
 	    	 let topicform = document.getElementById("topicform");
 	    	 
 	    	 let xhr0 = new XMLHttpRequest();
 	    	 let url0 = "<c:url value='/forum/getallcontent' />";
-    		 xhr0.open("POST", url0, true);
+    		 xhr0.open("GET", url0, true);
     		 xhr0.send();
     		 xhr0.onreadystatechange = function(){
     			 if(xhr0.readyState == 4 && xhr0.status == 200){
@@ -341,16 +344,99 @@
 	    		 }
 	    	 }
 	    	 
+	    	 let typeSearchBtn1 = typeSearch[0];
+	    	 let typeSearchBtn2 = typeSearch[1];
+	    	 let typeSearchBtn3 = typeSearch[2];
+	    	 let typeSearchBtn4 = typeSearch[3];
+	    	 
+	    	 typeSearchBtn1.addEventListener('click', function(){
+
+	    		 let xhr = new XMLHttpRequest();
+	    		 let url = "<c:url value='/forum/search/byType/" + this.innerText + "' />";
+	    		 xhr.open("GET", url, true);
+	    		 xhr.send();
+	    		 xhr.onreadystatechange = function(){
+	    			 if(xhr.readyState == 4 && xhr.status == 200){
+	    				 
+	    				 if(xhr.responseText.length > 2){
+		    				 topicform.innerHTML = unpack(xhr.responseText);	    					 
+	    				 }else{
+	    					 alert("目前此類別沒有文章");
+	    				 }
+	    			 }
+	    		 } 
+	    	 });
+	    	 
+	    	 typeSearchBtn2.addEventListener('click', function(){
+
+	    		 let xhr = new XMLHttpRequest();
+	    		 let url = "<c:url value='/forum/search/byType/" + this.innerText + "' />";
+	    		 xhr.open("GET", url, true);
+	    		 xhr.send();
+	    		 xhr.onreadystatechange = function(){
+	    			 if(xhr.readyState == 4 && xhr.status == 200){
+
+	    				 if(xhr.responseText.length > 2){
+		    				 topicform.innerHTML = unpack(xhr.responseText);	    					 
+	    				 }else{
+	    					 alert("目前此類別沒有文章");
+	    				 }
+	    			 }
+	    		 }
+	    	 });
+	    	 
+	    	 typeSearchBtn3.addEventListener('click', function(){
+
+	    		 let xhr = new XMLHttpRequest();
+	    		 let url = "<c:url value='/forum/search/byType/" + this.innerText + "' />";
+	    		 xhr.open("GET", url, true);
+	    		 xhr.send();
+	    		 xhr.onreadystatechange = function(){
+	    			 if(xhr.readyState == 4 && xhr.status == 200){
+	    				 if(xhr.responseText.length > 2){
+		    				 topicform.innerHTML = unpack(xhr.responseText);	    					 
+	    				 }else{
+	    					 alert("目前此類別沒有文章");
+	    				 }
+	    			 }
+	    		 } 
+	    	 });
+	    	 
+	    	 typeSearchBtn4.addEventListener('click', function(){
+
+	    		 let xhr = new XMLHttpRequest();
+	    		 let url = "<c:url value='/forum/search/byType/" + this.innerText + "' />";
+	    		 xhr.open("GET", url, true);
+	    		 xhr.send();
+	    		 xhr.onreadystatechange = function(){
+	    			 if(xhr.readyState == 4 && xhr.status == 200){
+	    				 if(xhr.responseText.length > 2){
+		    				 topicform.innerHTML = unpack(xhr.responseText);	    					 
+	    				 }else{
+	    					 alert("目前此類別沒有文章");
+	    				 }
+	    			 }
+	    		 } 
+	    	 });
+	    	 
+	     }
+	     
+	     
+	     function clickContentType(btn){
+	    	 alert(btn.innerText);
+    	 }
+	     
+	     	 //解xhr.response的json封包	
 	    	 function unpack(text){
 	    		 let forums = JSON.parse(text);
 	    		 let segment="";
 	    		 for(let i =0; i<forums.length;i++){
 	    			 let forum = forums[i];
-		    		 segment += "<li class='job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center'>";
+		    		 segment += "<li class='job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center' style='margin-top:15px;border-top: 2.5px solid #ccc;border-bottom: 2.5px solid #ccc;border-right: 2.5px solid #ccc;height:90px;width:;' >";
 		    		 segment += "<a href='" + "<c:url value='/forum/ContentPage/"+ forum.fid +"' />" + "'></a>";
 		    		 segment += "<div class='job-listing-logo'>";
 		    		 
-		    		 segment += "<img src='"+"<c:url value='/ben/image/NewProject1.jpg' /> "+"'";
+		    		 segment += "<img src='"+"<c:url value='/ben/image/microphone0101.png' /> "+"'";
 		    		 segment += "alt='Free Website Template by Free-Template.co' class='img-fluid'>";
 		    		 
 		    		 segment += "</div>";
@@ -361,13 +447,13 @@
 		    		 segment += "</div>";
 		    		 segment += "<div class='job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4'>";
 		    		 segment += "<div class='job-listing-position custom-width w-50 mb-3 mb-sm-0'>";
-		    		 segment += "<h2><strong></strong></h2>";
+		    		 segment += "<h2></h2>";
 		    		 segment += "</div>";
 		    		 segment += "<div class='job-listing-location mb-3 mb-sm-0 custom-width w-25'>";
-		    		 segment += "<span class='icon-room'></span>";
+		    		 segment += "<span class=''></span>";
 		    		 segment += "</div>";
 		    		 segment += "<div class='job-listing-meta'>";
-		    		 segment += "<span class='badge badge-danger'>Part Time</span>";
+		    		 segment += "<span class='badge badge-danger'>"+forum.type+"</span>";
 		    		 segment += "</div>";
 		    		 segment += "</div>";
 		    		 segment += "</li>";
@@ -375,8 +461,6 @@
 	    		 return segment;
 
 	    	 }
-	    	 
-	     }
 	     
 // 	     <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
 //          <a href="job-single.html"></a>

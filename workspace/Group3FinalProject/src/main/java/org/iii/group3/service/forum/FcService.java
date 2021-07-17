@@ -34,6 +34,10 @@ public class FcService {
 		return dao.findBySearch(name);
 	}
 	
+	public List<ForumContentBean> findByTypeSearch(String name){
+		return dao.findByTypeSearch(name);
+	}
+	
 	public Serializable insert(ForumContentBean bean) {	
 		try {
 			Serializable result = dao.insert(bean);
