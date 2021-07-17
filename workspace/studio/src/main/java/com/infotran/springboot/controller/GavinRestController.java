@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.infotran.springboot.model.Booking;
 import com.infotran.springboot.model.Studio;
+import com.infotran.springboot.service.BookingService;
+import com.infotran.springboot.service.BookingServiceImpl;
 import com.infotran.springboot.service.StudioServiceImpl;
 
 @RestController
@@ -25,25 +28,27 @@ public class GavinRestController {
 	
 	@Autowired
 	private StudioServiceImpl studioService;
+	@Autowired
+	private BookingService bookingService;
 //	==============================================================================	
 	
-//	@PostMapping(
-//			path = "/studio",
-//			consumes = MediaType.APPLICATION_JSON_VALUE, 
-//			produces = "application/json; charset=utf-8")
-//	public Map<String, String> create(@RequestBody Studio insertBean) {
-//		int result = studioService.insert(insertBean);
-//		
-//		Map<String, String> msg = new HashMap<String, String>();
-//		  
-//		  if(result == 1) {
-//			  msg.put("msg", "新增成功");
-//		  }else {
-//			  msg.put("msg", "新增失敗");
-//		  }
-//		  
-//		  return msg;
-//	}
+	@PostMapping(
+			path = "/studiobooking",
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = "application/json; charset=utf-8")
+	public Map<String, String> create(@RequestBody Booking insertBean) {
+		int result = bookingService.insert(insertBean);
+		
+		Map<String, String> msg = new HashMap<String, String>();
+		  
+		  if(result == 1) {
+			  msg.put("msg", "新增成功");
+		  }else {
+			  msg.put("msg", "新增失敗");
+		  }
+		  
+		  return msg;
+	}
 	
 //	==============================================================================	
 	@GetMapping(
@@ -100,6 +105,27 @@ public class GavinRestController {
 		  }
 		 
 		  return msg;
+	}
+//	==============================================================================	
+	
+	@PutMapping(
+			path = "/editbs/{id}", 
+			consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = "application/json; charset=utf-8")
+	public Map<String, String> update(
+			@RequestBody Booking updateBean, 
+			@PathVariable(required = true) Integer id) {
+		
+		Map<String, String> msg = new HashMap<String, String>();
+		
+		boolean success = bookingService.updateExitTarget(updateBean, id);
+		if(success) {
+			msg.put("msg", "更新成功");
+		}else {
+			msg.put("msg", "更新失敗，鍵值:" + id + "不存在");
+		}
+		
+		return msg;
 	}
 //	
 ////	==============================================================================

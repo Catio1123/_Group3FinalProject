@@ -1,5 +1,6 @@
 package com.infotran.springboot.controller;
 
+import java.awt.print.Book;
 import java.io.File;
 import java.io.InputStream;
 import java.sql.Blob;
@@ -24,7 +25,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.infotran.springboot.utils.SystemUtils;
+import com.infotran.springboot.model.Booking;
 import com.infotran.springboot.model.Studio;
+import com.infotran.springboot.service.BookingService;
+import com.infotran.springboot.service.BookingServiceImpl;
 import com.infotran.springboot.service.StudioServiceImpl;
 import com.infotran.springboot.validate.StudioValidator;
 
@@ -36,6 +40,8 @@ public class StudioFindViewController {
 	@Autowired
 	StudioServiceImpl studioService;
 	@Autowired
+	BookingServiceImpl bookingService;
+	@Autowired
 	ServletContext context;
 	
 	@GetMapping("/insertSuccess")
@@ -44,8 +50,23 @@ public class StudioFindViewController {
 	}
 	
 	@GetMapping("/queryStudio")
-	public String sendQueryStudio() {
+	public String sendQueryStudio(Model m) {
+		List<Studio> studio = studioService.findAll();
+		m.addAttribute("studio",studio);
 		return "studio/queryStudio";
+	}
+	@GetMapping("/querybooking")
+	public String sendQueryBooking(Model m) {
+		List<Booking> booking = bookingService.findAll();
+		m.addAttribute("booking",booking);
+		return "studio/querybooking";
+	}
+	
+	@GetMapping("/studioguest")
+	public String sendstudioguest(Model m) {
+		List<Studio> studio = studioService.findAll();
+		m.addAttribute("studio",studio);
+		return "studio/studioguest";
 	}
 	@GetMapping("/insertStudio")
 	public String sendInsertStudio(Model model) {
@@ -112,6 +133,22 @@ public class StudioFindViewController {
 		model.addAttribute("studio", studio);
 		return "studio/editStudio";
 	}	
+	@GetMapping(value="/editBooking/{id}", produces = "application/json; charset=UTF-8")
+	public String sendEditBookingPage(
+			@PathVariable Integer id, Model model
+			) {
+		Booking booking = bookingService.findById(id);
+		model.addAttribute("booking", booking);
+		return "studio/editBooking";
+	}	
+	@GetMapping(value="/bookStudio/{id}", produces = "application/json; charset=UTF-8")
+	public String sendbookPage(
+			@PathVariable Integer id, Model model
+			) {
+		Studio studio = studioService.findById(id);
+		model.addAttribute("studio", studio);
+		return "studio/bookStudio";
+	}	
 	
 	@PostMapping(value="/editStudio/{id}", produces = "application/json; charset=UTF-8")
 	public String updateRestaurant(@ModelAttribute("studio") Studio studio,
@@ -174,6 +211,18 @@ public class StudioFindViewController {
 		}
 		System.out.println("In @ModelAttribute, studio=" + studio);
 		return studio;
+	}
+	@ModelAttribute("booking")
+	public Booking getbooking(@RequestParam(value="id", required = false ) Integer id) {
+		System.out.println("------------------------------------------");
+		Booking booking = null;
+		if (id != null) {
+			booking = bookingService.findById(id);
+		} else {
+			booking = new Booking();
+		}
+		System.out.println("In @ModelAttribute, booking=" + booking);
+		return booking;
 	}
 
 }
