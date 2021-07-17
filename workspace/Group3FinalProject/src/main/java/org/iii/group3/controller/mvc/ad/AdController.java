@@ -64,7 +64,7 @@ public class AdController {
 		
 		
 		adService.save(ad, member.getAcctno() );
-		ra.addFlashAttribute("successMessage", ad.getCompany() + "廣告新增成功");
+		ra.addFlashAttribute("successMessage", "廣告新增成功");
 		return "redirect:/company";
 	}
 
@@ -77,7 +77,7 @@ public class AdController {
 	public String updatepProcess(@ModelAttribute("ad") Ad ad, @PathVariable(value = "aid", required = true) int aid,
 			Model m) {
 		Ad adUpdate = adService.select(aid);
-		System.out.println(ad.getId());
+//		System.out.println(ad.getId());
 		
 		m.addAttribute("ad", adUpdate);
 
@@ -87,6 +87,8 @@ public class AdController {
 	@PostMapping(path = "/update")
 	public String update(@ModelAttribute("Member") Member member, @ModelAttribute("ad") Ad ad,BindingResult result,RedirectAttributes ra , Model m) {
 
+		
+		
 		adService.update(ad ,member.getAcctno());
 		ra.addFlashAttribute("successMessage", "編號\n"+ad.getId() + "\n廣告更新成功");
 		return "redirect:/company";

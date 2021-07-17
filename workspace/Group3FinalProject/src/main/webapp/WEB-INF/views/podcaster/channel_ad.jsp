@@ -43,7 +43,7 @@
             <!-- Ipodcast 網址 -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value='/'/>">
                 
-                <div class="sidebar-brand-text mx-3">IPodcast</div>
+                <div class="sidebar-brand-text mx-3"><img src="/ipodcast/wayne/images/iPocast.png" width="180" align="top"></div>
             </a>
 
             <!-- Divider -->

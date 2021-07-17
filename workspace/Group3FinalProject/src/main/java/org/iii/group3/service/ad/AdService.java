@@ -112,7 +112,9 @@ public class AdService {
 //		Optional<Ad> ad = adRepo.findById(aid);
 //
 //		Ad ads = ad.get();
-
+		
+		Optional<Ad> aa = adRepo.findById(ad.getId());
+		Ad ad2 = aa.get();
 		Blob blob = null;
 		String mimeType = "";
 		String name = "";
@@ -143,6 +145,9 @@ public class AdService {
 				e.printStackTrace();
 			}
 
+		}else {
+			ad.setPicture(ad2.getPicture());
+			ad.setMimeType(ad2.getMimeType());
 		}
 		ad.setCompanyId(cid);
 		ad.setText(ad.getText());

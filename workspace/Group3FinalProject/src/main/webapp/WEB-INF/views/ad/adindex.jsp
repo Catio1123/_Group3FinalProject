@@ -36,8 +36,9 @@
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3"
 		id="mainNav">
 		<div class="container px-4 px-lg-5">
-		
-			  <a class="navbar-brand" href="<c:url value='/' />">	<img src="/ipodcast/wayne/images/iPocast.png" width="10%" ></a>
+
+			<a class="navbar-brand" href="<c:url value='/' />"> <img
+				src="/ipodcast/wayne/images/iPocast.png" width="200" align="top"></a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -46,28 +47,20 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto my-2 my-lg-0">
-				
-					<li class="nav-item"><a class="nav-link"
-						href="...">${Member.name }</a></li>
+
+
 
 
 					<li class="nav-item"><a class="nav-link"
-						href="<c:url value='/company'/>">廣告商</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="<c:url value='/users/1'/>">使用者1</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="<c:url value='/users/2'/>">使用者2</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="<c:url value='/userpodcast/1'/>">測試1</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="<c:url value='/userpodcast/2'/>">測試2</a></li>
+						href="<c:url value='/company'/>">${Member.name }廣告商專區</a></li>
+
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<!-- Masthead-->
 	<header class="masthead">
-	
+
 		<div id="carouselExampleCaptions" class="carousel slide"
 			data-bs-ride="carousel">
 			<div class="carousel-indicators">
@@ -78,40 +71,63 @@
 					data-bs-slide-to="1" aria-label="Slide 2"></button>
 				<button type="button" data-bs-target="#carouselExampleCaptions"
 					data-bs-slide-to="2" aria-label="Slide 3"></button>
-				
+				<button type="button" data-bs-target="#carouselExampleCaptions"
+					data-bs-slide-to="3" aria-label="Slide 4"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions"
+					data-bs-slide-to="4" aria-label="Slide 5"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions"
+					data-bs-slide-to="5" aria-label="Slide 6"></button>
+
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img
-						src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/ad1.jpg'/>"
+					<img src="<c:url value='/wayne/creative/assets/img/ad1.jpg'/>"
 						class="d-block w-100" alt="...">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>First slide label</h5>
-						<p>Some representative placeholder content for the first
-							slide.</p>
+						<h5></h5>
+						<p></p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img
-						src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/ad2.jpg'/>"
+					<img src="<c:url value='/wayne/creative/assets/img/ad3.jpg'/>"
 						class="d-block w-100" alt="...">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>Second slide label</h5>
-						<p>Some representative placeholder content for the second
-							slide.</p>
+						<h5></h5>
+						<p></p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img
-						src="<c:url value='/wayne/creative/assets/img/portfolio/thumbnails/ad3.jpg'/>"
+					<img src="<c:url value='/wayne/creative/assets/img/ad6.jpg'/>"
 						class="d-block w-100" alt="...">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>Third slide label</h5>
-						<p>Some representative placeholder content for the third
-							slide.</p>
+						<h5></h5>
+						<p></p>
 					</div>
 				</div>
-				
+				<div class="carousel-item">
+					<img src="<c:url value='/wayne/creative/assets/img/ad2.jpg'/>"
+						class="d-block w-100" alt="...">
+					<div class="carousel-caption d-none d-md-block">
+						<h5></h5>
+						<p></p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img src="<c:url value='/wayne/creative/assets/img/ad5.jpg'/>"
+						class="d-block w-100" alt="...">
+					<div class="carousel-caption d-none d-md-block">
+						<h5></h5>
+						<p></p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img src="<c:url value='/wayne/creative/assets/img/ad4.jpg'/>"
+						class="d-block w-100" alt="...">
+					<div class="carousel-caption d-none d-md-block">
+						<h5></h5>
+						<p></p>
+					</div>
+				</div>
 			</div>
 			<button class="carousel-control-prev" type="button"
 				data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -124,68 +140,59 @@
 				<span class="visually-hidden">Next</span>
 			</button>
 		</div>
-		
+
 	</header>
 	<!-- About-->
-	<section class="page-section bg-primary" id="about">
-		<div class="container px-4 px-lg-5">
-			<div class="row gx-4 gx-lg-5 justify-content-center">
-				<div class="col-lg-8 text-center">
-					<h2 class="text-white mt-0">We've got what you need!</h2>
-					<hr class="divider divider-light" />
-					<p class="text-white-75 mb-4">Start Bootstrap has everything
-						you need to get your new website up and running in no time! Choose
-						one of our open source, free to download, and easy to use themes!
-						No strings attached!</p>
-					<a class="btn btn-light btn-xl" href="#services">Get Started!</a>
-				</div>
-			</div>
-		</div>
-	</section>
+
 	<!-- Services-->
 	<section class="page-section" id="services">
 		<div class="container px-4 px-lg-5">
-			<h2 class="text-center mt-0">At Your Service</h2>
+			<h2 class="text-center mt-0">更精準、高黏著、高轉換的廣告選擇</h2>
 			<hr class="divider" />
 			<div class="row gx-4 gx-lg-5">
 				<div class="col-lg-3 col-md-6 text-center">
 					<div class="mt-5">
 						<div class="mb-2">
-							<i class="bi-gem fs-1 text-primary"></i>
+							<img
+								src="<c:url value='/wayne/creative/assets/img/icon11-B.png'/>"
+								width="200" height="200">
 						</div>
-						<h3 class="h4 mb-2">Sturdy Themes</h3>
-						<p class="text-muted mb-0">Our themes are updated regularly to
-							keep them bug free!</p>
+						<h3 class="h4 mb-2">主持人背書效應</h3>
+						<p class="text-muted mb-0">主持人親口描述，聽眾容易對產品、品牌產生較高接受度，同時具有背書效應。
+						</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 text-center">
 					<div class="mt-5">
 						<div class="mb-2">
-							<i class="bi-laptop fs-1 text-primary"></i>
+							<img
+								src="<c:url value='/wayne/creative/assets/img/icon12-B.png'/>"
+								width="200" height="200">
 						</div>
-						<h3 class="h4 mb-2">Up to Date</h3>
-						<p class="text-muted mb-0">All dependencies are kept current
-							to keep things fresh.</p>
+						<h3 class="h4 mb-2">聽眾黏著度高</h3>
+						<p class="text-muted mb-0">多數節目有 60-70 % 的聽眾都會聽完整集內容。</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 text-center">
 					<div class="mt-5">
 						<div class="mb-2">
-							<i class="bi-globe fs-1 text-primary"></i>
+							<img
+								src="<c:url value='/wayne/creative/assets/img/icon13-B.png'/>"
+								width="200" height="200">
 						</div>
-						<h3 class="h4 mb-2">Ready to Publish</h3>
-						<p class="text-muted mb-0">You can use this design as is, or
-							you can make changes!</p>
+						<h3 class="h4 mb-2">精準客群投放</h3>
+						<p class="text-muted mb-0">節目調性、時事議題和主持人風格明確，下的廣告直接對應需要的客群。</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 text-center">
 					<div class="mt-5">
 						<div class="mb-2">
-							<i class="bi-heart fs-1 text-primary"></i>
+							<img
+								src="<c:url value='/wayne/creative/assets/img/icon14-B.png'/>"
+								width="200" height="200">
 						</div>
-						<h3 class="h4 mb-2">Made with Love</h3>
-						<p class="text-muted mb-0">Is it really open source if it's
-							not made with love?</p>
+						<h3 class="h4 mb-2">數據精準計算</h3>
+						<p class="text-muted mb-0">最大市占掌握完整數據</p>
 					</div>
 				</div>
 			</div>
@@ -273,9 +280,9 @@
 	<!-- Call to action-->
 	<section class="page-section bg-dark text-white">
 		<div class="container px-4 px-lg-5 text-center">
-			<h2 class="mb-4">Free Download at Start Bootstrap!</h2>
+			<h2 class="mb-4">所有你想要的、你還不知道你需要的，我們都能協助您。</h2>
 			<a class="btn btn-light btn-xl"
-				href="https://startbootstrap.com/theme/creative/">Download Now!</a>
+				href="https://startbootstrap.com/theme/creative/">免費諮詢</a>
 		</div>
 	</section>
 	<!-- Contact-->
@@ -285,8 +292,8 @@
 				<div class="col-lg-8 col-xl-6 text-center">
 					<h2 class="mt-0">最新客製化 Podcast 廣告投放，您也有興趣嗎？</h2>
 					<hr class="divider" />
-					<p class="text-muted mb-5">膩了一般社群，想試試 Podcast 廣告投放嗎？ 放心交給我們，精心客製化的設計，絕對讓您的品牌更加分。 Send us a messages and we will get back to you as soon as
-						possible!</p>
+					<p class="text-muted mb-5">膩了一般社群，想試試 Podcast 廣告投放嗎？
+						放心交給我們，精心客製化的設計，絕對讓您的品牌更加分。</p>
 				</div>
 			</div>
 			<div class="row gx-4 gx-lg-5 justify-content-center mb-5">
@@ -318,7 +325,7 @@
 							<input class="form-control" id="email" type="email"
 								placeholder="name@example.com"
 								data-sb-validations="required,email" /> <label for="email">Email
-								</label>
+							</label>
 							<div class="invalid-feedback" data-sb-feedback="email:required">An
 								email is required.</div>
 							<div class="invalid-feedback" data-sb-feedback="email:email">Email
@@ -371,7 +378,7 @@
 			<div class="row gx-4 gx-lg-5 justify-content-center">
 				<div class="col-lg-4 text-center mb-5 mb-lg-0">
 					<i class="bi-phone fs-2 mb-3 text-muted"></i>
-					<div> (03)-425-1108</div>
+					<div>(03)-425-1108</div>
 				</div>
 			</div>
 		</div>

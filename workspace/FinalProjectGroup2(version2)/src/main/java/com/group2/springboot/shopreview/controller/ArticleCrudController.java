@@ -241,7 +241,6 @@ public class ArticleCrudController {
 			
 			System.out.println(queryString);
 			List<ArticleList>  entry = service.selectByFoodtype(queryString);
-			System.out.println(entry);
 			return entry;
 		}
 		

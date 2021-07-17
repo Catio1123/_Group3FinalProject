@@ -57,6 +57,7 @@ font-family:Microsoft JhengHei
          <div class="original-nav-area" id="stickyNav">
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
+                
                     <!-- Classy Menu -->
                     <nav class="classy-navbar justify-content-between">
 
@@ -74,8 +75,10 @@ font-family:Microsoft JhengHei
 
                             <!-- Nav Start -->
                             <div class="classynav">
+                             <a class="navbar-brand" href="<c:url value='/' />">	<img src="/ipodcast/wayne/images/iPocast.png" width="200" align="top"></a>
                                 <ul>
                                     <!-- <li><a href="index.html">Home</a></li> -->
+                                    
                                     <li><a href="<c:url value='/podcast-list'/>">Podcast</a></li>
                                     <li><a href="<c:url value='/adindex'/>">廣告</a></li>
                                     <li><a href="<c:url value='/forum'/>">論壇</a></li>

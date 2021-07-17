@@ -212,87 +212,82 @@
 				showall.addEventListener('click',function() {
 					window.location.reload(false);});
 				
-			}
-					
-				
-				let tagQuery = null;
-				
-				
-//	 			queryType = document.getElementById("queryType");
-				tagQuery = document.getElementById("snackFilter");
-//	 			queryType = document.getElementById("queryType");
-				snacks = document.getElementById("snacks");
-//	 			var xhr3 = new XMLHttpRequest();
-//	 			xhr3.open("GET", "<c:url value='/articleList'/>", true);
-			
-//	 			xhr3.send();
-				tagQuery.addEventListener('click',
-						function() {
-//	 						let userQueryString = queryType.value;
-//	 						if (!userQueryString) {
-//	 							alert('請輸入關鍵字，可輸入部分名稱');
-//	 							return;
-//	 						}
-	let snackss = snacks.value;
-							let xhr4 = new XMLHttpRequest();
-							xhr4.open('GET', "<c:url value='/queryByFoodtype' />?userQueryString=小吃");
-							xhr4.send();
-							xhr4.onreadystatechange = function() {
-								if (xhr4.readyState == 4 && xhr4.status == 200) {
-									var content = "<table id=reviewtable><thead>";
-									let reviews = JSON.parse(xhr4.responseText);
-									let length = reviews.length;
-									if (length == 0){
-										content += "<tr><th colspan='8'>查無資料</th></tr>";	
-									}else{
-										content += "<tr><th colspan='8'>找到"+ length +" 筆資料</th></tr>";
-										var content = "<div class='col-md-8'>";
-//				 						for (var i = 0; i <reviews.length ; i++) {
-										for (var i = reviews.length-1; i >=0 ; i--) {
-//				 						content += "";
-										content += "	<div class='post'>";
-										content += "		<div class='post-media post-thumb'>";
-										content += "			<a href='"+reviews[i].url+"'>";
-										content += "				<img src='"+ reviews[i].pictureString + "' alt=''>";
-										content += "			<a>";
-										content += "	</div>";
-										content += "	<h2 class='post-title'><a href='"+reviews[i].url+"'>"+ reviews[i].reviewtitle + "</a></h2>";
-										content += "		<div class='date'>"+ reviews[i].postdate + "</div>";
-										content += "		<div class='post-meta'>";
-										content += "			<ul>";
-										content += "				<li>";
-										content += "					<i class='tf-ion-android-person'></i> POSTED BY ADMIN";
-										content += "				</li>";
-										content += "				<li>";
-										content += "					<a href='#!'><i class='tf-ion-ios-pricetags'></i>"+ reviews[i].foodtype + "</a>,";
-										content += "					<a href='#!'>"+ reviews[i].genre + "</a>,";
-										content += "					<a href='#!'>"+ reviews[i].city + "</a>;";
-										content += "				</li>";
-										content += "			</ul>";
-										content += "		</div>";
-										content += "			<div class='post-content'>";
-										content += "			<p>" +reviews[i].highlight + "</p>";
-										content += "			<a href='"+reviews[i].url+"' class='btn btn-main'>繼續閱讀</a>";
-										content += "		</div>";
-										}
-										content += "</div>";
-								//		var divs = document.getElementById("somedivS_post");
-									}
-									content += "</tbody></table>";
-	 								var divs = document.getElementById("somedivS_post");
-									divs.innerHTML = content;
-								}
-							}
-						});
-				}
+			}}
 		</script>
 		
 		
 		<!-- 執行關鍵字連結 -->
 		<script>
 // 		let queryType = null;
-	
+		let tagQuery = null;
+		
+		window.onload = function() {
+// 			queryType = document.getElementById("queryType");
+			tagQuery = document.getElementById("snackFilter");
+// 			queryType = document.getElementById("queryType");
 			
+			var xhr3 = new XMLHttpRequest();
+			xhr3.open("GET", "<c:url value='/articleList'/>", true);
+		
+			xhr3.send();
+			tagQuery.addEventListener('click',
+					function() {
+// 						let userQueryString = queryType.value;
+// 						if (!userQueryString) {
+// 							alert('請輸入關鍵字，可輸入部分名稱');
+// 							return;
+// 						}
+						let xhr4 = new XMLHttpRequest();
+						xhr4.open('GET', "<c:url value='/queryByFoodtype' />?'小吃'");
+						xhr4.send();
+						xhr4.onreadystatechange = function() {
+							if (xhr4.readyState == 4 && xhr4.status == 200) {
+								var content = "<table id=reviewtable><thead>";
+								let reviews = JSON.parse(xhr4.responseText);
+								let length = reviews.length;
+								if (length == 0){
+									content += "<tr><th colspan='8'>查無資料</th></tr>";	
+								}else{
+									content += "<tr><th colspan='8'>找到"+ length +" 筆資料</th></tr>";
+									var content = "<div class='col-md-8'>";
+//			 						for (var i = 0; i <reviews.length ; i++) {
+									for (var i = reviews.length-1; i >=0 ; i--) {
+//			 						content += "";
+									content += "	<div class='post'>";
+									content += "		<div class='post-media post-thumb'>";
+									content += "			<a href='"+reviews[i].url+"'>";
+									content += "				<img src='"+ reviews[i].pictureString + "' alt=''>";
+									content += "			<a>";
+									content += "	</div>";
+									content += "	<h2 class='post-title'><a href='"+reviews[i].url+"'>"+ reviews[i].reviewtitle + "</a></h2>";
+									content += "		<div class='date'>"+ reviews[i].postdate + "</div>";
+									content += "		<div class='post-meta'>";
+									content += "			<ul>";
+									content += "				<li>";
+									content += "					<i class='tf-ion-android-person'></i> POSTED BY ADMIN";
+									content += "				</li>";
+									content += "				<li>";
+									content += "					<a href='#!'><i class='tf-ion-ios-pricetags'></i>"+ reviews[i].foodtype + "</a>,";
+									content += "					<a href='#!'>"+ reviews[i].genre + "</a>,";
+									content += "					<a href='#!'>"+ reviews[i].city + "</a>;";
+									content += "				</li>";
+									content += "			</ul>";
+									content += "		</div>";
+									content += "			<div class='post-content'>";
+									content += "			<p>" +reviews[i].highlight + "</p>";
+									content += "			<a href='"+reviews[i].url+"' class='btn btn-main'>繼續閱讀</a>";
+									content += "		</div>";
+									}
+									content += "</div>";
+									var divs = document.getElementById("somedivS_post");
+								}
+								content += "</tbody></table>";
+// 								var divs = document.getElementById("somedivS_post");
+								divs.innerHTML = content;
+							}
+						}
+					});
+			}
 		</script>
 		
 		
@@ -353,14 +348,10 @@
 						<table>
 						   <tr>
 						     <td align="center">
-						 
-								<div class="form-group">
-						        <input id="" type='text'  class="form-control" placeholder='關鍵字' />
-						        </div>
+						        <input id="queryString" type='text' placeholder='關鍵字' />
 						        <button
-								class="btn btn-main"
-								id=''>標題查詢</button>
-						
+								style="border: none; background-color: #555555; color: white; border-radius: 4px;"
+								id='query'>標題查詢</button>
 								<button
 								style="border: none; background-color: #555555; color: white; border-radius: 4px;"
 								id='showall'>顯示全部</button>
@@ -442,11 +433,12 @@
 						<div class="widget widget-subscription">
 							<!-- Right Side Bar - Get notified updates -->
 							<h4 class="widget-title">搜尋食記</h4>
+							<form>
 								<div class="form-group">
-									<input id="queryString" type='text' class="form-control" placeholder="關鍵字：台中、必比登" />
+									<input id="#" type='text' class="form-control" placeholder="關鍵字：台中、必比登" />
 								</div>
-								<button id='query' class="btn btn-main">查詢</button>
-							
+								<button id='#' class="btn btn-main">查詢</button>
+							</form>
 						</div>
 
 						<!-- Widget Latest Posts -->
@@ -478,7 +470,7 @@
 						<div class="widget widget-category">
 							<h4 class="widget-title">分類</h4>
 							<ul class="widget-category-list">
-								<li id='snacks' value = '小吃'><a href="#!" id='snackFilter' >小吃型態</a>
+								<li id='snackFilter'><a href="#!">小吃型態</a>
 								</li>
 								<li><a href="#!">餐廳型態</a>
 								</li>

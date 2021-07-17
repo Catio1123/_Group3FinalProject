@@ -119,7 +119,7 @@ public class ClickTimeRestContorller {
 			dto.setUrl(ad.getUrl());
 			dto.setPictureString(ad.getPictureString());
 			dto.setClickCountUrl("/ipodcast/podcast/"+cid +"/ad/" + ad.getId());
-
+dto.setText(ad.getText());
 			clickDtos.add(dto);
 		}
 

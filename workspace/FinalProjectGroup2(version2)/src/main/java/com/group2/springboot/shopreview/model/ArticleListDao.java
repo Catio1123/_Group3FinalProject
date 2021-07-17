@@ -72,7 +72,7 @@ public class ArticleListDao {
 	}
 	
 	public List<ArticleList> queryByFoodtype(String queryString) {
-		String hql = "FROM ArticleList a WHERE a.foodtype like :q";
+		String hql = "FROM ArticleList a WHERE a.city like :q";
 		List<ArticleList> list = em.createQuery(hql,ArticleList.class).setParameter("q", "%"+queryString+"%").getResultList();
 		return list;
 	}

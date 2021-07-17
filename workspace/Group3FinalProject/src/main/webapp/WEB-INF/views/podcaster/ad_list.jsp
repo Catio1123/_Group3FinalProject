@@ -42,7 +42,7 @@
             <!-- Ipodcast log -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value='/'/>">
                 
-                <div class="sidebar-brand-text mx-3">IPodcast</div>
+                <div class="sidebar-brand-text mx-3"><img src="/ipodcast/wayne/images/iPocast.png" width="180" align="top"></div>
             </a>
 
             <!-- Divider -->
@@ -81,7 +81,7 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
                 <a class="nav-link" href="#">
-                    <span style="font-size: large;">廣告列癟</span></a>
+                    <span style="font-size: large;">廣告列表</span></a>
             </li>
 
             <!-- Divider -->

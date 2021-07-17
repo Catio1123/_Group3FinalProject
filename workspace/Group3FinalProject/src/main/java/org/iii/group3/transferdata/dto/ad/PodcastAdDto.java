@@ -5,6 +5,7 @@ public class PodcastAdDto {
 	private String url;
 	private String pictureString;
 	private String clickCountUrl;
+	private String text;
 	
 	public String getUrl() {
 		return url;
@@ -24,6 +25,12 @@ public class PodcastAdDto {
 	}
 	public void setClickCountUrl(String clickCountUrl) {
 		this.clickCountUrl = clickCountUrl;
+	}
+	public String getText() {
+		return text;
+	}
+	public void setText(String text) {
+		this.text = text;
 	}
 	
 	
