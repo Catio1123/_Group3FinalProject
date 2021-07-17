@@ -17,6 +17,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    
+    <style>
+    .frame {  
+    height: 100px; /*can be anything*/
+    width: 100px; /*can be anything*/
+    position: relative;
+}
+    
+    
+    
+    .pic {  
+    max-height: 100%;  
+    max-width: 100%; 
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+    border-radius:30%;
+}
+    
+    </style>
 
 </head>
 
@@ -158,21 +183,23 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>Acctno</th>
+                                            <th>User</th>
                                             <!--<th>Password</th>-->
                                             <th>Name</th>
                                             <!--<th>Nickname</th>-->
                                             <th>Email</th>
-                                            <th>Celphone.No</th>
-                                            <th>Birthday</th>
+                                            <th>celephone.no</th>
+                                            <th>Date</th>
                                             <th>Gender</th>
-                                            <th>Role</th>
+                                            <th>權限</th>
+<!--                                             <th>Photo</th> -->
                                             <th>Update</th>
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
+                                            <!--<td>id</td>-->
                                             <th>Acctno</th>
                                             <!--<th>Password</th>-->
                                             <th>Name</th>
@@ -182,6 +209,7 @@
                                             <th>Birthday</th>
                                             <th>Gender</th>
                                             <th>Role</th>
+                                            
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -198,18 +226,12 @@
                                        <td>${member.dob}     </td>
                                        <td>${member.gender}  </td>
                                        <td>${member.role}    </td>
-                                       <td>
-                                       <select>
-                                       <option>${member.role}</option>
-                                       <option>admin</option>
-                                       <option>company</option>
-                                       <option>general</option>
-                                       </select>
-                                       </td>
+<%--                                        <td class=frame><img src = "${member.pictureString}" class=pic></td> --%>
+
 <%--                                        <td><a href=<c:url value='/updateMember/${member.id}/${member.acctno}/${member.pw}/${member.name}/${member.nickname}/${member.celno}/${member.email}/${member.dob}/${member.gender}/${member.role}' />>權限變更</a></td> --%>
                                        <td><a href=<c:url value='/roleUpdate/${member.id}' />>權限變更</a></td>
                                                                   
-                                       <td><a href=<c:url value='/member/${member.id}' />>刪除</a></td>
+                                       <td><a href=<c:url value='/member/${member.id}' />>清除(謹慎操作)</a></td>
                                     </tr>
                                     </c:forEach>
                                     </tbody>

@@ -74,6 +74,9 @@ font-family:Microsoft JhengHei
     <header class="header-area">
      
          <div class="original-nav-area" id="stickyNav">
+         
+         <a href="/ipodcast"><img src="/ipodcast/kevin/images/iPodcast.png" width=200 align="left"></a>
+         
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
                     <!-- Classy Menu -->
@@ -93,15 +96,12 @@ font-family:Microsoft JhengHei
 
                             <!-- Nav Start -->
                             <div class="classynav">
-                                <ul>
-                                    <!-- <li><a href="index.html">Home</a></li> -->
+                                <ul>                                  
                                     <li><a href="#">Podcaster</a></li>
                                     <li><a href="<c:url value='/adindex'/>">廣告</a></li>
                                     <li><a href="<c:url value='/forum'/>">論壇</a></li>
                                     <li><a href="#">活動</a></li>
                                     <li><a href="<c:url value='/studioMainPage'/>">播客工廠</a></li>
-                                    <li><a href="#">搜尋</a></li>
-
                                 </ul>
                                 <!-- Search Form  -->
                                 <div id="search-wrapper">
@@ -182,12 +182,11 @@ function load(){
 </script>
 
         <!-- Logo Area -->
-        <div class="logo-area text-center">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center"> 
+<!--         <div class="logo-area text-center"> -->
+<!--             <div class="container h-100"> -->
+<!--                 <div class="row h-100 align-items-center">  -->
                     <div class="col-12 col-sm-8">
                         <div class="breaking-news-area">
-
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
                                     <li><a href="#">歡迎來到iPodcast</a></li>
@@ -199,12 +198,13 @@ function load(){
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <h1>iPodcast</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--                     <div class="col-12"> -->
+<!--                          <h1>iPodcast</h1> -->
+<!--                            <img  src="/ipodcast/kevin/images/iPodcast.png" width=400> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
 
         <!-- Nav Area -->
        

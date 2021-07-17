@@ -6,7 +6,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>變更權限</title>
+<style type="text/css">
+
+body {
+	background-color: #F0F0F0
+}
+Table{
+   margin:auto
+
+}
+div{
+   	width: 500px; 
+ 	border-bottom: 3px dashed #ADADAD; 
+ 	margin: 20px; 
+	padding-bottom: 10px; 
+	color: black; 
+	font-weight: bold;
+ 	font-size: 120%; 
+
+}
+
+</style>
+
 </head>
 <body>
 
@@ -72,16 +94,23 @@
 								<form:errors path="gender" />
 							</div>
 							
+							<div style=display:none;>				
+			                    <form:input path="picture" /><br>&nbsp;
+	   	  	                    <form:errors path="picture"  cssClass="error" />
+                            </div>
+							
 			                <div style=display:none;>				
-			                    <form:input path="memberImage"/><br>&nbsp;
+			                    <form:input path="memberImage" /><br>&nbsp;
 	   	  	                    <form:errors path="memberImage"  cssClass="error" />
+                            </div>
+                            <div style=display:none;>				
+			                    <form:input path="pictureString"/><br>&nbsp;
+	   	  	                    <form:errors path="pictureString"  cssClass="error" />
                             </div>
 							
 							<div>
-								Role:&nbsp;&nbsp;
-								<form:input  path="role" />
-<%-- 								company<form:input  path="role" type="radio" value="company"/> --%>
-<%-- 								停權    <form:input  path="role" type="radio" value="suspension"/> --%>
+								權限:&nbsp;&nbsp;
+								<form:radiobuttons  path="role" items="${roleChoose}"/>
 								<form:errors path="role" />
 							</div>
 

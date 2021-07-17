@@ -9,16 +9,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-	<link rel="stylesheet" href="<c:url value='/ben/css/custom-bs.css'/> ">
-	<link rel="stylesheet" href="<c:url value='/ben/css/jquery.fancybox.min.css'/> ">
-	<link rel="stylesheet" href="<c:url value='/ben/css/bootstrap-select.min.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/custom-bs.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/jquery.fancybox.min.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/bootstrap-select.min.css'/> ">
 	
-	<link rel="stylesheet" href="<c:url value='/ben/css/owl.carousel.min.css'/> ">
-	<link rel="stylesheet" href="<c:url value='/ben/css/animate.min.css'/> ">
-    <link rel="stylesheet" href="<c:url value='/ben/css/quill.snow.css'/>">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/owl.carousel.min.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/animate.min.css'/> ">
+    <link rel="stylesheet" href="<c:url value='/kevin/css2/quill.snow.css'/>">
 	
 	<!-- MAIN CSS -->
-	<link rel="stylesheet" href="<c:url value='/ben/css/style.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/style.css'/> ">
 
 <script>
 var hasError = false;
@@ -326,17 +326,20 @@ body {
           </div>
       </div>
     </section>
-     <br><br><br>
+     <br><br><br>			<div style=align:left;>
+						    <input type="button" class="btn px-4 btn-primary text-white" value="一鍵輸入" onclick="once()">
+						    </div>
+						    <br>
 <fieldset>
 <hr>
 <div id='resultMsg' style="height: 18px; font-weight: bold;"></div>
 			<form style=background-color:write; action="signUpMember" method="POST" >
-				
+
 							<div class="s1">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								帳號:&nbsp;&nbsp;
 								<input type="text" id="acctno" name="acctno" >
-							    <a href='#' id='accountCheck' style='font-size: 10pt;'>檢查帳號</a>
+							    <a href='#' id='accountCheck' style='font-size: 10pt;'>檢查帳號</a>	                 
 								<div id='result0c' style="height: 15px;"></div>
 							    ${failMessage}
 							</div>	
@@ -403,11 +406,22 @@ body {
 						        <input type="submit" class="btn px-4 btn-primary text-white" id='sendData' value="註冊">
 		                    </div>
 		                    
-		                    <br>
+		                  
 		                    
-		                    <div>
-						        <input type="submit" class="btn px-4 btn-primary text-white" id='once' value="一鍵輸入">
-		                    </div>
+		                    <script>
+		                    function once(){
+		                    	document.getElementById("acctno")  .value = "aaa0723"
+		                    	document.getElementById("pw")      .value = "aaa07231"
+		                    	document.getElementById("name")    .value = "張君雅"
+		                    	document.getElementById("nickname").value = "Jane"
+		                    	document.getElementById("email")   .value = "Jane@gmail.com"
+		                    	document.getElementById("celno")   .value = "0921072303"
+		                    	document.getElementById("dob")     .value = "1992/07/23";
+		                    	
+		                    }
+		                    
+		                    </script>
+		                    
 			</form>
 
 		</fieldset>
@@ -461,20 +475,20 @@ body {
 </div>
 <a href="<c:url value='/'/> " >回首頁</a>
 
-    <script src="<c:url value='/ben/js/jquery.min.js'/> "></script>
-    <script src="<c:url value='/ben/js/bootstrap.bundle.min.js'/> "></script>
-    <script src="<c:url value='/ben/js/isotope.pkgd.min.js'/> "></script>
-    <script src="<c:url value='/ben/js/stickyfill.min.js'/> "></script>
-    <script src="<c:url value='/ben/js/jquery.fancybox.min.js'/> "></script>
-    <script src="<c:url value='/ben/js/jquery.easing.1.3.js'/>" ></script>
+    <script src="<c:url value='/kevin/js2/jquery.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/bootstrap.bundle.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/isotope.pkgd.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/stickyfill.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/jquery.fancybox.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/jquery.easing.1.3.js'/>" ></script>
     
-    <script src="<c:url value='/ben/js/jquery.waypoints.min.js'/>" ></script>
-    <script src="<c:url value='/ben/js/jquery.animateNumber.min.js'/> "></script>
-    <script src="<c:url value='/ben/js/owl.carousel.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/jquery.waypoints.min.js'/>" ></script>
+    <script src="<c:url value='/kevin/js2/jquery.animateNumber.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/owl.carousel.min.js'/> "></script>
     
-    <script src="<c:url value='/ben/js/bootstrap-select.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/bootstrap-select.min.js'/> "></script>
     
-    <script src="<c:url value='/ben/js/custom.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/custom.js'/> "></script>
 
 </body>
 

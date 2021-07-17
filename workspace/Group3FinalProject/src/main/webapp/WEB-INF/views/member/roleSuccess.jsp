@@ -22,8 +22,8 @@
          <script>
             
             swal({
-                title: "修改成功",
-                text: "即將回到首頁",
+                title:"權限變更完成",
+                text: "即將回到管理中心",
                 type: "success",
 
             }).then(function () {

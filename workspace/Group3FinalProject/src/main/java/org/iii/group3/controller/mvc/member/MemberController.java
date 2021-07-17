@@ -63,13 +63,21 @@ public class MemberController {
 				errors.put("pw", "請填寫密碼");
 			}
 			
+			if(pw==null || pw.length()==0) {
+				errors.put("pw", "請填寫密碼");
+			}
+			
 			if(errors!=null && !errors.isEmpty()) {
 				return "member/login";
 			}
 			
 		    Member login = memberDao.checkLogin(new Member(acctno, pw));
-			
-			if(login != null && login.getAcctno().equals(acctno) && login.getPw().equals(pw)) {
+		    
+		    if (login != null && login.getRole() != null && login.getRole().equals("suspension")) {
+				errors.put("msg2", "您的帳號已被停權，請聯繫管理員");
+				return "member/login";
+				
+			}else if(login != null && login.getAcctno().equals(acctno) && login.getPw().equals(pw)) {
 				m.addAttribute("Member", login);
 				return "member/loginSuccess";
 			}
@@ -318,10 +326,44 @@ public class MemberController {
 				                    RedirectAttributes ra,
 				                    Model model
 				                    ){
-			System.out.println("123");
+			
+			Blob blob = null;
+			String mimeType = "";
+			String name = "";
+			MultipartFile memberImage = member.getMemberImage();
+			System.out.println(member.getMemberImage());
+          if (memberImage != null && memberImage.getSize() > 0) {
 
+			try {
+			    InputStream is = memberImage.getInputStream();
+			    name = memberImage.getOriginalFilename();
+			    blob = memberUtils.inputStreamToBlob(is);
+			    mimeType = context.getMimeType(name);
+			    member.setPicture(blob);
+			    member.setMimeType(mimeType);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+       
 			memberService.update(member);
-			System.out.println("321");
+			String ext = memberUtils.getExtFilename(name);
+			// 將上傳的檔案移到指定的資料夾, 目前註解此功能
+			try {
+				File imageFolder = new File(memberUtils.MEMBER_IMAGE_FOLDER);
+				if (!imageFolder.exists())
+					imageFolder.mkdirs();
+				File file = new File(imageFolder, "MemberImage_" + member.getId() + ext);
+				memberImage.transferTo(file);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+			}
+			
+       	    }else {
+       		member.setPicture(member.getPicture());
+       		member.setMimeType(member.getMimeType());
+       	    }
+          memberService.update(member);
 
 			ra.addFlashAttribute("successMessage", member.getAcctno() + "修改成功");
 			return "redirect:/roleSuccess";  

@@ -1,11 +1,15 @@
 package org.iii.group3.controller.mvc.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.iii.group3.persistent.model.member.Member;
 import org.iii.group3.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -55,6 +59,19 @@ public class MemberFindViewController {
 		Member roleUpdate = memberService.findById(id);
 		model.addAttribute("member", roleUpdate);
 		return "member/roleChange";
+		
+		
+	}
+	
+	@ModelAttribute("roleChoose")
+	public Map<String, String> role(){
+		Map<String,String> map = new HashMap<>();
+		map.put("admin", "管理者");
+		map.put("general", "一般會員");
+		map.put("company", "廠商層級");
+		map.put("suspension", "停權");
+		
+		return map;
 	}
 	
 }

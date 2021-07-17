@@ -60,9 +60,9 @@ public class MemberService {
 		 memberDao.update(member);
 	}
 	
-	
-	public void update(Member member,int id) {
-			 memberDao.update(member);
+//================================= 修改權限 ====================================boot	
+	public void updateRole(Member member) {
+			 memberDao.updateRole(member);
 	}
 
 //================================= 刪除 =================================

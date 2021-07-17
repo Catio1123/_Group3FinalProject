@@ -10,16 +10,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-	<link rel="stylesheet" href="<c:url value='/ben/css/custom-bs.css'/> ">
-	<link rel="stylesheet" href="<c:url value='/ben/css/jquery.fancybox.min.css'/> ">
-	<link rel="stylesheet" href="<c:url value='/ben/css/bootstrap-select.min.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/custom-bs.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/jquery.fancybox.min.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/bootstrap-select.min.css'/> ">
 	
-	<link rel="stylesheet" href="<c:url value='/ben/css/owl.carousel.min.css'/> ">
-	<link rel="stylesheet" href="<c:url value='/ben/css/animate.min.css'/> ">
-    <link rel="stylesheet" href="<c:url value='/ben/css/quill.snow.css'/>">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/owl.carousel.min.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/animate.min.css'/> ">
+    <link rel="stylesheet" href="<c:url value='/kevin/css2/quill.snow.css'/>">
 	
 	<!-- MAIN CSS -->
-	<link rel="stylesheet" href="<c:url value='/ben/css/style.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/style.css'/> ">
 
 <title>更新會員資料</title>
 <style>

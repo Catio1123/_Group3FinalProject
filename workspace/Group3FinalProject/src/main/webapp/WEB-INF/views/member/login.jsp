@@ -8,19 +8,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-	<link rel="stylesheet" href="<c:url value='/ben/css/custom-bs.css'/> ">
-	<link rel="stylesheet" href="<c:url value='/ben/css/jquery.fancybox.min.css'/> ">
-	<link rel="stylesheet" href="<c:url value='/ben/css/bootstrap-select.min.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/custom-bs.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/jquery.fancybox.min.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/bootstrap-select.min.css'/> ">
 	
-	<link rel="stylesheet" href="<c:url value='/ben/css/owl.carousel.min.css'/> ">
-	<link rel="stylesheet" href="<c:url value='/ben/css/animate.min.css'/> ">
-    <link rel="stylesheet" href="<c:url value='/ben/css/quill.snow.css'/>">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/owl.carousel.min.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/animate.min.css'/> ">
+    <link rel="stylesheet" href="<c:url value='/kevin/css2/quill.snow.css'/>">
     
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	
 	<!-- MAIN CSS -->
-	<link rel="stylesheet" href="<c:url value='/ben/css/style.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/style.css'/> ">
 
     <style>
     
@@ -123,6 +123,8 @@ body{
               
                 <div style=color:red;>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                 ${errors.msg}</div>
+                <div style=color:blue;>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                ${errors.msg2}</div>
 
               <div class="row form-group">
                 <div class="col-md-12">
@@ -161,6 +163,7 @@ body{
               </div>
               <div style=color:red;>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                 ${errors.msgAd}</div>
+                <br>
 
               <div class="row form-group">
                 <div class="col-md-12">
@@ -237,20 +240,20 @@ body{
   </div>
 
     <!-- SCRIPTS -->
-    <script src="<c:url value='/ben/js/jquery.min.js'/> "></script>
-    <script src="<c:url value='/ben/js/bootstrap.bundle.min.js'/> "></script>
-    <script src="<c:url value='/ben/js/isotope.pkgd.min.js'/> "></script>
-    <script src="<c:url value='/ben/js/stickyfill.min.js'/> "></script>
-    <script src="<c:url value='/ben/js/jquery.fancybox.min.js'/> "></script>
-    <script src="<c:url value='/ben/js/jquery.easing.1.3.js'/>" ></script>
+    <script src="<c:url value='/kevin/js2/jquery.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/bootstrap.bundle.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/isotope.pkgd.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/stickyfill.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/jquery.fancybox.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/jquery.easing.1.3.js'/>" ></script>
     
-    <script src="<c:url value='/ben/js/jquery.waypoints.min.js'/>" ></script>
-    <script src="<c:url value='/ben/js/jquery.animateNumber.min.js'/> "></script>
-    <script src="<c:url value='/ben/js/owl.carousel.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/jquery.waypoints.min.js'/>" ></script>
+    <script src="<c:url value='/kevin/js2/jquery.animateNumber.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/owl.carousel.min.js'/> "></script>
     
-    <script src="<c:url value='/ben/js/bootstrap-select.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/bootstrap-select.min.js'/> "></script>
 
-    <script src="<c:url value='/ben/js/custom.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/custom.js'/> "></script>
   
   </body>
 </html>

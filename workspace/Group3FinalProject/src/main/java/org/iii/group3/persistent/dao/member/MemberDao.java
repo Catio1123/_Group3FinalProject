@@ -138,6 +138,13 @@ public class MemberDao {
 		en.merge(member);
 	}
 	
+//================================= 修改權限 =================================
+	
+		public void updateRole(Member member) {
+			en.merge(member.getRole());
+		}
+
+	
 //================================= 刪除 =================================
 			
 	public void delete(Member member) {
