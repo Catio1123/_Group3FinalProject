@@ -52,7 +52,7 @@ public class EpisodeRestController {
 		this.objectMapper = objectMapper;
 	}
 	
-	@PostMapping(path = "/logged/podcaster/{uid}/channel/{cid}/episode")
+	@PostMapping(path = "/logged/podcaster/channel/{cid}/episode")
 	public GenericResponse createEpisode(@Valid EpisodeInfoDto epDto, 
 										 @PathVariable(name = "cid") Long cid,
 										 Locale locale) {
@@ -67,7 +67,7 @@ public class EpisodeRestController {
 		
 	}
 	
-	@GetMapping(path = "/logged/podcaster/{uid}/channel/{cid}/episode")
+	@GetMapping(path = "/logged/podcaster/channel/{cid}/episode")
 	public GenericResponse getAllEpisode(
 			@RequestParam(name = "page", defaultValue = "1")Integer pageNum,
 			@RequestParam(name = "Size" , defaultValue = "10")Integer pageSize,
@@ -83,7 +83,7 @@ public class EpisodeRestController {
 		return ResponseEntityWrapper.wrapDataToGenericResponse(HttpStatus.OK, pageData);
 	}
 	
-	@GetMapping(path = "/logged/podcaster/{uid}/channel/{cid}/episode/{eid}")
+	@GetMapping(path = "/logged/podcaster/channel/{cid}/episode/{eid}")
 	public GenericResponse getEpisodeInfo(@PathVariable("cid") Long cid,
 										  @PathVariable("eid") Long eid) {
 		
@@ -97,7 +97,7 @@ public class EpisodeRestController {
 	}
 		
 	
-	@PutMapping(path = "/logged/podcaster/{uid}/channel/{cid}/episode/{eid}")
+	@PutMapping(path = "/logged/podcaster/channel/{cid}/episode/{eid}")
 	public GenericResponse updataEpisode(@PathVariable("cid")Long cid,
 										 @PathVariable("eid")Long eid,
 										 @Valid EpisodeInfoDto epDto,
@@ -113,7 +113,7 @@ public class EpisodeRestController {
 		
 	}
 	
-	@DeleteMapping(path = "/logged/podcaster/{uid}/channel/{cid}/episode/{eid}")
+	@DeleteMapping(path = "/logged/podcaster/channel/{cid}/episode/{eid}")
 	public GenericResponse deleteEpisode(@PathVariable("cid") Long cid,
 										 @PathVariable("eid") Long eid,
 										 Locale locale) {

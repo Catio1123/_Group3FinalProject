@@ -12,6 +12,7 @@ public class PodcasterAdDto {
 	
 	private String recordUrl = "/ipodcast/logged/podcaster/record";
 
+	private String pictureString;
 	private boolean enable = true;
 
 	public Integer getId() {
@@ -60,6 +61,14 @@ public class PodcasterAdDto {
 
 	public void setEnable(boolean enable) {
 		this.enable = enable;
+	}
+
+	public String getPictureString() {
+		return pictureString;
+	}
+
+	public void setPictureString(String pictureString) {
+		this.pictureString = pictureString;
 	}
 
 	

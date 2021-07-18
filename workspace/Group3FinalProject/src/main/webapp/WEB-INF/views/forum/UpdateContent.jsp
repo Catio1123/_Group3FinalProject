@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="/ipodcast/ben/css/custom-bs.css">
     <link rel="stylesheet" href="/ipodcast/ben/css/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/ipodcast/ben/css/bootstrap-select.min.css">
-
+	<link rel="stylesheet" href="/ipodcast/ben/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="/ipodcast/ben/fonts/line-icons/style.css">
     <link rel="stylesheet" href="/ipodcast/ben/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/ipodcast/ben/css/animate.min.css">
     <link rel="stylesheet" href="/ipodcast/ben/css/quill.snow.css">
@@ -47,23 +48,23 @@
     <header class="site-navbar mt-3">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6"><a href="index.html">IForum</a></div>
+          <div class="site-logo col-6"><a href="<c:url value='/'/>">IPodcast</a></div>
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="<c:url value='/' />" class="nav-link">Home</a></li>
-              <li><a href="services.html" class="active">Pages</a></li>
-              <li><a href="blog.html">Blog</a></li>
+<%--               <li><a href="<c:url value='/forum' />" class="nav-link">Forum Home</a></li> --%>
+<!--               <li><a href="services.html" class="active">Pages</a></li> -->
+<!--               <li><a href="blog.html">Blog</a></li> -->
 
-              <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Comment</a></li>
+              <li class="d-lg-none"><a href="javascript:history.back()"><span class="mr-2">+</span> 回上一頁</a></li>
               <li class="d-lg-none"><a href="<c:url value='/LoginPage'/>">Log In</a></li>
             </ul>
           </nav>
           
           <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
             <div class="ml-auto">
-              <a href="post-job.html" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Comment</a>
-              <a href="<c:url value='/LoginPage'/>" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
+              <a href="javascript:history.back()" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span> 回上一頁</a>
+              <a href="#"class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="icon-user"> </span>${Member.name}</a>
             </div>
             <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
           </div>
@@ -77,7 +78,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-7">
-            <h1 class="text-white font-weight-bold">Post A Comment</h1>
+            <h1 class="text-white font-weight-bold">&nbsp;</h1>
             <div class="custom-breadcrumbs">
               <a href="<c:url value='/' />">Home</a> <span class="mx-2 slash">/</span>
               <a href="#">Job</a> <span class="mx-2 slash">/</span>
@@ -96,10 +97,11 @@
 		<form:form modelAttribute="bean" method="post" action="/ipodcast/forum/toUpdate">
 			<div>
 			<label>標題:</label>
-			<form:input path="topic"/>			
+			<form:input path="topic" cssStyle="width:675px;"/>			
 			</div>
 			<form:hidden path="type"/>
 			<form:hidden path="fid"/>
+			<form:hidden path="uid"/>
 			<div>
 			<label>內容:</label>
 			</div>

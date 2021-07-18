@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface ChannelDao extends JpaRepository<Channel, Long>, JpaSpecificationExecutor<Channel>{
 
-	public Page<Channel> findByMemeberAct(String act, Pageable pageable);
+	public Page<Channel> findByMemberAct(String act, Pageable pageable);
 	
 }

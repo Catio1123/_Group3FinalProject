@@ -101,7 +101,7 @@ public class RecordRestController {
 			
 			dto.setAddAdToChannelUrl(sb.append("/ipodcast/logged/podcaster/channel/").append(cid)
 					.append("/ad").toString());
-			
+			dto.setPictureString(r.getAd().getPictureString());
 			if(r.getClickTime() != null) {
 				
 				dto.setEnable(false);

@@ -41,7 +41,7 @@
             <!-- Ipodcast 網址 -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value='/'/>">
                 
-                <div class="sidebar-brand-text mx-3"><img src="/ipodcast/wayne/images/iPocast.png" width="180" align="top"></div>
+                <div class="sidebar-brand-text mx-3">IPodcast</div>
             </a>
 
             <!-- Divider -->
@@ -196,6 +196,7 @@
 
     <!-- Bootstrap core JavaScript-->
     <script src="<c:url value='/catio/js/jquery-3.6.0.min.js'/>"></script>
+    <script src="<c:url value='/catio/js/sweetalert2.all.min.js'/>"></script>
     <script src="<c:url value='/catio/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
     <script src="<c:url value='/catio/js/channel_info.js'/>"></script>
 

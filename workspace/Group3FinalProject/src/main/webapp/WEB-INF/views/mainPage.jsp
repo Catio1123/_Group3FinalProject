@@ -44,6 +44,25 @@ font-size: 30px;
 font-family:Microsoft JhengHei
 }
 
+.frame {  
+    height: 50px; /*can be anything*/
+    width: 50px; /*can be anything*/
+    position: relative;
+}
+.pic {  
+    max-height: 100%;  
+    max-width: 100%; 
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+    border-radius:40%;
+}
+
     </style>
 </head>
 
@@ -55,9 +74,11 @@ font-family:Microsoft JhengHei
     <header class="header-area">
      
          <div class="original-nav-area" id="stickyNav">
+         
+         <a href="/ipodcast"><img src="/ipodcast/kevin/images/iPodcast.png" width=200 align="left"></a>
+         
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
-                
                     <!-- Classy Menu -->
                     <nav class="classy-navbar justify-content-between">
 
@@ -75,17 +96,12 @@ font-family:Microsoft JhengHei
 
                             <!-- Nav Start -->
                             <div class="classynav">
-                             <a class="navbar-brand" href="<c:url value='/' />">	<img src="/ipodcast/wayne/images/iPocast.png" width="200" align="top"></a>
-                                <ul>
-                                    <!-- <li><a href="index.html">Home</a></li> -->
-                                    
+                                <ul>                                  
                                     <li><a href="<c:url value='/podcast-list'/>">Podcast</a></li>
                                     <li><a href="<c:url value='/adindex'/>">廣告</a></li>
                                     <li><a href="<c:url value='/forum'/>">論壇</a></li>
-                                    <li><a href="#">活動</a></li>
+                                    <li><a href="<c:url value='/showEvent'/>">活動</a></li>
                                     <li><a href="<c:url value='/studioMainPage'/>">播客工廠</a></li>
-                                    <li><a href="#">搜尋</a></li>
-
                                 </ul>
                                 <!-- Search Form  -->
                                 <div id="search-wrapper">
@@ -98,16 +114,20 @@ font-family:Microsoft JhengHei
                                 <ul>
                                     <li><a id="login" href="<c:url value='/loginController' />">登入</a></li>
                                     <li><a id="logout" href="<c:url value='/logout' />">登出</a></li>
-                                    <li><a style="font-family:DFKai-SB;color:#6A6AFF">${Member.name}</a>
+                                    <li><a style="font-family:DFKai-SB;color:#6A6AFF">${Member.name}</a></li>
                                     <li><a style="display:none" id="role">${Member.role}</a>
                                       <ul class="dropdown">
                                             <li><a id="general" href="<c:url value='/updateMember' />" >修改訊息 </a></li>
-                                            <li><a id="admin"   href="<c:url value='/memberCentre' />" >管理者後台</a></li>
+                                            <li><a id="admin"   href="<c:url value='/backstageMember' />" >管理者後台</a></li>
                                             <li><a id="company" href="<c:url value='/adindex' />" >   廣告商後台</a></li>
                                             <li><a id="podcaster" href="<c:url value='/logged/podcaster/podcaster-info' />" >Podcaster</a></li>
                                       </ul>
                                    </li>
-                                </ul>               
+                                </ul>   
+                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class=frame>         
+                                    <img src = "${Member.pictureString}" class=pic>
+                               </div>
                             </div>
                             <!-- Nav End -->
                         </div>
@@ -125,7 +145,7 @@ let admin     = document.getElementById("admin");
 let company   = document.getElementById("company");
 let podcaster   = document.getElementById("podcaster");
 window.onload=function(){
-
+	
 	load();
 	
 	}
@@ -144,7 +164,6 @@ function load(){
 		admin  .style.display  ="block";
 		general.style.display  ="none";
 		company.style.display  ="none";
-		podcaster.style.display  ="block";
 
     }else if('${Member.role}' != "" && '${Member.role}' == "general"){
         login  .style.display  ="none";
@@ -161,19 +180,18 @@ function load(){
 	    admin  .style.display  ="none";
 		company.style.display  ="block";
 		podcaster.style.display  ="block";
-	}
+}
 }
 
 
 </script>
 
         <!-- Logo Area -->
-        <div class="logo-area text-center">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center"> 
+<!--         <div class="logo-area text-center"> -->
+<!--             <div class="container h-100"> -->
+<!--                 <div class="row h-100 align-items-center">  -->
                     <div class="col-12 col-sm-8">
                         <div class="breaking-news-area">
-
                             <div id="breakingNewsTicker" class="ticker">
                                 <ul>
                                     <li><a href="#">歡迎來到iPodcast</a></li>
@@ -185,12 +203,13 @@ function load(){
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <h1>iPodcast</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--                     <div class="col-12"> -->
+<!--                          <h1>iPodcast</h1> -->
+<!--                            <img  src="/ipodcast/kevin/images/iPodcast.png" width=400> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
 
         <!-- Nav Area -->
        

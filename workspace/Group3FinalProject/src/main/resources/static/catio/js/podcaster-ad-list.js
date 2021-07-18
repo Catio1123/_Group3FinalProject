@@ -84,7 +84,7 @@ function displayAdList(elements){
     adListContainer.innerHTML = "";
     for (let i = 0; i < elements.length; i++) {
       let element = elements[i];
-      let card = creatRowAdHtml(element['id'], element['company'], element['text'], element['url'], element['recordUrl'], element['enable']);
+      let card = creatRowAdHtml(element['id'], element['company'], element['text'],element['pictureString'], element['url'], element['recordUrl'], element['enable']);
       adListContainer.insertAdjacentHTML('beforeend', String(card));
     }
 
@@ -92,7 +92,7 @@ function displayAdList(elements){
 }
 
 //產生一橫列的 ad html
-function creatRowAdHtml(id, company, text, url, recordUrl, enable){
+function creatRowAdHtml(id, company, text,pictureString, url, recordUrl, enable){
     let btnHtml;
     if(enable === true){
         btnHtml = `<button class="btn btn-outline-primary btnAddAd"  type="button" data-url="${recordUrl}" data-aid="${id}">加入</button>`;
@@ -107,6 +107,7 @@ function creatRowAdHtml(id, company, text, url, recordUrl, enable){
             <td>${id}</td>
             <td>${company}</td>
             <td>${text}</td>
+            <td><img width='100' src='${pictureString }'></td>
             <td>${url}</td>
             <td>
                 ${btnHtml}

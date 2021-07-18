@@ -5,9 +5,9 @@ import org.iii.group3.persistent.model.podcaster.Channel;
 
 public class RestQueryChannelDto implements RestQueryDto<Channel>{
 
-	private String channel_titile;
+	private String channel_title;
 	
-	private String or_channel_Titile;
+	private String or_channel_title;
 	
 	private String channel_description;
 	
@@ -16,16 +16,28 @@ public class RestQueryChannelDto implements RestQueryDto<Channel>{
 
 
 
-	public String getChannel_titile() {
-		return channel_titile;
+
+
+
+
+	public String getChannel_title() {
+		return channel_title;
 	}
 
 
 
 
-	public String getOr_channel_Titile() {
-		return or_channel_Titile;
+
+
+
+
+	public String getOr_channel_title() {
+		return or_channel_title;
 	}
+
+
+
+
 
 
 
@@ -37,6 +49,10 @@ public class RestQueryChannelDto implements RestQueryDto<Channel>{
 
 
 
+
+
+
+
 	public String getOr_channel_Description() {
 		return or_channel_Description;
 	}
@@ -44,16 +60,28 @@ public class RestQueryChannelDto implements RestQueryDto<Channel>{
 
 
 
-	public void setChannel_titile(String channel_titile) {
-		this.channel_titile = channel_titile;
+
+
+
+
+	public void setChannel_title(String channel_title) {
+		this.channel_title = channel_title;
 	}
 
 
 
 
-	public void setOr_channel_Titile(String or_channel_Titile) {
-		this.or_channel_Titile = or_channel_Titile;
+
+
+
+
+	public void setOr_channel_title(String or_channel_title) {
+		this.or_channel_title = or_channel_title;
 	}
+
+
+
+
 
 
 
@@ -65,9 +93,17 @@ public class RestQueryChannelDto implements RestQueryDto<Channel>{
 
 
 
+
+
+
+
 	public void setOr_channel_Description(String or_channel_Description) {
 		this.or_channel_Description = or_channel_Description;
 	}
+
+
+
+
 
 
 

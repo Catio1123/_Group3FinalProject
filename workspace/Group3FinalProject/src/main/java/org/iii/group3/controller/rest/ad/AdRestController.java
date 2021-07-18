@@ -18,7 +18,6 @@ import org.iii.group3.service.member.MemberService;
 import org.iii.group3.transferdata.GenericResponse;
 import org.iii.group3.transferdata.GenericResponseBuilder;
 import org.iii.group3.transferdata.dto.ad.PodcasterAdDto;
-import org.iii.group3.transferdata.dto.podcaster.ChannelCardDto;
 import org.iii.group3.utils.podcaster.MapUtil;
 import org.iii.group3.utils.podcaster.PageableUtil;
 import org.iii.group3.utils.podcaster.ResponseEntityWrapper;

@@ -4,34 +4,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>修改成功</title>
-<style>
-body{
-    background-color:#F0F0F0	
-}
 
-fieldset {
-            width: 500px;
-            border: 1px solid #FF5151;
-            border-radius: 20px;
-            margin: 15px;
-            margin: auto;
-            
-        }
-.a1{
-      margin: auto;
-      text-align:center;
-      font-size:30px;
-}
-</style>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <style>
+      body{
+          background-color:#F0F0F0	
+      }
+
+    </style>
+
+
+<meta charset="UTF-8">
+<title>資料修改成功</title>
 </head>
 <body>
-<fieldset>
-<div class="a1"><br>
-${successMessage}<br>
-<a href="<c:url value='/' /> " >回首頁</a>
-</div>
-</fieldset>
+         <script>
+            
+            swal({
+                title: "修改成功",
+                text: "即將回到首頁",
+                type: "success",
+
+            }).then(function () {
+                    window.location.href = "<c:url value='/' />"
+                });
+            
+          
+	     </script>
+
+
+
+
 </body>
 </html>

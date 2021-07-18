@@ -82,7 +82,7 @@ public class ChannelService {
 	
 	public Page<ChannelCardDto> getPodcasterCardPage(String act, Pageable pageable){
 		
-		Page<Channel> chanPage = channelDao.findByMemeberAct(act, pageable);
+		Page<Channel> chanPage = channelDao.findByMemberAct(act, pageable);
 		return  toChannelCardDtoPage(chanPage, pageable);
 	}
 	
@@ -97,16 +97,16 @@ public class ChannelService {
 			if(queryDto instanceof RestQueryCategoryCnNameDto) {
 				
 				List<SpecSearchCriteria> categoryCriterias = categoryService.getCategoryIdCriterias("categoryid", (RestQueryCategoryCnNameDto)queryDto);
-				builder.with(categoryCriterias);
+				builder = builder.with(categoryCriterias);
 				
 			}else if(queryDto instanceof RestQueryPodcastererNameDto) {
 				List<SpecSearchCriteria> memberCrierias = memberJpaService.getMemberActCriterias("memberAct", (RestQueryPodcastererNameDto)queryDto);
-				builder.with(memberCrierias);
+				builder = builder.with(memberCrierias);
 				
 			}else if(queryDto instanceof RestQueryChannelDto) {
 				
 				List<SpecSearchCriteria> channelCaterias = PodcastCriteriaParser.parse(queryDto);
-				builder.with(channelCaterias);
+				builder = builder.with(channelCaterias);
 			}
 		}
 		

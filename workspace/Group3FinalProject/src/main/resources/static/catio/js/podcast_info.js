@@ -80,7 +80,7 @@ function displayAdBlock(ads){
   adContainer.innerHTML = "";
     for (let i = 0; i < ads.length; i++) {
       let ad = ads[i];
-      let adBlock = creatAdBlockHtml(ad['url'], ad['pictureString'], ad['clickCountUrl'], ad['text']);
+      let adBlock = creatAdBlockHtml(ad['url'], ad['pictureString'], ad['clickCountUrl'],ad['text']);
       adContainer.insertAdjacentHTML('beforeend', String(adBlock));
     }
 
@@ -90,7 +90,7 @@ function displayAdBlock(ads){
 //產生 ad block html
 function creatAdBlockHtml(url, pictureString, clickCountUrl,text){
     let adBlock = `
-          <figure>
+     <figure>
           <a href="${url}" target="_blank">
            <image class="my-2 ad-img" src="${pictureString}" style="width: 200px; height: 100px;" data-clickcount="${clickCountUrl}" title="${text}"/>
          

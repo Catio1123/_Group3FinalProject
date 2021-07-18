@@ -24,7 +24,7 @@ public class MemberJpaService {
 	
 	
 	public Member findByAcctno(String act) {
-		return memberDao.findById(act).get();
+		return memberDao.findByAcctno(act);
 	}
 	
 	public List<SpecSearchCriteria> getMemberActCriterias(String fieldName, RestQueryPodcastererNameDto queryDto){
@@ -37,13 +37,15 @@ public class MemberJpaService {
 		
 		for(SpecSearchCriteria criteria : criterias) {
 			
+			boolean isOrPredicate = criteria.isOrPredicate();
+			criteria.setOrPredicate(false);
 			Specification<Member> categorySpec = PodcastSpecification.from(Member.class).with(criteria).build();
 			List<Member> categories = memberDao.findAll(categorySpec);
 			String idSetString = categories.stream().map(c -> c.getAcctno()).map(String::valueOf)
 					.collect(Collectors.joining(", "));
 			
 			String targetCriteriaKey = fieldName;
-			if(criteria.isOrPredicate()) {
+			if(isOrPredicate) {
 				StringBuffer sb = new StringBuffer();
 				targetCriteriaKey = sb.append("or_").append(fieldName).toString();
 				

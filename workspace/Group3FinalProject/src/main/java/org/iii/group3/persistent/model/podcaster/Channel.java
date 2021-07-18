@@ -36,7 +36,7 @@ public class Channel {
 	private Long id;
 	
 	@Column(name = "member_act", insertable = false, updatable = false)
-	private String memeberAct;
+	private String memberAct;
 	
 	
 	@Column(name = "channel_category_id", insertable = false, updatable = false)
@@ -64,7 +64,7 @@ public class Channel {
 	private Set<ClickTime>  clickTimes;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "member_act")
+	@JoinColumn(name = "member_act", referencedColumnName = "acctno")
 	private Member member;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -78,8 +78,8 @@ public class Channel {
 		return id;
 	}
 
-	public String getMemeberAct() {
-		return memeberAct;
+	public String getMemberAct() {
+		return memberAct;
 	}
 
 	public Integer getCategoryid() {
@@ -130,8 +130,8 @@ public class Channel {
 		this.id = id;
 	}
 
-	public void setMemeberAct(String memeberAct) {
-		this.memeberAct = memeberAct;
+	public void setMemberAct(String memberAct) {
+		this.memberAct = memberAct;
 	}
 
 	public void setCategoryid(Integer categoryid) {
@@ -178,6 +178,7 @@ public class Channel {
 		this.episodes = episodes;
 	}
 
+	
 	
 	
 }

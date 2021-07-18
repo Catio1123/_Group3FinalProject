@@ -36,13 +36,16 @@ public class ChannelCategoryService {
 		
 		for(SpecSearchCriteria criteria : criterias) {
 			
-			Specification<ChannelCategory> categorySpec = PodcastSpecification.from(ChannelCategory.class).with(criteria).build();
+			boolean isOrPredicate = criteria.isOrPredicate();
+			criteria.setOrPredicate(false);
+			Specification<ChannelCategory> categorySpec = PodcastSpecification
+					.from(ChannelCategory.class).with(criteria).build();
 			List<ChannelCategory> categories = categoryDao.findAll(categorySpec);
 			String idSetString = categories.stream().map(c -> c.getId()).map(String::valueOf)
 					.collect(Collectors.joining(", "));
 			
 			String targetCriteriaKey = fieldName;
-			if(criteria.isOrPredicate()) {
+			if(isOrPredicate) {
 				StringBuffer sb = new StringBuffer();
 				targetCriteriaKey = sb.append("or_").append(fieldName).toString();
 				

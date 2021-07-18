@@ -26,7 +26,7 @@ public class ForumContentBean {
 	private String con;
 	
 	@Column(name = "uid")
-	private int uid;
+	private String uid;
 	
 	@Column(name = "img")
 	private String img;
@@ -76,11 +76,11 @@ public class ForumContentBean {
 		this.con = con;
 	}
 
-	public int getUid() {
+	public String getUid() {
 		return uid;
 	}
 
-	public void setUid(int uid) {
+	public void setUid(String uid) {
 		this.uid = uid;
 	}
 

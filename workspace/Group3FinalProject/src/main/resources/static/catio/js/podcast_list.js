@@ -1,21 +1,38 @@
 
 let podcastListContainer = document.getElementById("podcastListContainer");
+let btnSearch = document.getElementById("btnSearch");
+
 
 window.onload = function(){
 
   load();
+
+  document.getElementById("queryString").addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      query();
+    }
+  });
+
+  btnSearch.onclick = function(){
+    query();
+  }
+
  
 }
   
 
 function load(){
-  findAll();
+ query();
 }
 
 function findAll(){
+  
+  
+
   var container = $("#pagination-container");
   container.pagination({
-    dataSource: `/ipodcast/podcast`,
+    dataSource: "/ipodcast/podcast",
     alias: {
       pageNumber: 'page',
       pageSize: 'size'
@@ -32,6 +49,31 @@ function findAll(){
     className: 'paginationjs-big'
   });
 
+};
+
+function query(){
+  let queryString = document.getElementById("queryString").value;
+  var container = $("#pagination-container");
+  container.pagination({
+    dataSource: "/ipodcast/podcast",
+    alias: {
+      pageNumber: 'page',
+      pageSize: 'size'
+    },
+  	ajax:{
+      data: queryString
+    },
+    locator: 'data.elements',
+    totalNumber: 36,
+    pageSize: 12,
+    totalNumberLocator: function (response) {
+      return response.data.total;
+    },
+    callback: function (response, pagination) {
+      displayPodcastList(response);
+    },
+    className: 'paginationjs-big'
+  });
 };
 
 //顯示Podcast

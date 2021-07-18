@@ -81,7 +81,7 @@
   <section class="py-3 text-center  container">
     <div class="row pt-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light"><a href="<c:url value='/'/>">IPodcast</a></h1>
+        <a href="<c:url value='/'/>"><img src="<c:url value='/catio/image/IPocast.png'/>" style="width:300px;"></a>
       </div>
     </div>
     <!-- 搜尋列 -->
@@ -89,13 +89,13 @@
       
       <div class="  justify-content-center row g-3">
         <div class="col-8">
-          <input class="form-control" type="search" placeholder="Podcast搜尋" aria-label="Search">
+          <input class="form-control" id="queryString" type="text" placeholder="Podcast搜尋" aria-label="Search" >
         </div>
         <div class="col-2">
           <select class=" form-select"></select>
         </div>
         <div class="col-auto">
-          <button class="btn btn-outline-secondary " type="submit">搜尋</button>
+          <button class="btn btn-outline-secondary " id="btnSearch" type="button">搜尋</button>
         </div>
 
       </div>
@@ -120,10 +120,10 @@
  
     
 
+      </div>
         <div class="position-relative bottom-0 start-50 ">
                                        
-          <div id="pagination-container"> </div>
-      </div>
+          <div id="pagination-container"></div>
       </div>
     </div>
   </div>

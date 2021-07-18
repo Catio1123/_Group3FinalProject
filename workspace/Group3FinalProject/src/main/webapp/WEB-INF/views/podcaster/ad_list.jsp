@@ -42,7 +42,7 @@
             <!-- Ipodcast log -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value='/'/>">
                 
-                <div class="sidebar-brand-text mx-3"><img src="/ipodcast/wayne/images/iPocast.png" width="180" align="top"></div>
+                <div class="sidebar-brand-text mx-3">IPodcast</div>
             </a>
 
             <!-- Divider -->
@@ -133,6 +133,7 @@
                                             <th class="col-1" scope="col">編號</th>
                                             <th class="col-2" scope="col">廣告商</th>
                                             <th class="col-3 text-truncate" scope="col">廣告內容</th>
+                                            <th class="col-1" scope="col">照片</th>
                                             <th class="col-4" scope="col">贊助網址</th>
                                             <th class="col-2" scope="col" colspan=2>指令</th>
                                         </tr>

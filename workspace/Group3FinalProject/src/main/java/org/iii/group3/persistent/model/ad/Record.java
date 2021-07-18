@@ -50,7 +50,7 @@ public class Record {
 	private Ad ad;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="user_id", referencedColumnName = "acctno")
 	private Member user;
 
 	public Integer getId() {

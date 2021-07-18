@@ -6,7 +6,9 @@ public class RestQueryCategoryCnNameDto implements RestQueryDto<ChannelCategory>
 
 	private String category_cnName;
 	
-	private String or_category_CnName;
+	private String or_category_cnName;
+
+	
 
 	
 
@@ -16,9 +18,13 @@ public class RestQueryCategoryCnNameDto implements RestQueryDto<ChannelCategory>
 
 
 
-	public String getOr_category_CnName() {
-		return or_category_CnName;
+
+
+	public String getOr_category_cnName() {
+		return or_category_cnName;
 	}
+
+
 
 
 
@@ -28,9 +34,13 @@ public class RestQueryCategoryCnNameDto implements RestQueryDto<ChannelCategory>
 
 
 
-	public void setOr_category_CnName(String or_category_CnName) {
-		this.or_category_CnName = or_category_CnName;
+
+
+	public void setOr_category_cnName(String or_category_cnName) {
+		this.or_category_cnName = or_category_cnName;
 	}
+
+
 
 
 

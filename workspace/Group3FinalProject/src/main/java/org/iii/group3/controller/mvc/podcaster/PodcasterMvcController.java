@@ -49,7 +49,7 @@ public class PodcasterMvcController {
 		return "podcaster/channel_info";
 	}
 	
-	@GetMapping(path = "channel/{cid}/episode-list")
+	@GetMapping(path = "/channel/{cid}/episode-list")
 	public String epsiodeListPage(@SessionAttribute(name = "Member",required = false)Member logger, 
 						          @PathVariable("cid")Long cid,
 								  Model model) {

@@ -10,6 +10,7 @@ public class ChannelRecordDto {
 	private double bonus;
 	private String addAdToChannelUrl;
 	private boolean enable = true;
+	private String pictureString;
 	public Integer getId() {
 		return id;
 	}
@@ -57,6 +58,12 @@ public class ChannelRecordDto {
 	}
 	public void setEnable(boolean enable) {
 		this.enable = enable;
+	}
+	public String getPictureString() {
+		return pictureString;
+	}
+	public void setPictureString(String pictureString) {
+		this.pictureString = pictureString;
 	}
 	
 	

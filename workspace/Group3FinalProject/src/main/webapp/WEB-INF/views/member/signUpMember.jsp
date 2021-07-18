@@ -1,9 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
+<!DOCTYPE html>
 <html>
 <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/custom-bs.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/jquery.fancybox.min.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/bootstrap-select.min.css'/> ">
+	
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/owl.carousel.min.css'/> ">
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/animate.min.css'/> ">
+    <link rel="stylesheet" href="<c:url value='/kevin/css2/quill.snow.css'/>">
+	
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="<c:url value='/kevin/css2/style.css'/> ">
 
 <script>
 var hasError = false;
@@ -82,7 +97,7 @@ sendData.onclick = function() {
 		}
 		if (!emailValue){
 			setErrorFor(div4, "請輸入信箱號");
-		} else {
+		}else {
 			div4.innerHTML = "";
 		}
 		if (!celnoValue){
@@ -105,19 +120,24 @@ sendData.onclick = function() {
 		if (hasError){
     		return false;
 		}
-		
-// 		if (!balanceValue){
-// 			setErrorFor(div2, "請輸入餘額");
-// 		} else {
-// 	   		var objRegex = /^\d+$|(^-?\d\d*\.\d\d*$)|(^-?\.\d\d*$)/;  
-// 			if(!objRegex.test(balanceValue))    {  
-// 				setErrorFor(div2, "餘額欄必須是數值");
-//     		} else { 
-//         		div2.innerHTML = "";
-//     		}
-// 		}
+
 		var xhr1 = new XMLHttpRequest();
 		xhr1.open("POST", "<c:url value='/signUpMember' />", true);
+// 		var myForm = new FormData();
+		
+// 		myForm.append("memberPicture",$("#picture")[0].files[0])
+// 		myForm.append("acctno"  ,acctnoValue)
+// 		myForm.append("pw"      ,pwValue)
+// 		myForm.append("name"    ,nameValue)
+// 		myForm.append("nickname",nicknameValue)
+// 		myForm.append("email"   ,emailValue)
+// 		myForm.append("celno"   ,celnoValue)
+// 		myForm.append("dob"     ,dobValue)
+// 		myForm.append("gender"  ,genderValue)
+		
+// 		xhr1.send(myForm);
+		
+		
 		var jsonMember = {
 			"acctno"  : acctnoValue, 	
 			"pw"      : pwValue,
@@ -130,10 +150,7 @@ sendData.onclick = function() {
 		}
 		xhr1.setRequestHeader("Content-Type", "application/json");
 		xhr1.send(JSON.stringify(jsonMember));
-//   以下敘述錯誤  		
-//		xhr1.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-// 		xhr1.send("id=" + idValue + "&name=" + nameValue + "&balance=" 
-// 				+ balanceValue + "&birthday=" + birthdayValue );
+
 
 		xhr1.onreadystatechange = function() {
 				// 伺服器請求完成
@@ -209,157 +226,269 @@ sendData.onclick = function() {
 		
 }
 
-function setErrorFor(input, message){
-	input.innerHTML = "<font color='red' size='-2'>" + message + "</font>";
- hasError = true;
+var once = document.getElementById("once");
+once.onclick = function() {
+	var acctnoValue   = document.getElementById("acctno").value;
+	var pwValue       = document.getElementById("pw").value;
+	var nameValue     = document.getElementById("name").value;
+	var nicknameValue = document.getElementById("nickname").value;
+	var emailValue    = document.getElementById("email").value;
+	var celnoValue    = document.getElementById("celno").value;
+	var dobValue      = document.getElementById("dob").value;
+	var genderValue   = document.getElementById("gender").value;
+	
+	if (acctnoValue.length == 0 ){
+		setValue("Candy9632");
+	}
+	
 }
 
-// function dateValidation(str) {
-// 	  var re = new RegExp("^([0-9]{4})[.-]{1}([0-9]{1,2})[.-]{1}([0-9]{1,2})$");
-// 	  var days = [0, 31, 28, 31, 30,  31, 30, 31, 31, 30, 31, 30, 31];
-// 	  var strDataValue;
-// 	  var valid = true;
-// 	  if ((strDataValue = re.exec(str)) != null) {
-// 	    var y, m, d;
-// 	    y = parseFloat(strDataValue[1]);
-// 	    if (y <= 0 || y > 9999) { /*年*/
-// 	      return false;
-// 	    } 
-// 	    m = parseFloat(strDataValue[2]);
-	    
-// 	    if (m < 1 || m > 12) { /*月*/
-// 	        return false;
-// 	    }
-// 	    d = parseFloat(strDataValue[3]);
-// 	    if ( y % 4 == 0 && y % 100 != 0 || y % 400 == 0 ){
-// 	       days[2] = 29;
-// 	    }  else {
-// 	       days[2] = 28;
-// 	    }
-// 	    if (d <= 0 || d > days[m]) { /*日*/
-// 	      valid = false;
-// 	    }
-// 	  } else {
-// 	    valid = false;
-// 	  }  
-// 	  return valid;
-// 	}
 
-// 	function isEmail(email) {
-// 		return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-// 	}
 
+	function setErrorFor(input, message) {
+		input.innerHTML = "<font color='red' size='-2'>" + message + "</font>";
+		hasError = true;
+	}
+
+	function isEmail(email) {
+		return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+				.test(email);
+	}
 </script>
+
 
 <style>
 fieldset {
-            width: 960px;
-            border: 1px solid #FF5151;
-            border-radius: 20px;
-            margin: 15px;
-            margin: auto;
-            
-        }
+	width: 600px;
+	border: 1px solid #ADADAD;
+	border-radius: 20px;
+	margin: 15px;
+	margin: auto;
+}
 
-        legend {
-            color: #FF8040;
-            margin-left: 50px;
-            font-family: fantasy;
-            font-weight: bold;
-            font-size: 20px;
-        }
+legend {
+	color: #FF8040;
+	margin-left: 50px;
+	font-family: fantasy;
+	font-weight: bold;
+	font-size: 20px;
+}
 
-        h1 {
-            font-family: sans-serif;
+h1 {
+	font-family: sans-serif;
+}
 
-        }
+.s1 {
+	width: 500px;
+	border-bottom: 3px dashed #ADADAD;
+	margin: 20px;
+	padding-bottom: 10px;
+	color: black;
+	font-weight: bold;
+	font-size: 120%;
+}
 
-        .s1 {
-            width: 450px;
-            border-bottom: 3px dashed #FF5151;
-            margin: 20px;
-            padding-bottom: 10px;
-        }
+body {
+	background-color: #F0F0F0
+}
 
+.logo {
+	font-family: sans-serif;
+	text-align: center;
+	background: linear-gradient(to top, #3a1c71, #d76d77, #ffaf7b);
+	background: -webkit-linear-gradient(to top, #3a1c71, #d76d77, #ffaf7b);
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	font-size: 50px;
+}
 </style>
 <meta charset="UTF-8">
-<%-- <link rel='stylesheet' href="<c:url value='/css/style.css' />" type="text/css" /> --%>
 </head>
 <body>
 <div align="center">
+
+   <header class="site-navbar mt-3">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="logo"><a href="/ipodcast" class="logo">iPodcast</a></div>
+        </div>
+      </div>
+    </header>
+   
+        <section class="section-hero overlay inner-page bg-image" style="background-image: url('/ipodcast/kevin/images/P5.jpg');" id="home-section">
+      <div class="container">
+      <br>
+          <div class="col-md-7">
+            <h2 class="text-white font-weight-bold">歡迎加入，註冊iPodcast帳號</h2>
+            <br>
+
+          </div>
+      </div>
+    </section>
+     <br><br><br>			<div style=align:left;>
+						    <input type="button" class="btn px-4 btn-primary text-white" value="一鍵輸入" onclick="once()">
+						    </div>
+						    <br>
 <fieldset>
-	<legend>註冊會員資料</legend> 
 <hr>
 <div id='resultMsg' style="height: 18px; font-weight: bold;"></div>
-			<form action="signUpMember" method="POST" >
-				
+			<form style=background-color:write; action="signUpMember" method="POST" >
+
 							<div class="s1">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								帳號:&nbsp;&nbsp;
 								<input type="text" id="acctno" name="acctno" >
-								<a href='#' id='accountCheck' style='font-size: 10pt;'>檢查帳號</a>
-								<div id='result0c' style="height: 10px;"></div>
-								${failMessage}
-							</div>
-
-							<div class="s1">
+							    <a href='#' id='accountCheck' style='font-size: 10pt;'>檢查帳號</a>	                 
+								<div id='result0c' style="height: 15px;"></div>
+							    ${failMessage}
+							</div>	
+							<div class="s1">	
 								密碼:&nbsp;&nbsp;
 								<input type="Password" id="pw" name="pw" >
-								<div id='result1c' style="height: 10px;"></div>
-
+								<div id='result1c' style="height: 15px;"></div>
 							</div>
 
+
 							<div class="s1">
-								姓名:&nbsp;&nbsp;
+							    姓名:&nbsp;&nbsp;
 								<input type="text" id="name" name="name" >
-								<div id='result2c' style="height: 10px;"></div>
-							</div>
-
-							<div class="s1">
+								<div id='result2c' style="height: 15px;"></div>
+							</div>	
+							
+                            <div class="s1">
 								暱稱:&nbsp;&nbsp;
 								<input type="text" id="nickname" name="nickname" >
-								<div id='result3c' style="height: 10px;"></div>
+								<div id='result3c' style="height: 15px;"></div>
 							</div>
 
 							<div class="s1">
-								E-mail:&nbsp;&nbsp;
+								信箱:&nbsp;&nbsp;
 								<input type="text" id="email" name="email" >
-								<div id='result4c' style="height: 10px;"></div>
-							</div>
-
-							<div class="s1">
-								手機號:&nbsp;&nbsp;
+								<div id='result4c' style="height: 15px;"></div>
+						    </div>
+						    
+                            <div class="s1">
+								手機號:&nbsp;
 								<input type="text" id="celno" name="celno" >
-								<div id='result5c' style="height: 10px;"></div>
+								<div id='result5c' style="height: 15px;"></div>
 							</div>
 
 							<div class="s1">
-								生日:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							    &nbsp;
+								生日:&nbsp;&nbsp;&nbsp;&nbsp;
 								<input type="Date" id="dob" name="dob" >
 								&nbsp;&nbsp;
-								<div id='result6c' style="height: 10px;"></div>
-							</div>
-
-							<div class="s1">
-								性別:&nbsp;&nbsp;
-								<input type="text" id="gender" name="gender" >
-								<div id='result7c' style="height: 10px;"></div>
+								<div id='result6c' style="height: 15px;"></div>
+                            </div>
+                            
+                            <div class="s1">
+								性別:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								Mele  &nbsp;
+								<input type="radio" id="gender" name="gender" value="Mele" checked >
+								&nbsp;&nbsp;&nbsp;
+								Femle &nbsp;
+								<input type="radio" id="gender" name="gender" value="Femle" >
+								<div id='result7c' style="height: 15px;"></div>
 							</div>
 							
+<!-- 							<div style=s1;> -->
+<!-- 								照片:&nbsp;&nbsp; -->
+<!-- 								<input type="file" name="picture" id="picture"> -->
+<!-- 							</div> -->
+							
 							<div style=display:none;>
-								性別:&nbsp;&nbsp;
+								Role:&nbsp;&nbsp;
 								<input type="text" name="role" value="general">
 							</div>
 							
-
-						<button id='sendData'>送出</button>
-		
+                            <div>
+						        <input type="submit" class="btn px-4 btn-primary text-white" id='sendData' value="註冊">
+		                    </div>
+		                    
+		                  
+		                    
+		                    <script>
+		                    function once(){
+		                    	document.getElementById("acctno")  .value = "aaa0723"
+		                    	document.getElementById("pw")      .value = "aaa07231"
+		                    	document.getElementById("name")    .value = "張君雅"
+		                    	document.getElementById("nickname").value = "Jane"
+		                    	document.getElementById("email")   .value = "Jane@gmail.com"
+		                    	document.getElementById("celno")   .value = "0921072303"
+		                    	document.getElementById("dob")     .value = "1992/07/23";
+		                    	
+		                    }
+		                    
+		                    </script>
+		                    
 			</form>
 
 		</fieldset>
+		<br><br><br>
+		<footer class="site-footer">
+
+      <a href="#top" class="smoothscroll scroll-top">
+        <span class="icon-keyboard_arrow_up"></span>
+      </a>
+
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-6 col-md-3 mb-4 mb-md-0">
+            <h3>組長</h3>
+            <ul class="list-unstyled">
+              <li><a href="#">19 張大品</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3 mb-4 mb-md-0">
+            <h3>技術長</h3>
+            <ul class="list-unstyled">
+              <li><a href="#">33 廖帝凱</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3 mb-4 mb-md-0">
+            <h3>組員</h3>
+            <ul class="list-unstyled">
+              <li><a href="#">37 程偉勝</a></li>
+              <li><a href="#">21 許佳崴</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3 mb-4 mb-md-0">
+            <h3>組員</h3>
+            <ul class="list-unstyled">
+              <li><a href="#">32 洪豪均</a></li>
+              <li><a href="#">10 陳宣佑</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row text-center">
+          <div class="col-12">
+            <p class="copyright"><small>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
+          </div>
+        </div>
+      </div>
+    </footer>
 </div>
-<br>
 <a href="<c:url value='/'/> " >回首頁</a>
-<hr>
+
+    <script src="<c:url value='/kevin/js2/jquery.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/bootstrap.bundle.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/isotope.pkgd.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/stickyfill.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/jquery.fancybox.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/jquery.easing.1.3.js'/>" ></script>
+    
+    <script src="<c:url value='/kevin/js2/jquery.waypoints.min.js'/>" ></script>
+    <script src="<c:url value='/kevin/js2/jquery.animateNumber.min.js'/> "></script>
+    <script src="<c:url value='/kevin/js2/owl.carousel.min.js'/> "></script>
+    
+    <script src="<c:url value='/kevin/js2/bootstrap-select.min.js'/> "></script>
+    
+    <script src="<c:url value='/kevin/js2/custom.js'/> "></script>
 
 </body>
 

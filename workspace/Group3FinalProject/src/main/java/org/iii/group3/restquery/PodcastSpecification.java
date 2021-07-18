@@ -57,43 +57,61 @@ public class PodcastSpecification {
 		
 		public Builder<E> with(SpecSearchCriteria criteria){
 			
-			criterias.add(criteria);
+			this.criterias.add(criteria);
 			return this;
 		}
 		
+		
 		public Builder<E> with(Collection<SpecSearchCriteria> criterias){
 			
-			criterias.stream().map(c -> this.criterias.add(c));
+			for(SpecSearchCriteria criteria : criterias) {
+				this.criterias.add(criteria);
+				
+			}
 			return this;
 		}
 		
 		
 		public Specification<E> build(){
-			if(criterias.size()==0) {
+			if(this.criterias.size()==0) {
 				return null;
 			}
 			
-			Specification<E> specification = null;
+			Specification<E> specification = getBaseSpecification();
+			
+					
 			for(SpecSearchCriteria criteria :criterias) {
 				specification = getSpecification(specification, criteria);
 				
 			}
+			
 			return specification;
 		}
 		
-		private Specification<E> getSpecification(Specification<E> spec, SpecSearchCriteria criteria){
+		
+		
+		public List<SpecSearchCriteria> getCriterias() {
+			return criterias;
+		}
+
+		private Specification<E> getSpecification(Specification<E> orign, SpecSearchCriteria criteria){
 			
-			if(spec == null) {
-				
-				return (root, query, builder) -> {
-					
-					return getPredicate(criteria, root, builder);
-				};
-				
+			
+			Specification<E> spec = new Specification<E>() {
+
+				@Override
+				public Predicate toPredicate(Root root, CriteriaQuery query, CriteriaBuilder criteriaBuilder) {
+					return getPredicate(criteria, root, criteriaBuilder);
+				}
+			};
+			
+			
+			if(criteria.isOrPredicate()) {
+				return orign.or(spec);
 			}else {
-				return spec.and(getSpecification(null, criteria));
-				
+				return orign.and(spec);
 			}
+			
 		}
 		
 		private Predicate getPredicate(SpecSearchCriteria criteria, Root<E> root, CriteriaBuilder builder) {
@@ -103,17 +121,25 @@ public class PodcastSpecification {
 			String field = criteria.getField();
 			
 			for(Condition condition : conditions) {
-				condition.getOperation();
-				if (criteria.isOrPredicate()) {					
-					predicate = builder.or(predicate, getConditionPredicate(root, builder, field, condition));
-				}else {
-					predicate = builder.and(predicate, getConditionPredicate(root, builder, field, condition));
-				}
+				
+				predicate = builder.and(predicate, getConditionPredicate(root, builder, field, condition));
+				
 			
 			}
+			
+	
 			return predicate;
 			
 		}
+		
+		private Specification<E> getBaseSpecification(){
+			return (root, query, builder) -> {
+				return builder.conjunction();
+			};
+			
+		}
+		
+		
 		
 		private Predicate getConditionPredicate(Root<E> root, CriteriaBuilder builder, String field, Condition condition){
 			
@@ -141,12 +167,12 @@ public class PodcastSpecification {
 				
 			case STARTS_WITH:
 				StringBuffer startsWith = new StringBuffer();
-				return builder.like(root.get(field), startsWith.append("%").append(val).toString());
+				return builder.like(root.get(field), startsWith.append(val).append("%").toString());
 				
 				
 			case ENDS_WITH:
 				StringBuffer endsWith = new StringBuffer();
-				return builder.like(root.get(field), endsWith.append(val).append("%").toString());
+				return builder.like(root.get(field), endsWith.append("%").append(val).toString());
 
 			case EQUAL:
 				return builder.equal(root.get(field), val);
