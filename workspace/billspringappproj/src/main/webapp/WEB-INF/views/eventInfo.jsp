@@ -23,7 +23,6 @@
 		background-color:black;
 		align-items: center;
 	}
-
 	.seconddiv{
 		width: 80%;
 		background-color: #F0F0F0;
@@ -38,6 +37,37 @@
 	a, p{
 		padding: 10px;
 	}
+	.title-site{
+		font-size: 35px;
+		text-align: center;
+		width: 100%;
+		height: 70px;
+		opacity: 50%;
+		background-color: #272727;
+		position: fixed;
+		top: 0;
+	}
+	.title{
+		opacity: 100%;
+		text-decoration: none;
+		color: #F0F0F0;
+	}
+	.title:hover{
+		color: #F0F0F0;
+		background-color: #272727;
+		text-decoration: none;
+	}
+	.footera{	
+		text-decoration: none;
+		font-size: 30px;
+		color: #F0F0F0;
+	}
+	.footera:hover{
+		color: #F0F0F0;
+		background-color: #272727;
+		text-decoration: none;
+	}
+
 </style>
 
 <title>${event.topic}--iPocast Event Site</title>
@@ -46,6 +76,9 @@
 <body style="background-color: black;">
 <div class="firstdiv">
 	<div>
+		<div class="title-site">
+			<a class="title" href="<c:url value='/showEvent'/>">iPodcast Event Site</a>
+		</div>
 		<img  class="coverImg" src="${event.pictureString}">
 	</div>
 
@@ -76,7 +109,7 @@
 	<footer class="py-4 bg-light mt-auto" style="background-color: #272727 !important;">
 		<div class="container-fluid px-4">
 			<div class="d-flex align-items-center justify-content-center small" >
-				<div class="text-muted" style="color: #F0F0F0 !important;">Copyright &copy; iPodcast</div>					
+				<div class="text-muted" style="color: #F0F0F0 !important;"><a class="footera" href="<c:url value='/'/>">iPodcast</a></div>					
 			</div>
 		</div>
 	</footer>
