@@ -94,6 +94,7 @@ function load(){
 function refresh(){
   bsOffcanvas.hide();       
   form.reset();
+  audioSource.src="";
   resetValid();
   load(); 
 }

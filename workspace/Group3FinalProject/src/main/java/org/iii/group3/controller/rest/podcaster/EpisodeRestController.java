@@ -1,6 +1,7 @@
 package org.iii.group3.controller.rest.podcaster;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import org.iii.group3.transferdata.GenericResponse;
 import org.iii.group3.transferdata.dto.podcaster.ChannelInfoDto;
 import org.iii.group3.transferdata.dto.podcaster.EpisodeInfoDto;
 import org.iii.group3.transferdata.dto.podcaster.EpisodeTableDto;
+import org.iii.group3.transferdata.dto.podcaster.PodcastEpDto;
 import org.iii.group3.utils.podcaster.MapUtil;
 import org.iii.group3.utils.podcaster.PageableUtil;
 import org.iii.group3.utils.podcaster.ResponseEntityWrapper;
@@ -50,6 +52,17 @@ public class EpisodeRestController {
 		this.messageSource = messageSource;
 		this.modelMapper = modelMapper;
 		this.objectMapper = objectMapper;
+	}
+	
+	
+	@GetMapping(path = "/podcast/{cid}/ep")
+	public GenericResponse getPodcastEpList(@PathVariable(name = "cid")Long cid) {
+		
+		List<PodcastEpDto> dtos = epService.getPodcastEp(cid);
+		
+		Map data = MapUtil.toSingleEntryMap("eps", dtos);
+		
+		return ResponseEntityWrapper.wrapDataToGenericResponse(HttpStatus.OK, data);
 	}
 	
 	@PostMapping(path = "/logged/podcaster/channel/{cid}/episode")

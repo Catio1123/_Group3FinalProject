@@ -81,7 +81,7 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
                 <a class="nav-link" href="#">
-                    <span style="font-size: large;">廣告列癟</span></a>
+                    <span style="font-size: large;">廣告列表</span></a>
             </li>
 
             <!-- Divider -->

@@ -25,6 +25,13 @@
     <link href="<c:url value='/catio/css/sb-admin-2.css'/>" rel="stylesheet">
 
     <link href="<c:url value='/catio/css/pagination.css'/>" rel="stylesheet">
+    <style>
+    	.card-img-top {
+        width: 100%;
+        height: 10vw;
+        object-fit: cover; 
+      }
+    </style>
 
 </head>
 

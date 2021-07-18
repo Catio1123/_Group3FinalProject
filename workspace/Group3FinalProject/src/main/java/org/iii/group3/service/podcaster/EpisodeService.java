@@ -19,6 +19,7 @@ import org.iii.group3.restquery.PodcastSpecification;
 import org.iii.group3.restquery.SpecSearchCriteria;
 import org.iii.group3.transferdata.dto.podcaster.EpisodeInfoDto;
 import org.iii.group3.transferdata.dto.podcaster.EpisodeTableDto;
+import org.iii.group3.transferdata.dto.podcaster.PodcastEpDto;
 import org.iii.group3.transferdata.dto.restquery.RestQueryPodcastererNameDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,13 @@ public class EpisodeService {
 		this.channelDao = channelDao;
 	}
 
+	
+	public List<PodcastEpDto> getPodcastEp(Long cid){
+		List<Episode> eps = epDao.findByChannelId(cid);
+		return eps.stream().map(ep -> modelMapper.map(ep, PodcastEpDto.class))
+			.collect(Collectors.toList());
+		
+	}
 	
 	
 	public Episode addNewEpisode(EpisodeInfoDto epDto, Long cid) {

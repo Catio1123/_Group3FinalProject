@@ -50,7 +50,7 @@
       .card-img-top {
         width: 100%;
         height: 15vw;
-        /* object-fit: cover; */
+        object-fit: cover;
       }
      
 	  a.custom-card,a.custom-card:hover {

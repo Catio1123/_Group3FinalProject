@@ -54,7 +54,7 @@
         overflow: auto;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 4; /* number of lines to show */
+        -webkit-line-clamp: 6; /* number of lines to show */
         -webkit-box-orient: vertical;
       }
 
@@ -111,7 +111,7 @@
         <!-- category -->
         <h6 id="category" class="text-secondary"></h6>
         <!-- descrption -->
-        <div id="description" class="text mt-5"></div>
+        <div id="description" class="text mt-3"></div>
         <div id="epContainer" class="mt-5 episodes bg-light">
           
         </div>

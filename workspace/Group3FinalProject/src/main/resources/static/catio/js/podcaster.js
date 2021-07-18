@@ -112,6 +112,7 @@ function load(){
 function refresh(){
   bsOffcanvas.hide();       
   form.reset();
+  document.getElementById("channel_img").src="";
   resetValid();
   load();
 
@@ -171,7 +172,7 @@ function createCardHtml(imgSrc, title, desrc, id) {
   let cardHtml = `
       <div class="col">
         <div class="card shadow-sm h-100  ">
-          <img src="${imgSrc}" width="100%" height="225"></img>
+          <img src="${imgSrc}" class=".card-img-top"></img>
           <div class="card-body">
             <h5 class="card-title">${title}</h5>
             <p class="card-text text-truncate">${desrc}</p>
