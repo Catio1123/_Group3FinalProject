@@ -264,12 +264,12 @@
 		$("#btnDel").on("click", function(){
 			$.ajax({
 				method: "DELETE",
-				url: "<c:url value='/gavin/studio'/>/" + id,
+				url: "<c:url value='/editbs'/>/" + id,
 				dataType: "json",
 				async: false,
 			}).done(function(response){
 				alert(response.msg);
-				window.location.href ='<c:url value="/queryStudio"/>';
+				window.location.href ='<c:url value="/querybooking"/>';
 			});
 		});
 		

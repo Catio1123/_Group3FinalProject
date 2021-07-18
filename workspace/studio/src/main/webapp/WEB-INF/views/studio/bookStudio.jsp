@@ -159,7 +159,7 @@ https://templatemo.com/tm-552-video-catalog
 												<input id="date" type="text" name="date" value="2021-07-23 AM7:30" class="form-control rounded-0">
 											</div>
 											<div class="form-group">
-												<input type="msg" name="msg" id="msg"
+												<input type="text" name="msg" id="msg"
 													class="form-control rounded-0" placeholder="備註"
 													required="" />
 											</div>

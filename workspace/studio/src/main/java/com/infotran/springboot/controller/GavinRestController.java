@@ -142,4 +142,16 @@ public class GavinRestController {
 		  
 		  return msg;
 	}
+	//------------------------------------------------------------------------------------------
+	@DeleteMapping(
+			path = "/editbs/{id}", 
+			produces = "application/json; charset=utf-8")
+	public Map<String, String> deletebooking(@PathVariable(value = "id", required = true) int id) {
+		bookingService.delete(id);
+		Map<String, String> msg = new HashMap<String, String>();
+		msg.put("msg", "刪除成功");
+		
+		
+		return msg;
+	}
 }

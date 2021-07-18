@@ -1,6 +1,6 @@
 package com.infotran.springboot.model;
 
-import java.sql.Timestamp;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
