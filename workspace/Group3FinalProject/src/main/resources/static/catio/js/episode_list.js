@@ -1,5 +1,5 @@
 //Channel ID
-let uid = document.getElementById("uid").value;
+
 let cid = document.getElementById("cid").value;
 
 let btnCreateEpisdoe = document.getElementById("btn_create_episode");
@@ -7,34 +7,14 @@ let fileInput = document.getElementById("epFile");
 let description = document.getElementById("description");
 let audioSource = document.getElementById("audio_source");
 let epTtable = document.getElementById("table_body");
+let form = document.getElementById("form_episode");
+
+let epOffcanvas = document.getElementById("addep");
+let bsOffcanvas = new window.bootstrap.Offcanvas(epOffcanvas);
 
 window.onload = function () {
 
-
-    //分頁
-    (function () {
-        let container = $("#pagination-container");
-        let url = `/ipodcast/logged/podcaster/${uid}/channel/${cid}/episode`;
-        container.pagination({
-            dataSource: url,
-            alias: {
-                pageNumber: 'page',
-                pageSize: 'size'
-            },
-            locator: 'data.elements',
-            totalNumber: 30,
-            pageSize: 10,
-            totalNumberLocator: function (response) {
-                return response.data.total;
-            },
-            callback: function (response, pagination) {
-                displayTable(response);
-            },
-            className: 'paginationjs-big'
-        });
-
-    })();
-
+    load();
 
     //送充新增
     btnCreateEpisdoe.onclick = function () {
@@ -47,7 +27,7 @@ window.onload = function () {
         formData.append('file', files);
 
         let xhr1 = new XMLHttpRequest();
-        xhr1.open('POST', "/ipodcast/files/episode/sound", false);
+        xhr1.open('POST', "/ipodcast/logged/files/episode/sound", false);
         xhr1.onreadystatechange = getFileUrl;
         xhr1.send(formData);
 
@@ -66,9 +46,9 @@ window.onload = function () {
         //送出新增表單
         function createEp() {
             let xhr2 = new XMLHttpRequest();
-            let formData = new FormData(document.getElementById("form_episode"))
+            let formData = new FormData(form)
             formData.append("epFile", fileUrl);
-            let url = `/ipodcast/logged/podcaster/${uid}/channel/${cid}/episode`;
+            let url = `/ipodcast/logged/podcaster/channel/${cid}/episode`;
             xhr2.open('POST', url, false);
             xhr2.onreadystatechange = createResult;
             xhr2.send(formData);
@@ -79,7 +59,7 @@ window.onload = function () {
                     let responseJson = JSON.parse(xhr2.responseText);
                     if (xhr2.status === 200) {
                         alert(responseJson['data']['episode']);
-                        window.location.href =  `/ipodcast/logged/podcaster/episode-list/${uid}/${cid}`;
+                        refresh();
 
                     } else {
                         if (xhr2.status === 400) {
@@ -99,11 +79,61 @@ window.onload = function () {
 
 
 }
+
+function load(){
+
+    findAll();
+}
+
+
+function refresh(){
+  bsOffcanvas.hide();       
+  form.reset();
+  resetValid();
+  load(); 
+}
+
+
+//reset valid
+function resetValid(){
+    let elements = document.querySelectorAll("form input");
+    elements.forEach(function(element){
+      if(element.classList.contains("is-invalid")){
+        element.classList.remove("is-invalid");
+      }
+    })
+  
+  }
+
+//搜尋全部ep
+function findAll(){
+    let container = $("#pagination-container");
+    let url = `/ipodcast/logged/podcaster/channel/${cid}/episode`;
+    container.pagination({
+        dataSource: url,
+        alias: {
+            pageNumber: 'page',
+            pageSize: 'size'
+        },
+        locator: 'data.elements',
+        totalNumber: 30,
+        pageSize: 10,
+        totalNumberLocator: function (response) {
+            return response.data.total;
+        },
+        callback: function (response, pagination) {
+            displayTable(response);
+        },
+        className: 'paginationjs-big'
+    });
+}
+
+
 //處理invalid
 function invalid(responseJson) {
     let errors = responseJson['errors'];
     for (let name in errors) {
-        document.getElementById(name).className += "is-invalid";
+        document.getElementById(name).className += " is-invalid";
         document.getElementById(name + "_invalid_text").innerHTML = errors[name];
     }
 };
@@ -124,7 +154,7 @@ function displayTable(elements) {
 //table row html
 function createRowHtml(num, title, pubDate, eid) {
     let cardHtml = `
-        <tr data-href="/ipodcast/logged/podcaster/episode-info/${uid}/${cid}/${eid}">
+        <tr data-href="/ipodcast/logged/podcaster/channel/${cid}/episode-info/${eid}">
             <th scope="row">${num}</th>
             <td>${title}</td>
             <td>${pubDate}</td>

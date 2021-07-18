@@ -10,8 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.iii.group3.persistent.model.member.Member;
 
 
 
@@ -23,89 +26,103 @@ public class Record {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@ManyToOne(cascade =  CascadeType.REMOVE)
-	@JoinColumn(name="ad_id")
-	private Ad ad;
+	@Column(name = "user_id", insertable = false, updatable = false)
+	private String userId;
 	
-	@ManyToOne
-	@JoinColumn(name="user_id")
-	private User user;
-	
+	@Column(name = "ad_id", insertable = false, updatable = false)
+	private Integer adId;
 	
 	@Column(name="url")
 	private String url;
 	
 	@Column(name="ad_click")
-	private double adClick;
+	private Long adClick = 0L;
 	
 	@Column(name="bonus")
 	private double bonus;
 
-	@Transient
-	private boolean enable = true;
+
+	@OneToOne(mappedBy = "record", cascade = CascadeType.REMOVE)
+	private ClickTime clickTime;
 	
-	public boolean isEnable() {
-		return enable;
+	@ManyToOne()
+	@JoinColumn(name="ad_id")
+	private Ad ad;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id", referencedColumnName = "acctno")
+	private Member user;
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setEnable(boolean enable) {
-		this.enable = enable;
+	public String getUserId() {
+		return userId;
+	}
+
+	public Integer getAdId() {
+		return adId;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public Long getAdClick() {
+		return adClick;
 	}
 
 	public double getBonus() {
 		return bonus;
 	}
 
-	public void setBonus(double bonus) {
-		this.bonus = bonus;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+	public ClickTime getClickTime() {
+		return clickTime;
 	}
 
 	public Ad getAd() {
 		return ad;
 	}
 
-	public void setAd(Ad ad) {
-		this.ad = ad;
-	}
-
-	public User getUser() {
+	public Member getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-
-	public String getUrl() {
-		return url;
+	public void setAdId(Integer adId) {
+		this.adId = adId;
 	}
 
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
-	
-
-	public double getAdClick() {
-		return adClick;
-	}
-
-	public void setAdClick(double adClick) {
+	public void setAdClick(Long adClick) {
 		this.adClick = adClick;
 	}
 
-	public Record() {
-		super();
+	public void setBonus(double bonus) {
+		this.bonus = bonus;
+	}
+
+	public void setClickTime(ClickTime clickTime) {
+		this.clickTime = clickTime;
+	}
+
+	public void setAd(Ad ad) {
+		this.ad = ad;
+	}
+
+	public void setUser(Member user) {
+		this.user = user;
 	}
 	
 	

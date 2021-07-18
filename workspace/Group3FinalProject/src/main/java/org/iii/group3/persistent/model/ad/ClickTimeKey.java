@@ -3,38 +3,27 @@ package org.iii.group3.persistent.model.ad;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 
-@Embeddable
 public class ClickTimeKey implements Serializable {
 
-	@Column(name = "user_id")
-	private int userId;
-	@Column(name = "ad_id")
-	private int adId;
+	private Long channel;
+	
+	private Integer ad;
 
-	public int getUserId() {
-		return userId;
+	public ClickTimeKey() {
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	public int getAdId() {
-		return adId;
-	}
-
-	public void setAdId(int adId) {
-		this.adId = adId;
+	public ClickTimeKey(Long channel, Integer ad) {
+		this.channel = channel;
+		this.ad = ad;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + adId;
-		result = prime * result + userId;
+		result = prime * result + ((ad == null) ? 0 : ad.hashCode());
+		result = prime * result + ((channel == null) ? 0 : channel.hashCode());
 		return result;
 	}
 
@@ -47,21 +36,34 @@ public class ClickTimeKey implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ClickTimeKey other = (ClickTimeKey) obj;
-		if (adId != other.adId)
+		if (ad == null) {
+			if (other.ad != null)
+				return false;
+		} else if (!ad.equals(other.ad))
 			return false;
-		if (userId != other.userId)
+		if (channel == null) {
+			if (other.channel != null)
+				return false;
+		} else if (!channel.equals(other.channel))
 			return false;
 		return true;
 	}
 
-	public ClickTimeKey(int userId, int adId) {
-		super();
-		this.userId = userId;
-		this.adId = adId;
+	public Long getChannel() {
+		return channel;
 	}
 
-	public ClickTimeKey() {
-		super();
+	public Integer getAd() {
+		return ad;
 	}
 
+	public void setChannel(Long channel) {
+		this.channel = channel;
+	}
+
+	public void setAd(Integer ad) {
+		this.ad = ad;
+	}
+
+	
 }

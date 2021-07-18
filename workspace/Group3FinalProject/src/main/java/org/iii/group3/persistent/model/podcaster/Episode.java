@@ -48,8 +48,6 @@ public class Episode {
 	@Column(name = "pubdate")
 	private Timestamp pubdate;
 	
-	@Column(name = "free")
-	private boolean free;
 	
 	@Column(name = "block")
 	private boolean block = false;
@@ -85,9 +83,6 @@ public class Episode {
 		return pubdate;
 	}
 
-	public boolean isFree() {
-		return free;
-	}
 
 	public boolean isBlock() {
 		return block;
@@ -125,9 +120,6 @@ public class Episode {
 		this.pubdate = pubdate;
 	}
 
-	public void setFree(boolean free) {
-		this.free = free;
-	}
 
 	public void setBlock(boolean block) {
 		this.block = block;

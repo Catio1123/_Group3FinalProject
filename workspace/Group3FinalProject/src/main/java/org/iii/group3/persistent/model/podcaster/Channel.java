@@ -16,7 +16,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
 
+import org.iii.group3.persistent.model.ad.ClickTime;
+import org.iii.group3.persistent.model.member.Member;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,8 +35,8 @@ public class Channel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "sysuser_id", insertable = false, updatable = false)
-	private Long userId;
+	@Column(name = "member_act", insertable = false, updatable = false)
+	private String memberAct;
 	
 	
 	@Column(name = "channel_category_id", insertable = false, updatable = false)
@@ -56,10 +59,13 @@ public class Channel {
 	
 	@Column(name = "enabled")
 	private boolean enabled = true;
+	
+	@OneToMany(mappedBy = "channel", cascade = CascadeType.REMOVE)
+	private Set<ClickTime>  clickTimes;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "sysuser_id")
-	private Podcaster owner;
+	@JoinColumn(name = "member_act", referencedColumnName = "acctno")
+	private Member member;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "channel_category_id")
@@ -72,8 +78,8 @@ public class Channel {
 		return id;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public String getMemberAct() {
+		return memberAct;
 	}
 
 	public Integer getCategoryid() {
@@ -104,8 +110,12 @@ public class Channel {
 		return enabled;
 	}
 
-	public Podcaster getOwner() {
-		return owner;
+	public Set<ClickTime> getClickTimes() {
+		return clickTimes;
+	}
+
+	public Member getMember() {
+		return member;
 	}
 
 	public ChannelCategory getCategory() {
@@ -120,8 +130,8 @@ public class Channel {
 		this.id = id;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setMemberAct(String memberAct) {
+		this.memberAct = memberAct;
 	}
 
 	public void setCategoryid(Integer categoryid) {
@@ -152,8 +162,12 @@ public class Channel {
 		this.enabled = enabled;
 	}
 
-	public void setOwner(Podcaster owner) {
-		this.owner = owner;
+	public void setClickTimes(Set<ClickTime> clickTimes) {
+		this.clickTimes = clickTimes;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 	public void setCategory(ChannelCategory category) {
@@ -164,6 +178,7 @@ public class Channel {
 		this.episodes = episodes;
 	}
 
-
+	
+	
 	
 }

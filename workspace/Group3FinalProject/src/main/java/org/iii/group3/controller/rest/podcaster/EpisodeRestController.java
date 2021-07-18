@@ -7,13 +7,14 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.aspectj.weaver.ReferenceType;
-import org.iii.group3.service.pocaster.EpisodeService;
+import org.iii.group3.service.podcaster.EpisodeService;
 import org.iii.group3.transferdata.GenericResponse;
-import org.iii.group3.transferdata.dto.ChannelInfoDto;
-import org.iii.group3.transferdata.dto.EpisodeInfoDto;
-import org.iii.group3.transferdata.dto.EpisodeTableDto;
-import org.iii.group3.utils.MapUtil;
-import org.iii.group3.utils.ResponseEntityWrapper;
+import org.iii.group3.transferdata.dto.podcaster.ChannelInfoDto;
+import org.iii.group3.transferdata.dto.podcaster.EpisodeInfoDto;
+import org.iii.group3.transferdata.dto.podcaster.EpisodeTableDto;
+import org.iii.group3.utils.podcaster.MapUtil;
+import org.iii.group3.utils.podcaster.PageableUtil;
+import org.iii.group3.utils.podcaster.ResponseEntityWrapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
@@ -51,7 +52,7 @@ public class EpisodeRestController {
 		this.objectMapper = objectMapper;
 	}
 	
-	@PostMapping(path = "/logged/podcaster/{uid}/channel/{cid}/episode")
+	@PostMapping(path = "/logged/podcaster/channel/{cid}/episode")
 	public GenericResponse createEpisode(@Valid EpisodeInfoDto epDto, 
 										 @PathVariable(name = "cid") Long cid,
 										 Locale locale) {
@@ -66,18 +67,23 @@ public class EpisodeRestController {
 		
 	}
 	
-	@GetMapping(path = "/logged/podcaster/{uid}/channel/{cid}/episode")
+	@GetMapping(path = "/logged/podcaster/channel/{cid}/episode")
 	public GenericResponse getAllEpisode(
 			@RequestParam(name = "page", defaultValue = "1")Integer pageNum,
 			@RequestParam(name = "Size" , defaultValue = "10")Integer pageSize,
 			@PathVariable(name = "cid")Long cid) {
 		
-		Map pageData = getPageData(cid, pageNum, pageSize);
+		Pageable pageable = PageableUtil.getPageable(pageNum, pageSize, null);
+		
+		Page<EpisodeTableDto> page = epService.getEpPage(cid, pageable);
+		
+		
+		Map pageData = MapUtil.toPageMap(page);
 		
 		return ResponseEntityWrapper.wrapDataToGenericResponse(HttpStatus.OK, pageData);
 	}
 	
-	@GetMapping(path = "/logged/podcaster/{uid}/channel/{cid}/episode/{eid}")
+	@GetMapping(path = "/logged/podcaster/channel/{cid}/episode/{eid}")
 	public GenericResponse getEpisodeInfo(@PathVariable("cid") Long cid,
 										  @PathVariable("eid") Long eid) {
 		
@@ -91,7 +97,7 @@ public class EpisodeRestController {
 	}
 		
 	
-	@PutMapping(path = "/logged/podcaster/{uid}/channel/{cid}/episode/{eid}")
+	@PutMapping(path = "/logged/podcaster/channel/{cid}/episode/{eid}")
 	public GenericResponse updataEpisode(@PathVariable("cid")Long cid,
 										 @PathVariable("eid")Long eid,
 										 @Valid EpisodeInfoDto epDto,
@@ -107,7 +113,7 @@ public class EpisodeRestController {
 		
 	}
 	
-	@DeleteMapping(path = "/logged/podcaster/{uid}/channel/{cid}/episode/{eid}")
+	@DeleteMapping(path = "/logged/podcaster/channel/{cid}/episode/{eid}")
 	public GenericResponse deleteEpisode(@PathVariable("cid") Long cid,
 										 @PathVariable("eid") Long eid,
 										 Locale locale) {
@@ -124,23 +130,6 @@ public class EpisodeRestController {
 	
 	
 	
-	private Map getPageData(Long cid, Integer pageNum, Integer pageSize) {
-		
-		Integer pageNumerBase0 = pageNum - 1 < 0 ? 0 : pageNum - 1;
-		
-		Pageable pageable = PageRequest.of(pageNumerBase0, pageSize);
-		
-		Page<EpisodeTableDto> page = epService.getEpPage(cid, pageable);
-		
-		Long total = page.getTotalElements();
-		
-		Map data = new HashMap();
-		data.put("total", total);
-		data.put("page", pageNum);
-		data.put("size", pageSize);
-		data.put("elements", page.getContent());
-		
-		return data;
-	}
+
 	
 }

@@ -1,5 +1,6 @@
 package org.iii.group3.persistent.dao.forum;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -21,7 +22,7 @@ public class FcDao {
 	@Autowired
 	private EntityManager entityManager;
 	
-	public ForumContentBean select(int id) {
+	public ForumContentBean selectContentById(int id) {
 		Session session = entityManager.unwrap(Session.class);
 		ForumContentBean result = session.get(ForumContentBean.class, id);
 		return result;
@@ -29,7 +30,13 @@ public class FcDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<ForumContentBean> findBySearch(String name){
-		String sqlString = "from ForumContentBean f where f.con like '%"+name+"%'";
+		String sqlString = "from ForumContentBean f where f.con like '%" + name + "%'";
+		return entityManager.createQuery(sqlString).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ForumContentBean> findByTypeSearch(String name){
+		String sqlString = "from ForumContentBean f where f.type like '%" + name + "%'";
 		return entityManager.createQuery(sqlString).getResultList();
 	}
 	
@@ -39,21 +46,13 @@ public class FcDao {
 		String queryString = "from ForumContentBean"; //此處不是認sql資料表 是認bean的名字
 		Query<ForumContentBean> query = session.createQuery(queryString, ForumContentBean.class);
 		List<ForumContentBean> list = query.list();
-		if(list.isEmpty()) {
-			return null;
-		}
 		return list;
 	}
 	
-	public boolean insert(ForumContentBean bean) {
+	public Serializable insert(ForumContentBean bean) {
 		Session session = entityManager.unwrap(Session.class);
-		try {
-			session.save(bean);
-			return true;
-		} catch (Exception e) {
-			// TODO: handle exception
-			return false;
-		}
+		Serializable result = session.save(bean);
+		return result;
 	}
 	
 	public ForumContentBean update(ForumContentBean bean) {
@@ -63,17 +62,10 @@ public class FcDao {
 		return result;
 	}
 	
-	public boolean delete(int id) {
+	public void delete(ForumContentBean bean) {
 //		Session session = factory.getCurrentSession();
 		Session session = entityManager.unwrap(Session.class);
-		try {
-			ForumContentBean object = session.get(ForumContentBean.class, id);
-			session.delete(object);
-			return true;
-		} catch (Exception e) {
-			// TODO: handle exception
-			return false;
-		}
+		session.delete(bean);
 	}
 	
 }

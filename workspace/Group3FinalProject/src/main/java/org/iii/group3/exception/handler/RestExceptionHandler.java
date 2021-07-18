@@ -9,7 +9,7 @@ import org.iii.group3.exception.EmailAlreadyUsedException;
 import org.iii.group3.exception.PasswordNotMatchException;
 import org.iii.group3.transferdata.GenericResponse;
 import org.iii.group3.transferdata.GenericResponseBuilder;
-import org.iii.group3.utils.ResponseEntityWrapper;
+import org.iii.group3.utils.podcaster.ResponseEntityWrapper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

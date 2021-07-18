@@ -1,13 +1,13 @@
 package org.iii.group3.persistent.dao.podcaster;
 
-import org.iii.group3.persistent.model.podcaster.UserFile;
+import org.iii.group3.persistent.model.podcaster.PodcasterFile;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserFileDao extends JpaRepository<UserFile, Long>{
+public interface UserFileDao extends JpaRepository<PodcasterFile, Long>{
 
-	public UserFile findByFilenameAndPurpose(String filename, String purpose);
+	public PodcasterFile findByFilenameAndPurpose(String filename, String purpose);
 	
-	public UserFile findByFilename(String filename);
+	public PodcasterFile findByFilename(String filename);
 	
-	public UserFile findByUrl(String url);
+	public PodcasterFile findByUrl(String url);
 }

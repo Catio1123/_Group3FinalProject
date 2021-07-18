@@ -20,7 +20,7 @@ public class MemberDao {
 	@Autowired 
 	private EntityManager en;
 	
-//================================= 帳號登入 =================================
+//================================= 一般會員帳號登入 =================================
 	
 	public Member checkLogin(Member member) {
 		Member login = null;
@@ -33,13 +33,26 @@ public class MemberDao {
 														getSingleResult();
 		} catch (Exception e) {
 			return login;
-		}
-		
-		
-				
+		}				
 		return login;
-		
 	}	
+//================================= 廣告商/帳號登入 =================================
+	
+		public Member checkLoginAd(Member member) {
+			Member loginAd = null;
+			
+			String hqlstr = "from Member where acctno=:acctnoAd and pw=:pwAd";
+			try {
+				loginAd = en.createQuery(hqlstr, Member.class).
+															setParameter("acctnoAd",member.getAcctno()).
+															setParameter("pwAd",member.getPw()).
+															getSingleResult();
+			} catch (Exception e) {
+				return loginAd;
+			}				
+			return loginAd;
+		}	
+
 
 //================================= 查詢全部 =================================	boot
 
@@ -49,12 +62,31 @@ public class MemberDao {
 		return en.createQuery(hql).getResultList();
 	}
 	
-//================================= 查詢單筆 =================================boot
+//================================= 查詢單筆(帳號尋找-主鍵) =================================boot
 	
-	public Member findByAcct(String acctno) {
+//	public Member findByAcct(String acctno) {
+//		
+//		return en.find(Member.class, acctno);
+//	}
+
+//================================= 查詢單筆(尋找id) =================================boot
+	
+		public Member findById(int id) {
+			
+			return en.find(Member.class, id);
+		}
+
+//================================= 查詢單筆(帳號尋找-非主鍵) =================================boot
 		
-		return en.find(Member.class, acctno);
-	}
+		public Member findByAcct(String acctno) {
+			
+	    String hql = "From Member WHERE acctno = :acctno";
+	    
+		return en.createQuery(hql , Member.class)
+				 .setParameter("acctno", acctno)
+				 .getSingleResult();
+				
+	   }
 
 //================================= 模糊查詢 =================================boot
 	
@@ -105,6 +137,13 @@ public class MemberDao {
 	public void update(Member member) {
 		en.merge(member);
 	}
+	
+//================================= 修改權限 =================================
+	
+		public void updateRole(Member member) {
+			en.merge(member.getRole());
+		}
+
 	
 //================================= 刪除 =================================
 			
