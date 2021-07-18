@@ -31,6 +31,13 @@
 		margin: auto;
 		padding: 20px 20px 20px 20px;
 	}
+	#map {
+        height: 500px;
+        width: 100%;
+    }
+	a, p{
+		padding: 10px;
+	}
 </style>
 
 <title>${event.topic}--iPocast Event Site</title>
@@ -44,7 +51,7 @@
 
 	<div class="seconddiv">
 		<div>
-			<b>${event.topic}</b><br><br>
+			<b style="font-size: 40px;">${event.topic}</b><br><br>
 		</div>
 		<div>
 			<b>活動時間</b>
@@ -52,7 +59,7 @@
 		</div>
 		<div>
 			<b>活動介紹</b><br>
-			<p>${event.intro}</p><br>
+			<p style="word-break: break-all;">&nbsp&nbsp&nbsp&nbsp${event.intro}</p><br>
 		</div>
 		<div>
 			<b>相關連結</b><br>
@@ -60,25 +67,33 @@
 		</div>
 		<div>
 			<b>活動地點</b>
-			<p>${event.address}</p><br>
+			<p style="padding: 10px 10px 0px 10px;">${event.address}</p><br>
+			<div id="map" ></div>
 		</div>
 	</div>
 </div>
 <div id="layoutAuthentication_footer">
-	<footer class="py-4 bg-light mt-auto">
+	<footer class="py-4 bg-light mt-auto" style="background-color: #272727 !important;">
 		<div class="container-fluid px-4">
-			<div class="d-flex align-items-center justify-content-between small">
-				<div class="text-muted">Copyright &copy; iPodcast</div>
-				<div>
-					<a href="#">Privacy Policy</a>
-					&middot;
-					<a href="#">Terms &amp; Conditions</a>
-				</div>
+			<div class="d-flex align-items-center justify-content-center small" >
+				<div class="text-muted" style="color: #F0F0F0 !important;">Copyright &copy; iPodcast</div>					
 			</div>
 		</div>
 	</footer>
 </div>
-
+<script>
+	function initMap() {
+	  var uluru = {lat: Number(`${event.latitude}`), lng: Number(`${event.longitude}`)};
+	  var map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 14,
+		center: uluru
+	  });
+	  var marker = new google.maps.Marker({
+		position: uluru,
+		map: map
+	  });
+	}
+  </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7aYRjJCDCo3Qw9PZe6TS9YfBYRmU1Vg4&callback=initMap"
     async defer></script>
 

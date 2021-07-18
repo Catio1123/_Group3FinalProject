@@ -60,9 +60,23 @@
                                                 <form:input path="address" class="form-control"/>
                                                 <label>地點</label>
                                             </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <form:input path="longitude"  class="form-control" type="text" required="required"/>
+                                                        <label>經度</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <form:input path="latitude" class="form-control" type="text"  required="required"/>
+                                                        <label>緯度</label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="form-floating mb-3">
                                                 <form:input path="link" class="form-control" type="text"/>
-                                                <label>網址</label>
+                                                <label>相關連結</label>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">

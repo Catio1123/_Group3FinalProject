@@ -52,15 +52,10 @@
 		</div>
 	</c:forEach> 
 	<div id="layoutAuthentication_footer">
-		<footer class="py-4 bg-light mt-auto">
+		<footer class="py-4 bg-light mt-auto" style="background-color: #272727 !important;">
 			<div class="container-fluid px-4">
-				<div class="d-flex align-items-center justify-content-between small">
-					<div class="text-muted">Copyright &copy; iPodcast</div>
-					<div>
-						<a href="#">Privacy Policy</a>
-						&middot;
-						<a href="#">Terms &amp; Conditions</a>
-					</div>
+				<div class="d-flex align-items-center justify-content-center small" >
+					<div class="text-muted" style="color: #F0F0F0 !important;">Copyright &copy; iPodcast</div>					
 				</div>
 			</div>
 		</footer>

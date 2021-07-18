@@ -33,6 +33,8 @@ public class Event {
 	String link;
 	String address;
 	String intro;
+	double longitude;
+	double latitude;
 	
 	@JsonIgnore
 	Clob content;
@@ -51,7 +53,8 @@ public class Event {
 	}
 	
 	public Event(String topic, String date, String type, String mimeType, String link,
-			     Clob content, Blob coverPicture, String address, String intro) {
+			     Clob content, Blob coverPicture, String address, String intro, double longitude, 
+			     double latitude) {
 		super();
 		this.topic = topic;
 		this.date = date;
@@ -62,6 +65,26 @@ public class Event {
 		this.coverPicture = coverPicture;
 		this.address = address;
 		this.intro = intro;
+		this.longitude = longitude;
+		this.latitude = latitude;
+	}
+	
+	
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
 	public String getIntro() {
@@ -180,6 +203,10 @@ public class Event {
 		builder.append(address);
 		builder.append(", intro=");
 		builder.append(intro);
+		builder.append(", longitude=");
+		builder.append(longitude);
+		builder.append(", latitude=");
+		builder.append(latitude);
 		builder.append(", content=");
 		builder.append(content);
 		builder.append(", coverPicture=");
@@ -192,5 +219,4 @@ public class Event {
 		return builder.toString();
 	}
 
-	
 }

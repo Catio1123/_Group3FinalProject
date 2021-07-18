@@ -1,26 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body style="padding: 0; margin: 0;">
-    <div class="bg">
-        <div style="color: aliceblue;">sssss</div>
-    </div>
-</body>
+<html>
+  <head>
+    <style>
+      #map {
+        height: 400px;
+        width: 50%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: 25.0501101, lng: 121.5255337};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7aYRjJCDCo3Qw9PZe6TS9YfBYRmU1Vg4&callback=initMap">
+    </script>
+  </body>
 </html>
-
-<style>
-    .bg{
-        display: flex;
-        justify-content: center;
-        align-items: center; 
-        width: 100%;
-        height: 800px;
-        background-size: cover;
-        background-image: url("https://images.squarespace-cdn.com/content/v1/5f28ff920ae34d61da923b1e/1604051578816-PBCFUFPXMUUNFWW63BFM/ff.jp")
-    }
-</style>
