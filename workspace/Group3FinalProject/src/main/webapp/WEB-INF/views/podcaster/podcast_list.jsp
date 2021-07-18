@@ -81,7 +81,7 @@
   <section class="py-3 text-center  container">
     <div class="row pt-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light"><a href="<c:url value='/'/>">IPodcast</a></h1>
+        <a href="<c:url value='/'/>"><img src="<c:url value='/catio/image/IPocast.png'/>" style="width:300px;"></a>
       </div>
     </div>
     <!-- 搜尋列 -->

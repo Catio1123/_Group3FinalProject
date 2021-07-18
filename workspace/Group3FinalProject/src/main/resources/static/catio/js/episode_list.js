@@ -58,7 +58,12 @@ window.onload = function () {
                 if (xhr2.readyState === XMLHttpRequest.DONE) {
                     let responseJson = JSON.parse(xhr2.responseText);
                     if (xhr2.status === 200) {
-                        alert(responseJson['data']['episode']);
+                    Swal.fire(
+						  '成功',
+						  responseJson['data']['episode'],
+						  'success'
+						);
+                        //alert(responseJson['data']['episode']);
                         refresh();
 
                     } else {

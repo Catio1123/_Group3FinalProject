@@ -181,6 +181,7 @@
     </a>
 
     <script src="<c:url value='/catio/js/jquery-3.6.0.min.js'/>"></script>
+    <script src="<c:url value='/catio/js/sweetalert2.all.min.js'/>"></script>
     <script src="<c:url value='/catio/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
 
     <script src="<c:url value='/catio/js/jquery.easing.js'/>"></script>

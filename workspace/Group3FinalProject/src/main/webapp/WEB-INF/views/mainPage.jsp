@@ -100,8 +100,8 @@ font-family:Microsoft JhengHei
                                     <li><a href="<c:url value='/podcast-list'/>">Podcast</a></li>
                                     <li><a href="<c:url value='/adindex'/>">廣告</a></li>
                                     <li><a href="<c:url value='/forum'/>">論壇</a></li>
-                                    <li><a href="#">活動</a></li>
-                                    <li><a href="<c:url value='/studioMainPage'/>">播客工廠</a></li>
+                                    <li><a href="<c:url value='/showEvent'/>">活動</a></li>
+                                    <li><a href="<c:url value='/studioguest'/>">播客工廠</a></li>
                                 </ul>
                                 <!-- Search Form  -->
                                 <div id="search-wrapper">

@@ -53,8 +53,17 @@ window.onload = function(){
             if(deleteChannel.readyState === XMLHttpRequest.DONE){
                 let responseJson = JSON.parse(deleteChannel.responseText);
                 if(deleteChannel.status === 200){
-                    alert(responseJson['data']['channel']);
-                    window.location.href = `/ipodcast/logged/podcaster/podcaster-info`;
+                	Swal.fire(
+					  '成功',
+					  responseJson['data']['channel'],
+					  'success'
+					).then((result) =>{
+						 window.location.href = `/ipodcast/logged/podcaster/podcaster-info`;
+						
+					});
+                
+                    //alert(responseJson['data']['channel']);
+                    //window.location.href = `/ipodcast/logged/podcaster/podcaster-info`;
                 }
 
 
@@ -87,7 +96,12 @@ function updateChannel(fileUrl){
     if(xhr2.readyState === XMLHttpRequest.DONE){
       let responseJson = JSON.parse(xhr2.responseText);
       if(xhr2.status === 200){
-        alert(responseJson['data']['channel']);
+        Swal.fire(
+		  '成功',
+		  responseJson['data']['channel'],
+		  'success'
+		);
+        //alert(responseJson['data']['channel']);
         load();
 
       }else{
