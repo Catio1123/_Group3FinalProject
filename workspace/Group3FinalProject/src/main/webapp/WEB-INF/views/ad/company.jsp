@@ -447,32 +447,32 @@
 									<font color='red'>${successMessage}</font> <br>
 									<h4>已刊登列表</h4>
 
-									<table id="datatablesSimple" style="border: 3px #cccccc solid;"
+									<table id="datatablesSimple" style="border: 3px #cccccc solid; word-break:break-all;"
 										rules="all"; >
 										<thead>
 											<tr>
-												<th style="align: center">編號</th>
-												<th style="align: center">廣告商</th>
-												<th>廣告內容</th>
-												<th>廣告連結</th>
-												<th>總點擊率</th>
-												<th>贊助金額</th>
-												<th width='100' >照片</th>
+												<th class="col-1" scope="col">編號</th>
+												<th class="col-1" scope="col">廣告商</th>
+												<th class="col-2" scope="col">廣告內容</th>
+												<th class="col-1" scope="col">照片</th>
+												<th class="col-3" scope="col">廣告連結</th>
+												<th class="col-1" scope="col">總點擊率</th>
+												<th class="col-1" scope="col">贊助金額</th>
 
-												<th colspan=4>指令</th>
+												<th class="col-1" scope="col">指令</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach var="ad" items="${ad}">
 												<tr>
-													<td>${ad.id}</td>
+													<td align="center" valign="middle">${ad.id}</td>
 													<td>${ad.company}</td>
 													<td>${ad.text}</td>
+													<td  ><img width='100' 
+														src='${ad.pictureString }'></td>
 													<td>${ad.url}</td>
 													<td>${ad.adTotalClick }</td>
 													<td>${ad.sponsorshipAmount }</td>
-													<td  ><img width='100' 
-														src='${ad.pictureString }'></td>
 													<td colspan=4><button
 															style="background-color: #555555; color: white; border: none; font-size: 14px; border-radius: 4px; font-weight: bold; padding: 5px 20px;"
 															onclick="window.location.href='<c:url value='/updateProcess/${ad.id}'/>';">
