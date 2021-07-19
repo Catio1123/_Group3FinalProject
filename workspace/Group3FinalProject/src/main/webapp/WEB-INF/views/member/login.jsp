@@ -37,7 +37,14 @@
 
 body{
     background-color:#F0F0F0	
-}
+   }
+
+.b1{
+    border:0;
+    background-color:#FFAF60	;
+    color:#3C3C3C	;
+    border-radius:10px;
+    }
     
     </style>
     
@@ -109,7 +116,7 @@ body{
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="text-black" for="fname">帳號 :</label>
                   <span style=color:red;>${errors.acctno}</span>
-                  <input type="text" id="fname" name="acctno" class="form-control" placeholder="User">
+                  <input type="text" id="acctno" name="acctno" class="form-control" placeholder="User">
                 </div>
               </div>
               
@@ -117,7 +124,7 @@ body{
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="text-black" for="fname">密碼 :</label>
                   <span style=color:red;>${errors.pw}</span>
-                  <input type="password" id="fname" name="pw" class="form-control" placeholder="Password">
+                  <input type="password" id="pw" name="pw" class="form-control" placeholder="Password">
                 </div>
               </div>
               
@@ -139,8 +146,43 @@ body{
                  還不是會員嗎?<a href="<c:url value='/signUpMember' />">註冊</a>
                 </div>
               </div>
+              
             </form>
+            <div style=align:left;>
+            <input type="button" class="b1" value="admin" onclick="admin()">
+            &nbsp;&nbsp;
+			<input type="button" class="b1" value="張君雅" onclick="aaa()">
+			&nbsp;&nbsp;
+			<input type="button" class="b1" value="Backy" onclick="Backy()">
+			&nbsp;&nbsp;
+			<input type="button" class="b1" value="張蕉蕉" onclick="Banana()">
+			&nbsp;&nbsp;
+			<input type="button" class="b1" value="Tina" onclick="Tina()">
+            </div>
           </div>
+          <script>
+		     function admin(){
+			   document.getElementById("acctno")  .value = "admin"
+			   document.getElementById("pw")      .value = "admin5151"                  	
+			  }		
+		     function aaa(){
+			   document.getElementById("acctno")  .value = "aaa0723"
+			   document.getElementById("pw")      .value = "aaa07231"                  	
+		      }		
+		     function Backy(){
+		        document.getElementById("acctno")  .value = "Backey515"
+		        document.getElementById("pw")      .value = "Backey515"                  	
+		      }
+		     function Banana(){
+			    document.getElementById("acctno")  .value = "Banana007"
+			    document.getElementById("pw")      .value = "Banana007"                  	
+			  }		     
+		     function Tina(){
+			    document.getElementById("acctno")  .value = "tina7788"
+			    document.getElementById("pw")      .value = "tina99999"                  	
+			  }		     
+		            
+		  </script>
             
 <!--================================= 廣告商登入 =================================-->
           <div class="col-lg-6">
@@ -151,14 +193,14 @@ body{
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="text-black" for="fname">帳號 :</label>
                 <span style=color:red;>${errors.acctnoAd}</span>
-                  <input type="text" id="fname" name="acctnoAd" class="form-control" placeholder="User">
+                  <input type="text" id="acctnoAd" name="acctnoAd" class="form-control" placeholder="User">
                 </div>
               </div>
               <div class="row form-group mb-4">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="text-black" for="fname">密碼 :</label>
                   <span style=color:red;>${errors.pwAd}</span>
-                  <input type="password" id="fname" name="pwAd" class="form-control" placeholder="Password">
+                  <input type="password" id="pwAd" name="pwAd" class="form-control" placeholder="Password">
                 </div>
               </div>
               <div style=color:red;>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
@@ -171,15 +213,22 @@ body{
                   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                   <a href="/sendMail">忘記密碼</a>
                 </div>
-                  
-               <br>
                <br>
                <div>
                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                  還不是會員嗎?<a href="<c:url value='/signUpMember' />">註冊</a>
                </div>
-              </div>              
+              </div>
             </form>
+            <div style=align:left;>
+			<input type="button" class="b1" value="三組音樂" onclick="Third()">              
+            </div>
+            <script>
+             function Third(){
+			    document.getElementById("acctnoAd")  .value = "companyTest"
+			    document.getElementById("pwAd")      .value = "companyTest"                  	
+			  }	
+			</script>
           </div>
         </div>
       </div>
