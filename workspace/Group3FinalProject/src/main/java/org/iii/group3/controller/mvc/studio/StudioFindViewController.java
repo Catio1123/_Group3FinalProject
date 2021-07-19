@@ -1,5 +1,6 @@
 package org.iii.group3.controller.mvc.studio;
 
+import java.awt.print.Book;
 import java.io.File;
 import java.io.InputStream;
 import java.sql.Blob;
@@ -10,7 +11,9 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 
+import org.iii.group3.persistent.model.studio.Booking;
 import org.iii.group3.persistent.model.studio.Studio;
+import org.iii.group3.service.studio.BookingServiceImpl;
 import org.iii.group3.service.studio.StudioServiceImpl;
 import org.iii.group3.utils.studio.SystemUtils;
 import org.iii.group3.validate.studio.StudioValidator;
@@ -37,21 +40,38 @@ public class StudioFindViewController {
 	@Autowired
 	StudioServiceImpl studioService;
 	@Autowired
+	BookingServiceImpl bookingService;
+	@Autowired
 	ServletContext context;
 	
 	@GetMapping("/insertSuccess")
 	public String insertSuccess() {
-		return "studio/studio/insertSuccess";
+		return "studio/insertSuccess";
 	}
 	
 	@GetMapping("/queryStudio")
-	public String sendQueryStudio() {
-		return "studio/studio/queryStudio";
+	public String sendQueryStudio(Model m) {
+		List<Studio> studio = studioService.findAll();
+		m.addAttribute("studio",studio);
+		return "studio/queryStudio";
+	}
+	@GetMapping("/querybooking")
+	public String sendQueryBooking(Model m) {
+		List<Booking> booking = bookingService.findAll();
+		m.addAttribute("booking",booking);
+		return "studio/querybooking";
+	}
+	
+	@GetMapping("/studioguest")
+	public String sendstudioguest(Model m) {
+		List<Studio> studio = studioService.findAll();
+		m.addAttribute("studio",studio);
+		return "studio/studioguest";
 	}
 	@GetMapping("/insertStudio")
 	public String sendInsertStudio(Model model) {
 
-		return "studio/studio/insertStudio";
+		return "studio/insertStudio";
 	}
 	@PostMapping("/insertStudio")
 	public String saveStudio(@ModelAttribute("studio") Studio studio, 
@@ -67,7 +87,7 @@ public class StudioFindViewController {
 			for (ObjectError error : list) {
 				System.out.println("有錯誤：" + error);
 			}
-			return "studio/studio/insertStudio";
+			return "studio/insertStudio";
 		}
 		
 		
@@ -111,7 +131,23 @@ public class StudioFindViewController {
     ) {
 		Studio studio = studioService.findById(id);
 		model.addAttribute("studio", studio);
-		return "studio/studio/editStudio";
+		return "studio/editStudio";
+	}	
+	@GetMapping(value="/editBooking/{id}", produces = "application/json; charset=UTF-8")
+	public String sendEditBookingPage(
+			@PathVariable Integer id, Model model
+			) {
+		Booking booking = bookingService.findById(id);
+		model.addAttribute("booking", booking);
+		return "studio/editBooking";
+	}	
+	@GetMapping(value="/bookStudio/{id}", produces = "application/json; charset=UTF-8")
+	public String sendbookPage(
+			@PathVariable Integer id, Model model
+			) {
+		Studio studio = studioService.findById(id);
+		model.addAttribute("studio", studio);
+		return "studio/bookStudio";
 	}	
 	
 	@PostMapping(value="/editStudio/{id}", produces = "application/json; charset=UTF-8")
@@ -122,7 +158,7 @@ public class StudioFindViewController {
 		studioValidator.validate(studio, result);
 		if (result.hasErrors()) {
 
-			return "studio/studio/editStudio";
+			return "studio/editStudio";
 		}
 		
 		Blob blob = null;
@@ -160,7 +196,7 @@ public class StudioFindViewController {
 		studioService.update(studio);
 		ra.addFlashAttribute("successMessage", studio.getName() + "修改成功");
 		// 新增或修改成功，要用response.sendRedirect(newURL) 通知瀏覽器對newURL發出請求
-		return "redirect:/studio/queryStudio";  
+		return "redirect:/queryStudio";  
 		
 		
 	}
@@ -175,6 +211,18 @@ public class StudioFindViewController {
 		}
 		System.out.println("In @ModelAttribute, studio=" + studio);
 		return studio;
+	}
+	@ModelAttribute("booking")
+	public Booking getbooking(@RequestParam(value="id", required = false ) Integer id) {
+		System.out.println("------------------------------------------");
+		Booking booking = null;
+		if (id != null) {
+			booking = bookingService.findById(id);
+		} else {
+			booking = new Booking();
+		}
+		System.out.println("In @ModelAttribute, booking=" + booking);
+		return booking;
 	}
 
 }

@@ -1,52 +1,71 @@
 package org.iii.group3.controller.mvc.ad;
 
+import java.io.File;
+import java.io.InputStream;
+
+import java.sql.Blob;
+import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.ServletContext;
 
 import org.iii.group3.persistent.model.ad.Ad;
-import org.iii.group3.persistent.model.ad.Company;
+import org.iii.group3.persistent.model.member.Member;
 import org.iii.group3.service.ad.AdService;
 import org.iii.group3.service.ad.ClickTimeService;
-import org.iii.group3.service.ad.CompanyService;
 import org.iii.group3.service.ad.RecordService;
+import org.iii.group3.utils.ad.AdSystemUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
+@SessionAttributes("Member")
 public class AdController {
 
 	@Autowired
 	private AdService adService;
 
 	@Autowired
-	private CompanyService companyService;
-
-	@Autowired
 	private RecordService recordService;
 
 	@Autowired
 	private ClickTimeService clickTimeService;
-	@GetMapping(path = "/company")
-	public String wayne(Model m) {
 
-		List<Ad> adAll = adService.selectAll();
-		m.addAttribute("ads", adAll);
-//		m.addAttribute("uid", id);
-		return "company";
-	}
+	@Autowired
+	ServletContext context;
+//	@GetMapping(path = "/company")
+//	public String wayne(Model m) {
+//
+//		List<Ad> adAll = adService.selectAll();
+//		m.addAttribute("ads", adAll);
+////		m.addAttribute("uid", id);
+//		return "company";
+//	}
 
-	@PostMapping(path = "/insert/{cid}")
-	public String insertAd(@PathVariable(value = "cid", required = true) Integer cid, @ModelAttribute("ad") Ad ad,
-			Model m) {
-
-		adService.save(ad, cid);
-		return "redirect:/company/{cid}";
+	@PostMapping(path = "/insert")
+	public String insertAd(@ModelAttribute("Member") Member member, @ModelAttribute("ad") Ad ad,BindingResult result,
+			RedirectAttributes ra , Model m) {
+		
+		
+		adService.save(ad, member.getAcctno() );
+		ra.addFlashAttribute("successMessage", "廣告新增成功");
+		return "redirect:/company";
 	}
 
 	@GetMapping(path = "/Ad/{id}")
@@ -54,27 +73,29 @@ public class AdController {
 		return adService.select(id);
 	}
 
-	@GetMapping(path = "/updateProcess/{aid}/{cid}")
-	public String updatepProcess(@PathVariable(value = "aid", required = true) int aid,
-			@PathVariable(value = "cid", required = true) int cid, Model m) {
+	@GetMapping(path = "/updateProcess/{aid}")
+	public String updatepProcess(@ModelAttribute("ad") Ad ad, @PathVariable(value = "aid", required = true) int aid,
+			Model m) {
 		Ad adUpdate = adService.select(aid);
-		Company company = companyService.select(cid);
+//		System.out.println(ad.getId());
+		
 		m.addAttribute("ad", adUpdate);
-		m.addAttribute("company", company);
+
 		return "ad/adslist";
 	}
 
-	@PostMapping(path = "/update/{aid}/{cid}")
-	public String update(@PathVariable(value = "cid", required = true) int cid,
-			@PathVariable(value = "aid", required = true) int aid, @ModelAttribute("ad") Ad ad, Model m) {
+	@PostMapping(path = "/update")
+	public String update(@ModelAttribute("Member") Member member, @ModelAttribute("ad") Ad ad,BindingResult result,RedirectAttributes ra , Model m) {
 
-		adService.update(ad, aid);
-		return "redirect:/company/{cid}";
+		
+		
+		adService.update(ad ,member.getAcctno());
+		ra.addFlashAttribute("successMessage", "編號\n"+ad.getId() + "\n廣告更新成功");
+		return "redirect:/company";
 	}
 
-	@GetMapping(path = "/delete/{aid}/{cid}")
-	public String delete(@PathVariable(value = "cid", required = true) int cid,
-			@PathVariable(value = "aid", required = true) int aid) {
+	@GetMapping(path = "/delete/{aid}")
+	public String delete(@PathVariable(value = "aid", required = true) int aid,RedirectAttributes ra ) {
 		Ad ad = adService.select(aid);
 
 		if (clickTimeService.findByAd(ad)) {
@@ -88,16 +109,18 @@ public class AdController {
 
 			adService.delete(aid);
 		}
-
-		return "redirect:/company/{cid}";
+		ra.addFlashAttribute("successMessage", "編號\n"+ad.getId() + "\n廣告刪除成功");
+		return "redirect:/company";
 
 	}
 
 	@PostMapping(path = "/addTotalClick")
-	public void addTotalClick(Integer aid) {
+	@ResponseBody
+	public String addTotalClick(Integer aid) {
 		Ad ad = adService.select(aid);
 		Integer totalClick = recordService.sumClickByAd(ad);
 		Integer a = totalClick + 1;
 		adService.updateClick(aid, a);
+		return "1";
 	}
 }

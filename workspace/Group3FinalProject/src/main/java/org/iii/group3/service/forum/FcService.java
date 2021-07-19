@@ -1,5 +1,6 @@
 package org.iii.group3.service.forum;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.iii.group3.persistent.dao.forum.FcDao;
@@ -17,27 +18,51 @@ public class FcService {
 	@Autowired
 	private FcDao dao;
 	
-	public ForumContentBean select(int id) {
-		return dao.select(id);
+	public ForumContentBean selectContentById(int id) {
+		return dao.selectContentById(id);
 	}
 	
 	public List<ForumContentBean> selectAll(){
-		return dao.selectAll();
+		List<ForumContentBean> result = dao.selectAll();
+		if(result.isEmpty()) {
+			return null;
+		}
+		return result;
 	}
 	
 	public List<ForumContentBean> findBySearch(String name){
 		return dao.findBySearch(name);
 	}
 	
-	public boolean insert(ForumContentBean bean) {
-		return dao.insert(bean);
+	public List<ForumContentBean> findByTypeSearch(String name){
+		return dao.findByTypeSearch(name);
+	}
+	
+	public Serializable insert(ForumContentBean bean) {	
+		try {
+			Serializable result = dao.insert(bean);
+			return result;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	public ForumContentBean update(ForumContentBean bean) {
-		return dao.update(bean);
+		try {
+			ForumContentBean forumUpdateResult = dao.update(bean);
+			return forumUpdateResult;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	public boolean delete(int id) {
-		return dao.delete(id);
+		ForumContentBean findIdResult = dao.selectContentById(id);
+		try {
+			dao.delete(findIdResult);
+			return true;			
+		} catch (Exception e) {
+			return false;			
+		}
 	}
 }

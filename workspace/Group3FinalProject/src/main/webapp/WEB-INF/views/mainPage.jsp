@@ -97,10 +97,10 @@ font-family:Microsoft JhengHei
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>                                  
-                                    <li><a href="#">Podcaster</a></li>
+                                    <li><a href="<c:url value='/podcast-list'/>">Podcast</a></li>
                                     <li><a href="<c:url value='/adindex'/>">廣告</a></li>
                                     <li><a href="<c:url value='/forum'/>">論壇</a></li>
-                                    <li><a href="#">活動</a></li>
+                                    <li><a href="<c:url value='/showEvent'/>">活動</a></li>
                                     <li><a href="<c:url value='/studioMainPage'/>">播客工廠</a></li>
                                 </ul>
                                 <!-- Search Form  -->
@@ -120,6 +120,7 @@ font-family:Microsoft JhengHei
                                             <li><a id="general" href="<c:url value='/updateMember' />" >修改訊息 </a></li>
                                             <li><a id="admin"   href="<c:url value='/backstageMember' />" >管理者後台</a></li>
                                             <li><a id="company" href="<c:url value='/adindex' />" >   廣告商後台</a></li>
+                                            <li><a id="podcaster" href="<c:url value='/logged/podcaster/podcaster-info' />" >Podcaster</a></li>
                                       </ul>
                                    </li>
                                 </ul>   
@@ -142,6 +143,7 @@ let logout    = document.getElementById("logout");
 let general   = document.getElementById("general");
 let admin     = document.getElementById("admin");
 let company   = document.getElementById("company");
+let podcaster   = document.getElementById("podcaster");
 window.onload=function(){
 	
 	load();
@@ -154,6 +156,7 @@ function load(){
 		general.style.display  ="none";
 		admin  .style.display  ="none";
 		company.style.display  ="none";
+		podcaster.style.display  ="none";
 		
 	}else if('${Member.role}'!="" && '${Member.role}' == "admin"  ){
 	    login  .style.display  ="none";
@@ -168,6 +171,7 @@ function load(){
 	    admin  .style.display  ="none";
 	    general.style.display  ="block";
 		company.style.display  ="none";
+		podcaster.style.display  ="block";
 		
     }else if('${Member.role}' != "" && '${Member.role}' == "company"){
         login  .style.display  ="none";
@@ -175,6 +179,7 @@ function load(){
 	    general.style.display  ="none";
 	    admin  .style.display  ="none";
 		company.style.display  ="block";
+		podcaster.style.display  ="block";
 }
 }
 

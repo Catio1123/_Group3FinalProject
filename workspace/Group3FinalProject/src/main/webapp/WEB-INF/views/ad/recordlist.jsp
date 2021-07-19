@@ -255,7 +255,9 @@
 										<td>獎勵</td>
 										<th colspan=2>指令</th>
 									</tr>
+									</thead>
 									<h2>${user.userName}</h2>
+									<tbody>
 									<c:forEach var="record" items="${record}">
 										<form
 											action="<c:url value='/userfront/${record.ad.id}/${user.id }'/>"
@@ -281,8 +283,7 @@
 												<td>${record.bonus }</td>
 
 
-												<td><a
-													href="<c:url value='/recordDelete/${user.id }/${record.ad.id}'/>">刪除</a></td>
+												<td><button class="delbtn" onclick="window.location.href='<c:url value='/recordDelete/${user.id }/${record.ad.id}'/>';"> 刪除</button></td>
 
 											</tr>
 										</form>

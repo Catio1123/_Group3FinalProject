@@ -14,6 +14,6 @@ public interface AdRepo extends JpaRepository<Ad, Integer>{
 	
 	
 	@Query(" SELECT a FROM Ad a where a.companyId = ?1")
-	public List<Ad> findByCompanyId(Integer cid);
+	public List<Ad> findByCompanyId(String cid);
 
 }

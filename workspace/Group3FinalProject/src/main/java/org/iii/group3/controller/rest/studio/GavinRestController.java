@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.iii.group3.persistent.model.studio.Booking;
 import org.iii.group3.persistent.model.studio.Studio;
+import org.iii.group3.service.studio.BookingService;
 import org.iii.group3.service.studio.StudioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,30 +21,33 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
+
 @RestController
 public class GavinRestController {
 	
 	@Autowired
 	private StudioServiceImpl studioService;
+	@Autowired
+	private BookingService bookingService;
 //	==============================================================================	
 	
-//	@PostMapping(
-//			path = "/studio",
-//			consumes = MediaType.APPLICATION_JSON_VALUE, 
-//			produces = "application/json; charset=utf-8")
-//	public Map<String, String> create(@RequestBody Studio insertBean) {
-//		int result = studioService.insert(insertBean);
-//		
-//		Map<String, String> msg = new HashMap<String, String>();
-//		  
-//		  if(result == 1) {
-//			  msg.put("msg", "新增成功");
-//		  }else {
-//			  msg.put("msg", "新增失敗");
-//		  }
-//		  
-//		  return msg;
-//	}
+	@PostMapping(
+			path = "/studiobooking",
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = "application/json; charset=utf-8")
+	public Map<String, String> create(@RequestBody Booking insertBean) {
+		int result = bookingService.insert(insertBean);
+		
+		Map<String, String> msg = new HashMap<String, String>();
+		  
+		  if(result == 1) {
+			  msg.put("msg", "新增成功");
+		  }else {
+			  msg.put("msg", "新增失敗");
+		  }
+		  
+		  return msg;
+	}
 	
 //	==============================================================================	
 	@GetMapping(
@@ -100,6 +105,27 @@ public class GavinRestController {
 		 
 		  return msg;
 	}
+//	==============================================================================	
+	
+	@PutMapping(
+			path = "/editbs/{id}", 
+			consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = "application/json; charset=utf-8")
+	public Map<String, String> update(
+			@RequestBody Booking updateBean, 
+			@PathVariable(required = true) Integer id) {
+		
+		Map<String, String> msg = new HashMap<String, String>();
+		
+		boolean success = bookingService.updateExitTarget(updateBean, id);
+		if(success) {
+			msg.put("msg", "更新成功");
+		}else {
+			msg.put("msg", "更新失敗，鍵值:" + id + "不存在");
+		}
+		
+		return msg;
+	}
 //	
 ////	==============================================================================
 //	
@@ -114,5 +140,17 @@ public class GavinRestController {
 		  
 		  
 		  return msg;
+	}
+	//------------------------------------------------------------------------------------------
+	@DeleteMapping(
+			path = "/editbs/{id}", 
+			produces = "application/json; charset=utf-8")
+	public Map<String, String> deletebooking(@PathVariable(value = "id", required = true) int id) {
+		bookingService.delete(id);
+		Map<String, String> msg = new HashMap<String, String>();
+		msg.put("msg", "刪除成功");
+		
+		
+		return msg;
 	}
 }

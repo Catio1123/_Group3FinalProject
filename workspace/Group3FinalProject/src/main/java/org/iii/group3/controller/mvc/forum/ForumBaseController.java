@@ -9,28 +9,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ForumBaseController {
 	
 	@GetMapping("/forum")
-	public String toHomePage() {
+	public String toLoginUserHomePage() {
 		return "forum/index";
 	}
 	
+	@GetMapping("/Visitorforum")
+	public String toVisitorHomePage() {
+		return "forum/ForVisitor/indexForVisitor";
+	}
 	
 	@GetMapping("/forum/AddPage")
-	public String toAddPage() {
+	public String toAddACommentPage() {
 		return "forum/AddPost";
 	}
 	
-	@GetMapping("/forum/LoginPage")
-	public String toLoginPage() {
-		return "forum/ForumLogin";
-	}
+//	目前使用會員登入的部分
+//	@GetMapping("/forum/LoginPage")
+//	public String toLoginPage() {
+//		return "forum/ForumLogin";
+//	}
 	
 	@PostMapping("/forum/UpdatePage")
-	public String toUpdatePage() {
+	public String toUpdateContentPage() {
 		return "forum/UpdateContent";
 	}
 	
-	@GetMapping("/forum/AddSuccessPage")
-	public String toAddSuccessPage() {
+	@GetMapping("/forum/SuccessPage")
+	public String toModifySuccessPage() {
 		return "forum/index";
 	}
 	
@@ -38,5 +43,11 @@ public class ForumBaseController {
 	public String toContentPage() {
 		return "forum/MyContent";
 	}
+	
+	@GetMapping("/form/toServerSidePage")
+	public String toAdminPage() {
+		return "forum/ForumServerSide";
+	}
+	
 	
 }

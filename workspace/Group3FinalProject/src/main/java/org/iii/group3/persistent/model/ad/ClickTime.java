@@ -1,67 +1,107 @@
 package org.iii.group3.persistent.model.ad;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.iii.group3.persistent.model.podcaster.Channel;
 
 
 @Entity
 @Table(name="Ad_Clicktime")
+@IdClass(ClickTimeKey.class)
 public class ClickTime {
 
-	@EmbeddedId
-	private ClickTimeKey id;
+	@Column(name = "channel_id", insertable = false, updatable =false)
+	private Long channelId;
 	
-	@ManyToOne
-	@MapsId("userId")
-	@JoinColumn(name="user_id")
-	private User user;
+	@Column(name = "ad_id", insertable = false, updatable =false)
+	private Integer adId;
 	
 	
-	@ManyToOne
-	@MapsId("adId")
-	@JoinColumn(name="ad_id")
-	private Ad ad;
+	@Column(name = "record_id", insertable = false, updatable = false)
+	private Integer recordId;
 	
 	@Column(name="click_time")
-	private double clickTimeCount;
+	private Long clickTimeCount = 0L;
+	
+	@Id
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="channel_id", referencedColumnName = "id",  insertable = true, updatable = false)
+	private Channel channel;
+	
+	@Id
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="ad_id", referencedColumnName = "ad_id", insertable = true, updatable = false)
+	private Ad ad;
 
-	public ClickTimeKey getId() {
-		return id;
+	@OneToOne
+	@JoinColumn(name = "record_id")
+	private Record record;
+
+	
+	
+	public Long getChannelId() {
+		return channelId;
 	}
 
-	public void setId(ClickTimeKey id) {
-		this.id = id;
+	public Integer getAdId() {
+		return adId;
 	}
 
-	public User getUser() {
-		return user;
+	public Integer getRecordId() {
+		return recordId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public Channel getChannel() {
+		return channel;
 	}
 
 	public Ad getAd() {
 		return ad;
 	}
 
+	public Long getClickTimeCount() {
+		return clickTimeCount;
+	}
+
+	public Record getRecord() {
+		return record;
+	}
+
+	public void setChannelId(Long channelId) {
+		this.channelId = channelId;
+	}
+
+	public void setAdId(Integer adId) {
+		this.adId = adId;
+	}
+
+	public void setRecordId(Integer recordId) {
+		this.recordId = recordId;
+	}
+
+	public void setChannel(Channel channel) {
+		this.channel = channel;
+	}
+
 	public void setAd(Ad ad) {
 		this.ad = ad;
 	}
 
-	public double getClickTimeCount() {
-		return clickTimeCount;
-	}
-
-	public void setClickTimeCount(double clickTimeCount) {
+	public void setClickTimeCount(Long clickTimeCount) {
 		this.clickTimeCount = clickTimeCount;
 	}
-	
-	
+
+	public void setRecord(Record record) {
+		this.record = record;
+	}
+
+
 }

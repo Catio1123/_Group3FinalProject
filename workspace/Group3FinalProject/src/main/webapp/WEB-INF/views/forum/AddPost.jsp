@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="<c:url value='/ben/css/custom-bs.css'/> ">
     <link rel="stylesheet" href="<c:url value='/ben/css/jquery.fancybox.min.css'/> ">
     <link rel="stylesheet" href="<c:url value='/ben/css/bootstrap-select.min.css'/> ">
-
+	<link rel="stylesheet" href="/ipodcast/ben/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="/ipodcast/ben/fonts/line-icons/style.css">
     <link rel="stylesheet" href="<c:url value='/ben/css/owl.carousel.min.css'/> ">
     <link rel="stylesheet" href="<c:url value='/ben/css/animate.min.css'/> ">
     <link rel="stylesheet" href="<c:url value='/ben/css/quill.snow.css'/>">
@@ -46,23 +47,23 @@
     <header class="site-navbar mt-3">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6"><a href="index.html">IForum</a></div>
+          <div class="site-logo col-6"><a href="<c:url value='/'/>">to IForum</a></div>
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="<c:url value='/' />" class="nav-link">Home</a></li>
-              <li><a href="services.html" class="active">Pages</a></li>
-              <li><a href="blog.html">Blog</a></li>
+<%--               <li><a href="<c:url value='/' />" class="nav-link">Home</a></li> --%>
+<!--               <li><a href="services.html" class="active">Pages</a></li> -->
+<!--               <li><a href="blog.html">Blog</a></li> -->
 
-              <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Comment</a></li>
+<!--               <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> </a></li> -->
               <li class="d-lg-none"><a href="<c:url value='/LoginPage'/>">Log In</a></li>
             </ul>
           </nav>
           
           <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
             <div class="ml-auto">
-              <a href="post-job.html" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Comment</a>
-              <a href="<c:url value='/LoginPage'/>" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
+              <a href="<c:url value='/forum'/>" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="icon-home">&nbsp;</span>回論壇</a>
+              <a href="<c:url value='/forum/LoginPage'/> "class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="icon-user"> </span>${Member.name}</a>
             </div>
             <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
           </div>
@@ -74,16 +75,9 @@
     <!-- HOME -->
     <section class="section-hero overlay inner-page bg-image" style="background-image: url('/ipodcast/ben/image/hero_1.jpg');" id="home-section">
       <div class="container">
-        <div class="row">
           <div class="col-md-7">
-            <h1 class="text-white font-weight-bold">Post A Comment</h1>
-            <div class="custom-breadcrumbs">
-              <a href="<c:url value='/forum' />">Home</a> <span class="mx-2 slash">/</span>
-              <a href="#">Job</a> <span class="mx-2 slash">/</span>
-              <span class="text-white"><strong>Post a Comment</strong></span>
-            </div>
+            <h1 class="text-white font-weight-bold">&nbsp;</h1>
           </div>
-        </div>
       </div>
     </section>
 
@@ -91,28 +85,9 @@
     <section class="site-section">
       <div class="container">
 
-        <div class="row align-items-center mb-5">
-          <div class="col-lg-8 mb-4 mb-lg-0">
-            <div class="d-flex align-items-center">
-              <div>
-                <h2>Post A Comment</h2>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="row">
-              <div class="col-6">
-<!--                 <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a> -->
-              </div>
-              <div class="col-6">
-                <a href="<c:url value='/' />" class="btn btn-block btn-primary btn-md">Back Home</a>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="row mb-5">
           <div class="col-lg-12">
-            <form class="p-4 p-md-5 border rounded" method="post" action="<c:url value='/forum/add'/>" onsubmit="return check()">
+            <form class="p-4 p-md-5 border rounded" method="post" action="<c:url value='/forum/addForumContent'/>" onsubmit="return check()">
               <h3 class="text-black mb-5 border-bottom pb-2">Say Something</h3>
               
 <!--               <div class="form-group"> -->
@@ -140,10 +115,10 @@
 <!--                 <label for="job-location">文章內容</label> -->
 <!--                 <input type="text" class="form-control" id="job-location" placeholder="e.g. New York"> -->
 <!--               </div> -->
-                  <input id="content001" type="text" name="content" hidden="true">	
+                  <textarea id="content001" name="content" hidden="true"></textarea>	
               <div class="form-group">
                 <label for="job-description">文章內容</label>
-                <div onkeyup="myFunction()" class="editor" id="editor-1">
+                <div onkeyup="divToInput()" class="editor" id="editor-1">
 <!--                   <p></p> -->
 			
                 </div>
@@ -193,7 +168,7 @@
 <!--                   Browse File<input type="file" hidden> -->
 <!--                 </label> -->
 <!--               </div> -->
-					<input id="sendbtn" type="submit" class="btn btn-block btn-primary btn-md" value="Send" />
+					<input id="sendbtn" type="submit" class="btn btn-block btn-primary btn-md" value="送出" />
             </form>
           </div>
 
@@ -224,7 +199,7 @@
 <!--       </a> -->
 
       <div class="container">
-        <div class="row mb-5">
+        <div class="row mb-1">
           <div class="col-6 col-md-3 mb-4 mb-md-0">
             <h3>Search Trending</h3>
             <ul class="list-unstyled">
@@ -268,7 +243,7 @@
           <div class="col-12">
             <p class="copyright"><small>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            本專案僅供中壢資策會使用</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
           </div>
         </div>
@@ -294,12 +269,12 @@
     
     <script src="<c:url value='/ben/js/custom.js'/> "></script>
 	<script type="text/javascript">
-		function myFunction(){
+		function divToInput(){
 			let x = document.getElementsByClassName("ql-editor")[0]
 			let y = x.getElementsByTagName("p")[0];
 			let z = document.getElementById("content001");
 
-			z.value = y.innerText;
+			z.value = x.innerHTML;
 		}
 		
 		 function check()

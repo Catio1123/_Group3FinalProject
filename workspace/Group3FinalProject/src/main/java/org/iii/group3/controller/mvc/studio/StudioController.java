@@ -40,7 +40,7 @@ public class StudioController {
 		return studioService.findAll(); 
 	}
 	
-	@GetMapping(value="/findById/{id}", produces = "application/json; charset=UTF-8")	
+	@GetMapping(value="/studio/findById/{id}", produces = "application/json; charset=UTF-8")	
 	public @ResponseBody Studio findById(
 			@PathVariable Integer id
 			
@@ -79,7 +79,7 @@ public class StudioController {
 		}
 		model.addAttribute("result", result);
 		
-		return "studio/ex02/showResult";
+		return "ex02/showResult";
 		
 	}	
 

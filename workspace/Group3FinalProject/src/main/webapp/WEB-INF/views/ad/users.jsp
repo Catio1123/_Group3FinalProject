@@ -21,13 +21,13 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous">
 	
-	
-	</script>
+</script>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="<c:url value='/adindex' />">I Podcast For User</a>
+		<a class="navbar-brand ps-3" href="<c:url value='/adindex' />">I
+			Podcast For User</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 			id="sidebarToggle" href="#!">
@@ -85,8 +85,9 @@
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="<c:url value='/showRecord/${user.id}'/>">已加入</a>
-								<a class="nav-link" href="layout-sidenav-light.html">Light
+								<a class="nav-link"
+									href="<c:url value='/showRecord/${user.id}'/>">已加入</a> <a
+									class="nav-link" href="layout-sidenav-light.html">Light
 									Sidenav</a>
 							</nav>
 						</div>
@@ -254,17 +255,19 @@
 										<th colspan=2>指令</th>
 
 									</tr>
-
+								</thead>
+								<tbody>
 									<c:forEach var="adDtos" items="${adDtos}">
 
-										<form:form id="a${adDtos.ad.id }" action="/ipodcast/addRecord/${adDtos.ad.id}/${user.id}"
+										<form:form id="${adDtos.ad.id }"
+											action="/ipodcast/addRecord/${adDtos.ad.id}/${user.id}"
 											method="post">
 
 											<tr>
 												<td>${adDtos.ad.id}</td>
 												<td>${adDtos.ad.company}</td>
 												<td>${adDtos.ad.text}</td>
-												<td><a href="${adDtos.ad.url}" >${adDtos.ad.url}</a></td>
+												<td><a href="${adDtos.ad.url}">${adDtos.ad.url}</a></td>
 
 												<c:if test="${adDtos.enable==false}">
 													<td><input type="button" value='已加入' disabled /></td>

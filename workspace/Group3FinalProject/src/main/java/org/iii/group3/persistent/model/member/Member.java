@@ -31,7 +31,7 @@ public class Member implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "acctno")
+	@Column(name = "acctno", unique = true)
 	private String  acctno;
 	
 	@Column(name = "pw")

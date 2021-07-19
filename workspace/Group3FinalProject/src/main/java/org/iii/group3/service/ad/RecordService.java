@@ -10,10 +10,12 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import org.apache.jasper.tagplugins.jstl.core.When;
+import org.iii.group3.persistent.dao.ad.AdRepo;
 import org.iii.group3.persistent.dao.ad.RecordRepo;
 import org.iii.group3.persistent.model.ad.Ad;
+import org.iii.group3.persistent.model.ad.ClickTime;
 import org.iii.group3.persistent.model.ad.Record;
-import org.iii.group3.persistent.model.ad.User;
+import org.iii.group3.persistent.model.member.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
@@ -31,11 +33,43 @@ public class RecordService {
 	@Autowired
 	private EntityManager entityManager;
 
-	private Ad ad;
+	@Autowired
+	private AdRepo adRepo;
+	
+	@Autowired
+	private ClickTimeService clickTimeService;
+	
 
-	public List<Record> listRecord(User user) {
+	public Record findByUserIdAndAdId(String account, Integer aid) {
+		return recordRepo.findByUserIdAndAdId(account, aid);
+	}
+	
+	public void deleteByActAndAdId(String account, Integer aid) {
+		recordRepo.deleteByUserIdAndAdId(account, aid);
+	}
+	
+	public void updateBonus(Integer aid) {
+		
+		List<Record> records = recordRepo.findByAdId(aid);
+		Ad ad = adRepo.getById(aid);
+		double totalAmount = ad.getSponsorshipAmount();
+		double totalClick = ad.getAdTotalClick();
+		
+		for(Record record : records) {
+			
+			double recordBonus = totalAmount * record.getAdClick() / totalClick;
+			record.setBonus(recordBonus);
+			
+			recordRepo.save(record);
+			
+		}
+		
+		
+	}
+	
+	public List<Record> listRecord(String account) {
 
-		return recordRepo.findByUser(user);
+		return recordRepo.findByUserId(account);
 	}
 
 	public boolean findByAd(Ad ad) {
@@ -48,35 +82,39 @@ public class RecordService {
 		 return true;
 	}
 
-	public void addOne(Ad ad, User user) {
+	public void addOne(Ad ad, Member user) {
 		Ad ads = entityManager.find(Ad.class, ad.getId());
-		User users = entityManager.find(User.class, user.getId());
 		Record record = new Record();
 
 		record.setAd(ads);
-		record.setUser(users);
+		record.setUser(user);
 		record.setUrl(ads.getUrl());
-		record.setAdClick(0);
+		record.setAdClick(0L);
 		record.setBonus(0);
 		recordRepo.save(record);
 
 	}
 
-	public void deleteByUserAndAd(User user, Ad ad) {
+	public void deleteByUserAndAd(Member user, Ad ad) {
 		recordRepo.deleteByUserAndAd(user, ad);
 	}
 
-	public Record select(User user, Ad ad) {
+	public Record select(Member user, Ad ad) {
 		Record findByUserAd = recordRepo.findByUserAndAd(user, ad);
 
 		return findByUserAd;
 	}
 
-	public void addClicktime(Ad ad, User user, double clickTime) {
+	public void increaseClicktime(Integer aid, Long cid, Integer count) {
 
-		select(user, ad).setAdClick(clickTime);
-
-		recordRepo.save(select(user, ad));
+		ClickTime clickTime = clickTimeService.findById(aid, cid).get();
+		
+		Record record = clickTime.getRecord();
+		
+		record.setAdClick(record.getAdClick() + count);
+		
+		
+		recordRepo.save(record);
 	}
 
 	public Integer sumClickByAd(Ad ad) {
@@ -86,7 +124,7 @@ public class RecordService {
 		return i;
 	}
 	
-	public void addBonus(Ad ad, User user, double bonus) {
+	public void addBonus(Ad ad, Member user, double bonus) {
 
 		select(user, ad).setBonus(bonus);
 
