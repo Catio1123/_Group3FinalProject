@@ -54,37 +54,37 @@
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <form:input path="topic"  class="form-control" type="text" required="required"/>
+                                                        <form:input path="topic" id="topic" class="form-control" type="text" required="required"/>
                                                         <label>主題</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <form:input path="type" class="form-control" type="text"  required="required"/>
+                                                        <form:input path="type" id="type" class="form-control" type="text"  required="required"/>
                                                         <label>類型</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <form:input path="address" class="form-control"  required="required"/>
+                                                <form:input path="address" id="address" class="form-control"  required="required"/>
                                                 <label>地點</label>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <form:input path="longitude"  class="form-control" type="text" required="required"/>
+                                                        <form:input path="longitude" id="longitude" class="form-control" type="text" required="required"/>
                                                         <label>經度</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
-                                                        <form:input path="latitude" class="form-control" type="text"  required="required"/>
+                                                        <form:input path="latitude" id="latitude" class="form-control" type="text"  required="required"/>
                                                         <label>緯度</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <form:input path="link" class="form-control" type="text"  required="required"/>
+                                                <form:input path="link" id="link" class="form-control" type="text"  required="required"/>
                                                 <label>相關連結</label>
                                             </div>
                                             <div class="row mb-3">
@@ -102,7 +102,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <form:textarea path="intro" class="form-control" required="required"/>
+                                                <form:textarea path="intro" id="intro" class="form-control" required="required"/>
                                                 <label>介紹</label>
                                             </div>
                                             <div class="mt-4 mb-0">                                            
@@ -113,7 +113,10 @@
                                     </div>
                                     
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="<c:url value='/eventIndex'/>">回前頁</a></div>
+                                        <div class="small">
+                                            <a href="<c:url value='/'/>">回前頁</a>&nbsp;&nbsp;
+                                            <input type="button" value="一鍵輸入" onclick="one_button_insert()">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -121,21 +124,18 @@
                     </div>
                 </main>
             </div>
-            <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; iPodcast</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
         </div>
+
+        <script>
+            function one_button_insert(){
+                document.getElementById("topic").value = "法客面對面｜我們的初體驗";
+                document.getElementById("type").value = "線下活動";
+                document.getElementById("address").value = "濕地 venue B1（台北市中山區林森北路 107 巷 10 號／近捷運善導寺、中山站）";
+                document.getElementById("link").value = "https://plainlaw.me/";
+                document.getElementById("longitude").value = "121.5231881";
+                document.getElementById("latitude").value = "25.0501444";
+            }
+        </script>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="/bill/js/scripts.js"></script>
