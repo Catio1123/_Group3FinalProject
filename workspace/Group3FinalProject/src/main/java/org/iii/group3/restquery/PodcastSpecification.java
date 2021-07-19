@@ -77,13 +77,23 @@ public class PodcastSpecification {
 				return null;
 			}
 			
-			Specification<E> specification = getBaseSpecification();
+			Specification<E> specification = getConjunctionSpecification();
 			
-					
 			for(SpecSearchCriteria criteria :criterias) {
-				specification = getSpecification(specification, criteria);
+				if(!criteria.isOrPredicate()) {
+					
+					specification = getSpecification(specification, criteria);
+				}
 				
 			}
+			for(SpecSearchCriteria criteria :criterias) {
+				if(criteria.isOrPredicate()) {
+					
+					specification = getSpecification(specification, criteria);
+				}
+				
+			}
+					
 			
 			return specification;
 		}
@@ -116,13 +126,13 @@ public class PodcastSpecification {
 		
 		private Predicate getPredicate(SpecSearchCriteria criteria, Root<E> root, CriteriaBuilder builder) {
 			
-			Predicate predicate = builder.conjunction();
+			Predicate predicate = builder.disjunction();
 			List<Condition> conditions = criteria.getConditions();
 			String field = criteria.getField();
 			
 			for(Condition condition : conditions) {
 				
-				predicate = builder.and(predicate, getConditionPredicate(root, builder, field, condition));
+				predicate = builder.or(predicate, getConditionPredicate(root, builder, field, condition));
 				
 			
 			}
@@ -132,7 +142,7 @@ public class PodcastSpecification {
 			
 		}
 		
-		private Specification<E> getBaseSpecification(){
+		private Specification<E> getConjunctionSpecification(){
 			return (root, query, builder) -> {
 				return builder.conjunction();
 			};

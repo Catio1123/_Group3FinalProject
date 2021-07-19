@@ -17,7 +17,7 @@ public class PodcastCriteriaParser {
 		Map<String, String> query = MapUtil.objectToMap(queryDto);
 		
 		return query.entrySet().stream()
-				.filter(e -> e.getValue() != null)
+				.filter(e -> e.getValue() != null  && e.getValue() != "")
 				.map(e -> SpecSearchCriteria.with(e.getKey(), e.getValue()))
 				.collect(Collectors.toList());
 	}

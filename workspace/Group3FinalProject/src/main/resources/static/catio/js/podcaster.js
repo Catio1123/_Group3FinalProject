@@ -172,7 +172,7 @@ function createCardHtml(imgSrc, title, desrc, id) {
   let cardHtml = `
       <div class="col">
         <div class="card shadow-sm h-100  ">
-          <img src="${imgSrc}" class=".card-img-top"></img>
+          <img src="${imgSrc}" class="card-img-top"></img>
           <div class="card-body">
             <h5 class="card-title">${title}</h5>
             <p class="card-text text-truncate">${desrc}</p>
@@ -199,6 +199,7 @@ function findAllCategories(){
       let responseJson = JSON.parse(xhr0.responseText);
       if (xhr0.status === 200) {
         var data = responseJson['data'];
+        categoriesSelect.innerHTML="";
         for (var en_name in data) {
           categoriesSelect.options.add(new Option(data[en_name], en_name));
         }

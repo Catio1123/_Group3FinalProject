@@ -78,50 +78,93 @@
 
 <main>
 
-  <section class="py-3 text-center  container">
+  <section class="py-3  container">
     <div class="row pt-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
+      <div class="col-lg-6 col-md-8 mx-auto text-center">
         <a href="<c:url value='/'/>"><img src="<c:url value='/catio/image/IPocast.png'/>" style="width:300px;"></a>
       </div>
     </div>
     <!-- 搜尋列 -->
-    <form class="mt-3">
+    <p class="text-center">
+      <button class="btn btn-outline-secondary mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+       +搜尋
+      </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+      <form class="mt-3 mx-auto col-10 ">
+        <fieldset>
+          <legend class="mb-3">包含</legend>
+          <div class="row  mt-3">
+            <label  class="col-2 col-form-label col-form-label-lg ">Podcast標題：</label>
+            <input class="col form-control me-3" id="and_precise_podcast_title"   placeholder="精準查詢">
+            <input class="col form-control" id="and_fuzzy_podcast_title" placeholder="模糊查詢">
+    
+          </div>
+          <div class="row  mt-3">
+            <label  class="col-2 col-form-label col-form-label-lg ">類別名稱：</label>
+            <input class="col form-control me-3" id="and_precise_category_cnName"   placeholder="精準查詢">
+            <input class="col form-control" id="and_fuzzy_category_cnName" placeholder="模糊查詢">
+    
+          </div>
+          <div class="row  mt-3">
+            <label  class="col-2 col-form-label col-form-label-lg ">Podcaster名子：</label>
+            <input class="col form-control me-3" id="and_precise_podcaster_name"   placeholder="精準查詢">
+            <input class="col form-control" id="and_fuzzy_podcaster_name" placeholder="模糊查詢">
+    
+          </div>
+          
+        </fieldset>  
+        <hr class="my-5">
+        <fieldset>
+          <legend class="mb-3">額外包含</legend>
+          <div class="row  mt-3">
+            <label  class="col-2 col-form-label col-form-label-lg ">Podcast標題：</label>
+            <input class="col form-control me-3" id="or_precise_podcast_title"   placeholder="精準查詢">
+            <input class="col form-control" id="or_fuzzy_podcast_title" placeholder="模糊查詢">
+    
+          </div>
+          <div class="row  mt-3">
+            <label  class="col-2 col-form-label col-form-label-lg ">類別名稱：</label>
+            <input class="col form-control me-3" id="or_precise_category_cnName"   placeholder="精準查詢">
+            <input class="col form-control" id="or_fuzzy_category_cnName" placeholder="模糊查詢">
+    
+          </div>
+          <div class="row  mt-3">
+            <label  class="col-2 col-form-label col-form-label-lg ">Podcaster名子：</label>
+            <input class="col form-control me-3" id="or_precise_podcaster_name"   placeholder="精準查詢">
+            <input class="col form-control" id="or_fuzzy_podcaster_name" placeholder="模糊查詢">
+    
+          </div>
+          
+        </fieldset>  
+  
+        
+        <div class="text-end mt-3">
+          <button class="btn btn-outline-secondary " id="btnDemo1" type="button">一鍵輸入1</button>
+          <button class="btn btn-outline-secondary " id="btnDemo2" type="button">一鍵輸入2</button>
+          <button class="btn btn-outline-secondary " id="btnDemo3" type="button">一鍵輸入3</button>
+          <button class="btn btn-outline-secondary " id="btnDemo4" type="button">一鍵輸入4</button>
+          <button class="btn btn-outline-secondary " id="btnDemo5" type="button">一鍵輸入5</button>
+          <button class="btn btn-outline-secondary " id="btnDemo6" type="button">一鍵輸入6</button>
+          <button class="btn btn-outline-secondary " type="button" id="btnSearch">送出</button>
+  
+        </div>
+      </form>
       
-      <div class="  justify-content-center row g-3">
-        <div class="col-8">
-          <input class="form-control" id="queryString" type="text" placeholder="Podcast搜尋" aria-label="Search" >
-        </div>
-        <div class="col-2">
-          <select class=" form-select"></select>
-        </div>
-        <div class="col-auto">
-          <button class="btn btn-outline-secondary " id="btnSearch" type="button">搜尋</button>
-        </div>
-
-      </div>
-    </form>
+    </div>
   </section>
   
 
   <div class=" py-5 bg-light">
     <div class="container col-8  align-items-center ">
-      <form action="">
-        <div class="row  justify-content-end mb-4">   
-          <div class="col-2 text-end">
-            <label for="inputAccount" class="col-form-label">筆/頁</label>
-            <select name="" id="" class="col-2 w-50">
-            </select>
-          </div >
-         
-        </div>
-      </form>
+   
       <!-- podcast列表 -->
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5" id="podcastListContainer">
  
     
 
       </div>
-        <div class="position-relative bottom-0 start-50 ">
+        <div class="position-relative bottom-0 start-50 mt-5">
                                        
           <div id="pagination-container"></div>
       </div>
