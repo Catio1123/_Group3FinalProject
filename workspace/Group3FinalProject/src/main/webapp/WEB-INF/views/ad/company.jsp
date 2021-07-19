@@ -56,7 +56,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="<c:url value='/adindex' />">
+				href="<c:url value='/' />">
 				<div class="sidebar-brand-icon rotate-n-15">
 					
 				</div>
@@ -70,7 +70,7 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active"><a class="nav-link"
-				href="<c:url value='/adindex' />"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>回首頁</span></a>
+				href="<c:url value='/' />"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>回首頁</span></a>
 			</li>
 
 			<!-- Divider -->
