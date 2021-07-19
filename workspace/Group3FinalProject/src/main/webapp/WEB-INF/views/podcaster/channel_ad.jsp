@@ -145,6 +145,7 @@
                                             <th class="col-2" scope="col">廣告商</th>
                                             <th class="col-2 text-truncate" scope="col">廣告內容</th>
                                             <th class="col-2" scope="col">贊助網址</th>
+                                            <th class="col-1" scope="col">照片</th>
                                             <th class="col-2" scope="col">點擊次數</th>
                                             <th class="col-2" scope="col">獎勵</th>
                                             <th class="col-2" scope="col" colspan=2>指令</th>

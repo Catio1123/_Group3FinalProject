@@ -17,7 +17,11 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
 	rel="stylesheet" />
+<<<<<<< HEAD
 <link href="/ipodcast/gavin/css2/styles.css" rel="stylesheet" />
+=======
+<link href="/ipodcast/css/styles.css" rel="stylesheet" />
+>>>>>>> wayne
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
@@ -178,6 +182,7 @@
 						 <label for="studioName">姓名:</label>
 						<input type="text" value="${booking.name}" id="name" name="name"  /> <br /> <label
 							for="studiLocation">地點:</label> <input type="text"
+<<<<<<< HEAD
 							id="studioLocation" value="${booking.studioName}" name="studioName" /> <br />
 							<label for="people">人數:</label>
 							<input type="text" id="people" value="${booking.people}" name="people" /> <br /> 
@@ -187,6 +192,17 @@
 							<input type="text" id="people" value="${booking.email}" name="email" /> <br /> 
 							<label for="msg">備註:</label>
 							<input type="text" id="people" value="${booking.msg}" name="msg" /> <br /> 
+=======
+							id="studioLocation" value="${booking.studioName}" name="location" /> <br />
+							<label for="people">人數:</label>
+							<input type="text" id="people" value="${booking.people}" name="people" /> <br /> 
+							<label for="date">時間:</label>
+							<input type="text" id="people" value="${booking.date}" name="people" /> <br /> 
+							<label for="email">email:</label>
+							<input type="text" id="people" value="${booking.email}" name="people" /> <br /> 
+							<label for="msg">備註:</label>
+							<input type="text" id="people" value="${booking.msg}" name="people" /> <br /> 
+>>>>>>> wayne
 
 						<button type="button" id="btnUpdate">更新</button>
 						<button type="button" id="btnDel">刪除</button>
@@ -216,10 +232,17 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
+<<<<<<< HEAD
 	<script src="/ipodcast/gavin/js/scripts.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
 		crossorigin="anonymous"></script>
 	<script src="/ipodcast/gavin/js/datatables-simple-demo.js"></script>
+=======
+	<script src="/ipodcast/js/scripts.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
+		crossorigin="anonymous"></script>
+	<script src="/ipodcast/js/datatables-simple-demo.js"></script>
+>>>>>>> wayne
 	<script>
 	$(function() {
 		let id = ${id};

@@ -133,6 +133,7 @@
                                             <th class="col-1" scope="col">編號</th>
                                             <th class="col-2" scope="col">廣告商</th>
                                             <th class="col-3 text-truncate" scope="col">廣告內容</th>
+                                            <th class="col-1" scope="col">照片</th>
                                             <th class="col-4" scope="col">贊助網址</th>
                                             <th class="col-2" scope="col" colspan=2>指令</th>
                                         </tr>

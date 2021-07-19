@@ -8,11 +8,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Catalog</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="/ipodcast/gavin/guest/fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <!-- https://fonts.google.com/ -->
     <link rel="stylesheet" href="/ipodcast/gavin/guest/css/bootstrap.min.css">
     <link rel="stylesheet" href="/ipodcast/gavin/guest/css/templatemo-video-catalog.css">
+=======
+    <link rel="stylesheet" href="guest/fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <!-- https://fonts.google.com/ -->
+    <link rel="stylesheet" href="guest/css/bootstrap.min.css">
+    <link rel="stylesheet" href="guest/css/templatemo-video-catalog.css">
+>>>>>>> wayne
 <!--
 
 TemplateMo 552 Video Catalog
@@ -77,7 +85,11 @@ https://templatemo.com/tm-552-video-catalog
             <div id="tm-video-container">
                 <video autoplay muted loop id="tm-video">
                     <!-- <source src="video/sunset-timelapse-video.mp4" type="video/mp4"> -->
+<<<<<<< HEAD
                         <source src="/ipodcast/gavin/guest/video/wheat-field.mp4" type="video/mp4">
+=======
+                        <source src="guest/video/wheat-field.mp4" type="video/mp4">
+>>>>>>> wayne
                 </video>    
             </div>
             
@@ -213,8 +225,13 @@ https://templatemo.com/tm-552-video-catalog
 
     </div> <!-- .tm-page-wrap -->
 
+<<<<<<< HEAD
     <script src="/ipodcast/gavin/guest/js/jquery-3.4.1.min.js"></script>
     <script src="/ipodcast/gavin/guest/js/bootstrap.min.js"></script>
+=======
+    <script src="guest/js/jquery-3.4.1.min.js"></script>
+    <script src="guest/js/bootstrap.min.js"></script>
+>>>>>>> wayne
     <script>
         function setVideoSize() {
             const vidWidth = 1920;

@@ -10,15 +10,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Video Catalog</title>
 <link rel="stylesheet"
+<<<<<<< HEAD
 	href="/ipodcast/gavin/guest/fontawesome/css/all.min.css">
+=======
+	href="/ipodcast/guest/fontawesome/css/all.min.css">
+>>>>>>> wayne
 <!-- https://fontawesome.com/ -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
 	rel="stylesheet">
 <!-- https://fonts.google.com/ -->
+<<<<<<< HEAD
 <link rel="stylesheet" href="/ipodcast/gavin/guest/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="/ipodcast/gavin/guest/css/templatemo-video-catalog.css">
+=======
+<link rel="stylesheet" href="/ipodcast/guest/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/ipodcast/guest/css/templatemo-video-catalog.css">
+>>>>>>> wayne
 </head>
 <!--
 
@@ -164,7 +174,11 @@ https://templatemo.com/tm-552-video-catalog
 													required="" />
 											</div>
 
+<<<<<<< HEAD
 											<div class="form-group mb-3">
+=======
+											<div class="form-group mb-0">
+>>>>>>> wayne
 												<button type="button" id="btnRegister"
 													class="btn btn-primary rounded-0 d-block ml-auto mr-0 tm-btn-animate tm-btn-submit tm-icon-submit">
 													<span>Submit</span>
@@ -240,8 +254,13 @@ https://templatemo.com/tm-552-video-catalog
 	</div>
 
 
+<<<<<<< HEAD
 	<script src="/ipodcast/gavin/guest/js/jquery-3.4.1.min.js"></script>
 	<script src="/ipodcast/gavin/guest/js/bootstrap.min.js"></script>
+=======
+	<script src="/ipodcast/guest/js/jquery-3.4.1.min.js"></script>
+	<script src="/ipodcast/guest/js/bootstrap.min.js"></script>
+>>>>>>> wayne
 	<script>
 		$(document).ready(function() {
 			$('.tm-likes-box').click(function(e) {
